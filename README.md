@@ -1,5 +1,7 @@
 # I made version 2
 
+expo start --tunnel
+
 [ReactNative-Expo-Firebase-Boilerplate-v2](https://github.com/kiyohken2000/ReactNative-Expo-Firebase-Boilerplate-v2)
 
 # React Native Expo with Firebase

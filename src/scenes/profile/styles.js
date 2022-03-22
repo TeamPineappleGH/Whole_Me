@@ -14,7 +14,8 @@ export default StyleSheet.create({
   title: {
     fontSize: 24,
     marginBottom: 20,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'black',
   },
   darktitle: {
     fontSize: 24,
