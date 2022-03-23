@@ -62,7 +62,9 @@ export default function App() {
       return;
     }
     const token = await Notifications.getExpoPushTokenAsync();
-    await firebase.firestore().collection("tokens").doc(user.id).set({ token: token.data, email: user.id })
+    if (user !== null) {
+      await firebase.firestore().collection("tokens").doc(user.id).set({ token: token.data, email: user.id })
+    }
   })();
 
   if (loading) {
