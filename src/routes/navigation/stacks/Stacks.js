@@ -5,6 +5,9 @@ import Registration from '../../../scenes/registration'
 import Home from '../../../scenes/home'
 import Profile from '../../../scenes/profile'
 import Detail from '../../../scenes/details'
+import Diary from '../../../scenes/diary'
+import Nutrition from '../../../scenes/nutrition'
+import Wellness from '../../../scenes/wellness'
 
 // ------------------------------------
 // Constants
@@ -55,6 +58,45 @@ export const ProfileNavigator = (props) => {
       </Stack.Screen>
       <Stack.Screen name="Detail">
         {props => <Detail {...props} extraData={user} />}
+      </Stack.Screen>
+    </Stack.Navigator>
+  )
+}
+
+export const DiaryNavigator = (props) => {
+  const user = props.user;
+  const navigationProps = props.navigationProps;
+
+  return (
+    <Stack.Navigator headerMode = "screen" screenOptions= {navigationProps}>
+      <Stack.Screen name= "Diary">
+        {props => <Diary {...props} extraData={user} />}
+      </Stack.Screen>
+    </Stack.Navigator>
+  )
+}
+
+export const WellnessNavigator = (props) => {
+  const user = props.user;
+  const navigationProps = props.navigationProps;
+
+  return (
+    <Stack.Navigator headerMode = "screen" screenOptions= {navigationProps}>
+      <Stack.Screen name= "Wellness">
+        {props => <Wellness {...props} extraData={user} />}
+      </Stack.Screen>
+    </Stack.Navigator>
+  )
+}
+
+export const NutritionNavigator = (props) => {
+  const user = props.user;
+  const navigationProps = props.navigationProps;
+
+  return (
+    <Stack.Navigator headerMode = "screen" screenOptions= {navigationProps}>
+      <Stack.Screen name= "Nutrition">
+        {props => <Nutrition {...props} extraData={user} />}
       </Stack.Screen>
     </Stack.Navigator>
   )
