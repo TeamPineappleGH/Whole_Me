@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, ScrollView, StatusBar, useColorScheme } from 'react-native'
+import { Text, View, ScrollView, StatusBar, useColorScheme, Image } from 'react-native'
 import styles from './styles'
 import { firebase } from '../../firebase/config'
+import phase1 from '../../../assets/images/phase1-01.png'
 
 export default function Home(props) {
   const userData = props.extraData
@@ -34,7 +35,9 @@ export default function Home(props) {
           <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>{userData.email}</Text>
           <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>Expo push token:</Text>
           <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>{token.token}</Text>
-          <Text style={scheme === 'dark' ? styles.darktitle : styles.title}> Hello World!!! </Text>
+          {/* <Text style={scheme === 'dark' ? styles.darktitle : styles.title}> Hello World!!! </Text> */}
+          
+          {/* <Image source= {phase1} />  */}
         </ScrollView>
       </View>
     </View>
