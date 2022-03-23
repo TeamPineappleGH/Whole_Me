@@ -32,7 +32,6 @@ export default function App() {
   const scheme = useColorScheme()
 
   const navigationProps = {
-
     header: (props) => {
       const routeName = props.scene.route.name
       return (
