@@ -34,6 +34,7 @@ export default function Home(props) {
           <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>{userData.email}</Text>
           <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>Expo push token:</Text>
           <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>{token.token}</Text>
+          <Text style={scheme === 'dark' ? styles.darktitle : styles.title}> Hello World!!! </Text>
         </ScrollView>
       </View>
     </View>
