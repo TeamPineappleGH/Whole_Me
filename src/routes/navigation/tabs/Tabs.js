@@ -23,7 +23,7 @@ const TabNavigator = (props) => {
               return (
                 <FontIcon
                   name="home"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -32,7 +32,7 @@ const TabNavigator = (props) => {
               return (
                 <FontIcon
                   name="user"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -42,7 +42,7 @@ const TabNavigator = (props) => {
               return (
                 <FontIcon
                   name="book-open"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -51,7 +51,7 @@ const TabNavigator = (props) => {
             return(
               <FontIcon
                   name="utensils"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -60,7 +60,7 @@ const TabNavigator = (props) => {
             return(
               <FontIcon2
                   name="fitness"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -71,7 +71,7 @@ const TabNavigator = (props) => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: colors.lightPurple,
+        activeTintColor: colors.orange,
         inactiveTintColor: colors.gray,
       }}
       initialRouteName="Home"

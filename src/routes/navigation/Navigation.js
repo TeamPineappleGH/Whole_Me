@@ -29,7 +29,7 @@ export default function App() {
   const navigationProps = {
     headerTintColor: 'white',
     headerStyle: { 
-      backgroundColor: scheme === 'dark' ? colors.dark : colors.darkPurple
+      backgroundColor: scheme === 'dark' ? colors.dark : colors.palePink
     },
     headerTitleStyle: { fontSize: 18 },
   }
