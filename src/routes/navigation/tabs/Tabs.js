@@ -23,7 +23,7 @@ const TabNavigator = (props) => {
               return (
                 <FontIcon
                   name="home"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -32,7 +32,7 @@ const TabNavigator = (props) => {
               return (
                 <FontIcon
                   name="user"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -42,7 +42,7 @@ const TabNavigator = (props) => {
               return (
                 <FontIcon
                   name="book-open"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -51,7 +51,7 @@ const TabNavigator = (props) => {
             return(
               <FontIcon
                   name="utensils"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -60,7 +60,16 @@ const TabNavigator = (props) => {
             return(
               <FontIcon2
                   name="fitness"
-                  color={focused ? colors.lightPurple : colors.gray}
+                  color={focused ? colors.orange : colors.gray}
+                  size={20}
+                  solid
+                />
+            )
+            case 'Calendar':
+            return(
+              <FontIcon
+                  name="calendar-check"
+                  color={focused ? colors.orange : colors.gray}
                   size={20}
                   solid
                 />
@@ -71,7 +80,7 @@ const TabNavigator = (props) => {
         },
       })}
       tabBarOptions={{
-        activeTintColor: colors.lightPurple,
+        activeTintColor: colors.orange,
         inactiveTintColor: colors.gray,
       }}
       initialRouteName="Home"
@@ -103,6 +112,11 @@ const TabNavigator = (props) => {
       name= "Wellness"
       children = {() => (
         <WellnessNavigator user= {user} navigationProps={navigationProps} />
+      )} />
+      <Tab.Screen
+      name= "Calendar"
+      children = {() => (
+        <CalendarNavigator user= {user} navigationProps={navigationProps} />
       )} />
     </Tab.Navigator>
   )

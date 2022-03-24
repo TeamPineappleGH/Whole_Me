@@ -1,17 +1,22 @@
-import 'react-native-gesture-handler';
+import 'react-native-gesture-handler'
 import React, { useEffect, useState } from 'react'
 import { firebase } from '../../firebase/config'
 import { colors } from 'theme'
 import { NavigationContainer } from '@react-navigation/native'
 import * as Notifications from 'expo-notifications'
-import { useColorScheme } from 'react-native'
+import { useColorScheme, Text, View } from 'react-native'
 import { DefaultTheme, DarkTheme } from '@react-navigation/native'
 // import DrawerNavigator from './drawer'
 import { LoginNavigator } from './stacks'
 import TabNavigator from './tabs'
-import {decode, encode} from 'base-64'
-if (!global.btoa) { global.btoa = encode }
-if (!global.atob) { global.atob = decode }
+import { decode, encode } from 'base-64'
+
+if (!global.btoa) {
+  global.btoa = encode
+}
+if (!global.atob) {
+  global.atob = decode
+}
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -19,7 +24,7 @@ Notifications.setNotificationHandler({
     shouldPlaySound: true,
     shouldSetBadge: false,
   }),
-});
+})
 
 export default function App() {
   const [loading, setLoading] = useState(true)
@@ -27,58 +32,79 @@ export default function App() {
   const scheme = useColorScheme()
 
   const navigationProps = {
-    headerTintColor: 'white',
-    headerStyle: { 
-      backgroundColor: scheme === 'dark' ? colors.dark : colors.darkPurple
+    header: (props) => {
+      const routeName = props.scene.route.name
+      return (
+        <View
+          style={{
+            height: 100,
+            backgroundColor: scheme === 'dark' ? colors.dark : colors.palePink,
+            justifyContent: 'center',
+            alignItems: 'center',
+
+          }}
+        >
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 22,
+              // flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 40
+            }}
+          >
+            {routeName}
+          </Text>
+        </View>
+      )
     },
-    headerTitleStyle: { fontSize: 18 },
   }
 
   useEffect(() => {
-    const usersRef = firebase.firestore().collection('users');
-    firebase.auth().onAuthStateChanged(user => {
+    const usersRef = firebase.firestore().collection('users')
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        usersRef
-          .doc(user.uid)
-          .onSnapshot(function(document) {
-            const userData = document.data()
-            setLoading(false)
-            setUser(userData)
-          })
+        usersRef.doc(user.uid).onSnapshot(function (document) {
+          const userData = document.data()
+          setLoading(false)
+          setUser(userData)
+        })
       } else {
         setLoading(false)
       }
-    });
-  }, []);
-
-   (async () => {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync()
-    let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== "granted") {
-      return;
-    }
-    const token = await Notifications.getExpoPushTokenAsync();
-    if (user !== null) {
-      await firebase.firestore().collection("tokens").doc(user.id).set({ token: token.data, email: user.id })
-    }
-  })();
+    })
+  }, [])
+    ; (async () => {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync()
+      let finalStatus = existingStatus
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync()
+        finalStatus = status
+      }
+      if (finalStatus !== 'granted') {
+        return
+      }
+      const token = await Notifications.getExpoPushTokenAsync()
+      if (user !== null) {
+        await firebase
+          .firestore()
+          .collection('tokens')
+          .doc(user.id)
+          .set({ token: token.data, email: user.id })
+      }
+    })()
 
   if (loading) {
-    return (
-      <></>
-    )
+    return <></>
   }
 
-  return(
+  return (
     <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
-      { user ? (
-        <TabNavigator user={user} navigationProps={navigationProps}/>
-        ) : (
-        <LoginNavigator navigationProps={navigationProps}/>
+      {user ? (
+        <TabNavigator user={user} navigationProps={navigationProps} />
+      ) : (
+        <LoginNavigator navigationProps={navigationProps} />
       )}
     </NavigationContainer>
   )
