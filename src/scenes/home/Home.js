@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Text, View, ScrollView, StatusBar, useColorScheme, Image } from 'react-native'
 import styles from './styles'
 import { firebase } from '../../firebase/config'
-import Phase1 from '../../../assets/images/phase1-01.png'
 
 export default function Home(props) {
   const userData = props.extraData
