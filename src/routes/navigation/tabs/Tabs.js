@@ -4,10 +4,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import FontIcon2 from 'react-native-vector-icons/Ionicons'
 import { colors } from 'theme'
-// import Diary from '../../../../assets/images/diary.png'
+
 
 // stack navigators
-import { HomeNavigator, ProfileNavigator, DiaryNavigator, NutritionNavigator, WellnessNavigator} from '../stacks'
+import { HomeNavigator, ProfileNavigator, DiaryNavigator, NutritionNavigator, WellnessNavigator, CalendarNavigator} from '../stacks'
 
 const Tab = createBottomTabNavigator()
 
