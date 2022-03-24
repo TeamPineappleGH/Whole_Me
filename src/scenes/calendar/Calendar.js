@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Calendar } from 'react-native-calendars';
 import { Text, View, Button, useColorScheme, Alert } from 'react-native';
 import styles from './styles';
+import { collection, doc, getDoc } from "firebase/firestore";
 
 // Menstrual phase (From day 1 to 5)
 // Follicular phase (From day 1 to 13)
@@ -13,17 +14,25 @@ import styles from './styles';
 // note: avg cycle is 28 days
 
 // STEPS:
-  // Need to grab the above info from firebase for signed in user
+  // 1. Need to grab the above info from firebase for signed in user
+
+
+  // 2. LOGIC - psuedo code? 
+
+
+  // 3. Integrating logic with the API
 
 
 
 export default function CalendarView() {
   const scheme = useColorScheme()
 
-  const [periodDates, setperiodDates] = useState({})
-  const [follicularDates, setFollicularDates] = useState({})
-  const [ovulationDate, setOvulationDate] = useState({})
-  const [lutealDates, setLutealDates] = useState({})
+  console.log('COLLECTION', collection)
+
+  const [periodDates, setperiodDates] = useState({'date': {periods: [{selected: false, startingDay: false, endingDay: false, color: 'transparent'}]}})
+  const [follicularDates, setFollicularDates] = useState(null)
+  const [ovulationDate, setOvulationDate] = useState(null)
+  const [lutealDates, setLutealDates] = useState(null)
 
   return (
     <View>
