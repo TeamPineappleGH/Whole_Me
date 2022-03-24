@@ -65,6 +65,15 @@ const TabNavigator = (props) => {
                   solid
                 />
             )
+            case 'Calendar':
+            return(
+              <FontIcon
+                  name="calendar-check"
+                  color={focused ? colors.orange : colors.gray}
+                  size={20}
+                  solid
+                />
+            )
             default:
               return <View />
           }
@@ -103,6 +112,11 @@ const TabNavigator = (props) => {
       name= "Wellness"
       children = {() => (
         <WellnessNavigator user= {user} navigationProps={navigationProps} />
+      )} />
+      <Tab.Screen
+      name= "Calendar"
+      children = {() => (
+        <CalendarNavigator user= {user} navigationProps={navigationProps} />
       )} />
     </Tab.Navigator>
   )

@@ -38,17 +38,20 @@ export default function App() {
         <View
           style={{
             height: 100,
-            backgroundColor: scheme === 'dark' ? colors.dark : colors.darkBlue,
-            // flex: 1,
+            backgroundColor: scheme === 'dark' ? colors.dark : colors.palePink,
+            justifyContent: 'center',
+            alignItems: 'center',
+
           }}
         >
           <Text
             style={{
               color: 'white',
-              fontSize: 20,
-               flex: 1,
-    justifyContent: 'center',
-    padding: 10
+              fontSize: 22,
+              // flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 40
             }}
           >
             {routeName}
@@ -72,25 +75,25 @@ export default function App() {
       }
     })
   }, [])
-  ;(async () => {
-    const { status: existingStatus } = await Notifications.getPermissionsAsync()
-    let finalStatus = existingStatus
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync()
-      finalStatus = status
-    }
-    if (finalStatus !== 'granted') {
-      return
-    }
-    const token = await Notifications.getExpoPushTokenAsync()
-    if (user !== null) {
-      await firebase
-        .firestore()
-        .collection('tokens')
-        .doc(user.id)
-        .set({ token: token.data, email: user.id })
-    }
-  })()
+    ; (async () => {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync()
+      let finalStatus = existingStatus
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync()
+        finalStatus = status
+      }
+      if (finalStatus !== 'granted') {
+        return
+      }
+      const token = await Notifications.getExpoPushTokenAsync()
+      if (user !== null) {
+        await firebase
+          .firestore()
+          .collection('tokens')
+          .doc(user.id)
+          .set({ token: token.data, email: user.id })
+      }
+    })()
 
   if (loading) {
     return <></>
