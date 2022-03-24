@@ -8,6 +8,7 @@ import Detail from '../../../scenes/details'
 import Diary from '../../../scenes/diary'
 import Nutrition from '../../../scenes/nutrition'
 import Wellness from '../../../scenes/wellness'
+import Calendar from '../../../scenes/calendar'
 
 // ------------------------------------
 // Constants
@@ -101,3 +102,16 @@ export const NutritionNavigator = (props) => {
     </Stack.Navigator>
   )
 }
+
+// export const CalendarNavigator = (props) => {
+//   const user = props.user;
+//   const navigationProps = props.navigationProps;
+
+//   return (
+//     <Stack.Navigator headerMode = "screen" screenOptions= {navigationProps}>
+//       <Stack.Screen name= "Calendar">
+//         {props => <Calendar {...props} extraData={user} />}
+//       </Stack.Screen>
+//     </Stack.Navigator>
+//   )
+// }
