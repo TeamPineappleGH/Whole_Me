@@ -39,6 +39,11 @@ export default function Home(props) {
             }}
           >
             <Text
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              zIndex: 1,
+            }}
             >hi there</Text>
             <Image source={require('../../../assets/images/phase1-01.png')} />
 
