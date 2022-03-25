@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Calendar } from 'react-native-calendars';
-import { Text, View, Button, useColorScheme, Alert } from 'react-native';
-import styles from './styles';
-import { collection, doc, getDoc } from "firebase/firestore";
+import React, { useEffect, useState } from 'react'
+import { Calendar } from 'react-native-calendars'
+import { Text, View, Button, useColorScheme, Alert } from 'react-native'
+import styles from './styles'
+import { auth, db } from '../../firebase/config.js'
+import dateFormat from 'dateformat'
 
 // Menstrual phase (From day 1 to 5)
 // Follicular phase (From day 1 to 13)
@@ -15,83 +16,150 @@ import { collection, doc, getDoc } from "firebase/firestore";
 
 // STEPS:
   // 1. Need to grab the above info from firebase for signed in user
+    // DONE
 
-
-  // 2. LOGIC - psuedo code? 
-
+  // 2. CREATE FUNCTION FOR SETTING STATE AND GETTING DATE ARRAYS
+  // 2. MAP ACROSS DATE ARRAYS
+  // 3. PUT MAPPED ARRAY RESLTS INTO GLOBAL markedDates VARIABLE 
 
   // 3. Integrating logic with the API
 
-
-
 export default function CalendarView() {
   const scheme = useColorScheme()
+  // let markedDates = {};
 
-  console.log('COLLECTION', collection)
+  const userId = auth.currentUser.uid
+  const userRef = db.collection('users').doc(userId)
 
-  const [periodDates, setperiodDates] = useState({'date': {periods: [{selected: false, startingDay: false, endingDay: false, color: 'transparent'}]}})
-  const [follicularDates, setFollicularDates] = useState(null)
-  const [ovulationDate, setOvulationDate] = useState(null)
-  const [lutealDates, setLutealDates] = useState(null)
+  const [periodStart, setPeriodStart] = useState('')
+  const [periodDuration, setPeriodDuration] = useState(0)
 
-  return (
-    <View>
-      <Calendar 
-        markingType="multi-period"
-        markedDates={{
-          '2022-03-01': {
-            periods: [
-              {selected: true, startingDay: true, endingDay: false, color: '#1c9ab7'},
-            ]
-          },
-          '2022-03-02': {
-            periods: [
-              {selected: true, startingDay: false, endingDay: false, color: '#1c9ab7'},
-            ]
-          },
-          '2022-03-03': {
-            periods: [
-              {selected: true, startingDay: false, endingDay: false, color: '#1c9ab7'},
-            ]
-          },
-          '2022-03-04': {
-            periods: [
-              {selected: true, startingDay: false, endingDay: false, color: '#1c9ab7'},
-            ]
-          },
-          '2022-03-05': {
-            periods: [
-              {selected: true, startingDay: false, endingDay: true, color: '#1c9ab7'}
-            ]
-          }
+  const userInformation = async () => {
+    const user = await userRef.get()
+    const periodDuration = user.data().duration
+    const startDate = user.data().periodStartDate.toDate()
+
+    setPeriodStart(dateFormat(startDate, "yyyy-mm-dd"))
+    setPeriodDuration(periodDuration)
+  }
+
+  const phases = async () => {
+    console.log(userInformation())
+    // console.log("SET DATE", startDate.setDate(startDate.getDate() + 1).toDate())
+  }
+
+  useEffect(async () => {
+    userInformation()
+  }, [])
+
+  console.log("PERIOD START STATE", periodStart)
+  console.log("PERIOD DURATION STATE", periodDuration)
+  console.log('PERIOD START BOOLEAN', periodStart === '2022-03-08')
+
+  const menstrualPhase = {color: 'red'};
+  const periodDate = '2022-03-08'
+
+    return (
+      <View>
+        <Calendar 
+          markingType={'multi-dot'}
+          markedDates={{
+            [`${periodStart}`]: {dots: [menstrualPhase]}
+          }}
+        />
+
+      <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>
+        Key:
+      </Text>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
         }}
-      />
-      <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>Key:</Text>
-      <View style={{flex: 1, flexDirection: "row"}}>
-        <View style={{width: 30, height: 8, backgroundColor: '#1c9ab7', margin: 5, flexDirection: 'row'}}></View>
-        <Text style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}>Menstrual Phase</Text>
+      >
+        <View
+          style={{
+            width: 30,
+            height: 8,
+            backgroundColor: '#1c9ab7',
+            margin: 5,
+          }}
+        ></View>
+
+        <View>
+          <Text
+            style={
+              scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle
+            }
+          >
+            Menstrual Phase
+          </Text>
+        </View>
       </View>
-
-      <View style={{flex: 1, flexDirection: "row"}}>
-        <View style={{width: 30, height: 8, backgroundColor: '#9ad0ec', margin: 5, flexDirection: 'row'}}></View>
-        <Text style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}>Follicular Phase</Text>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <View
+          style={{
+            width: 30,
+            height: 8,
+            backgroundColor: '#9ad0ec',
+            margin: 5,
+          }}
+        ></View>
+        <Text
+          style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}
+        >
+          Follicular Phase
+        </Text>
       </View>
-
-      <View style={{flex: 1, flexDirection: "row"}}>
-        <View style={{width: 30, height: 8, backgroundColor: '#efdad7', margin: 5}}></View>
-        <Text style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}>Ovulation Phase</Text>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <View
+          style={{
+            width: 30,
+            height: 8,
+            backgroundColor: '#efdad7',
+            margin: 5,
+          }}
+        ></View>
+        <Text
+          style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}
+        >
+          Ovulation Phase
+        </Text>
       </View>
-
-      <View style={{flex: 1, flexDirection: "row"}}>
-        <View style={{width: 30, height: 8, backgroundColor: '#f98c41', margin: 5}}></View>
-        <Text style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}>Luteal Phase</Text>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <View
+          style={{
+            width: 30,
+            height: 8,
+            backgroundColor: '#f98c41',
+            margin: 5,
+          }}
+        ></View>
+        <Text
+          style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}
+        >
+          Luteal Phase
+        </Text>
       </View>
-
-
       <Button
         title="Update Period Entry"
         onPress={() => Alert.alert('Button pressed')}
-        color='#1c9ab7'
+        color="#1c9ab7"
       />
     </View>
   )
