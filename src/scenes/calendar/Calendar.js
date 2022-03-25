@@ -44,12 +44,24 @@ export default function CalendarView() {
   }
 
   const phases = async () => {
-    console.log(userInformation())
-    // console.log("SET DATE", startDate.setDate(startDate.getDate() + 1).toDate())
+    const user = await userRef.get()
+    const periodDuration = user.data().duration
+    const startDate = user.data().periodStartDate.toDate()
+
+    let menstrualPhaseArray = []
+
+    for (let i = 1; i < periodDuration; i++) {
+      console.log(startDate)
+      menstrualPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
+      startDate.setDate(startDate.getDate() + 1)
+    }
+    console.log(menstrualPhaseArray)
+    return menstrualPhaseArray
   }
+  phases()
 
   useEffect(async () => {
-    userInformation()
+    await userInformation()
   }, [])
 
   console.log("PERIOD START STATE", periodStart)
@@ -57,7 +69,6 @@ export default function CalendarView() {
   console.log('PERIOD START BOOLEAN', periodStart === '2022-03-08')
 
   const menstrualPhase = {color: 'red'};
-  const periodDate = '2022-03-08'
 
     return (
       <View>
