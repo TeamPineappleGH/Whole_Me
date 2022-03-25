@@ -41,6 +41,10 @@ export default function CalendarView() {
     setPeriodDuration(periodDuration)
   }, [])
 
+  // createMarkedDates = (dates) => {
+  //   let markedPhases = {};
+  // }
+
   console.log("PERIOD START STATE", periodStart)
   console.log("PERIOD DURATION STATE", periodDuration)
 
@@ -51,7 +55,7 @@ export default function CalendarView() {
       <Calendar 
         markingType={'multi-dot'}
         markedDates={{
-          "2022-03-08": {dots: [menstrualPhase]}
+          '2022-03-08': {dots: [menstrualPhase]}
         }}
       />
 
