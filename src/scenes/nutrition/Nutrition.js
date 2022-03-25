@@ -34,8 +34,8 @@ class AllRecipes extends React.Component {
     Linking.openURL(item);
   }
   
+
   render() {
-    console.log("what are my state for nutrition", this.props.allRecipes)
     return (
        <DismissKeyboard>
         <View style={styles.body}>
@@ -56,20 +56,20 @@ class AllRecipes extends React.Component {
               />
               <TouchableOpacity
                 style={styles.button}
-                onPress={() => {
+                onPress={ () => {
                   this.props.fetchRecipes(this.state.ingredient);
-                  Keyboard.dismiss();
+                  // Keyboard.dismiss();
                 }}
               >
                 <Text style={styles.searchText}>Search</Text>
               </TouchableOpacity>
             </View>
-            {this.props.allRecipes.length ? (
+            {/* {this.props.allRecipes ? ( */}
               <ScrollView>
                 {this.props.allRecipes.map((recipe) => {
                   console.log("what my recipe ho", recipe)
                   return (
-                    <TouchableWithoutFeedback key={recipe.website} >
+                    <View key={recipe.website} >
                       <View style = {styles.container}>
                         <Image
                           style={styles.tinyLogo}
@@ -86,17 +86,17 @@ class AllRecipes extends React.Component {
                       <Text style = {styles.detailText}>Details</Text>
                       </TouchableOpacity>
                       </View>
-                    </TouchableWithoutFeedback>
+                    </View>
                   );
                 })}
               </ScrollView>
-            ) : (
+            {/* ) : (
               <View>
                 <Text style={styles.instructions}>
                   Search for recipes by ingredient!
                 </Text>
               </View>
-            )}
+            )} */}
           </View>
         </View>
       </DismissKeyboard>

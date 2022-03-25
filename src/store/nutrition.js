@@ -12,7 +12,7 @@ const getRecipes = (recipes) => {
   };
 };
 
-export const fetchRecipes = (ingredient, type) => {
+export const fetchRecipes = (ingredient, history) => {
   console.log('hello world')
   return async (dispatch) => {
     try {
@@ -31,15 +31,13 @@ export const fetchRecipes = (ingredient, type) => {
         },
       };
       const res = await axios.request(options);
-      console.log("what is my api data", res.data.feed)
-      console.log("result array", resultArr)
       let resultArr = [];
       res.data.feed.forEach((element) => {
         const title = element.content.details.attribution.text;
         resultArr.push({
           label: title.slice(0, title.length - 31),
-          // imageUrl: element.images[0].resizableImageUrl,
-          // website: element.details.url,
+          imageUrl: element.content.details.images[0].resizableImageUrl,
+          website: element.content.details.attribution.url,
         });
       });
       // if (type === 'search') {
