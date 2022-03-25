@@ -103,15 +103,15 @@ export const NutritionNavigator = (props) => {
   )
 }
 
-// export const CalendarNavigator = (props) => {
-//   const user = props.user;
-//   const navigationProps = props.navigationProps;
+export const CalendarNavigator = (props) => {
+  const user = props.user;
+  const navigationProps = props.navigationProps;
 
-//   return (
-//     <Stack.Navigator headerMode = "screen" screenOptions= {navigationProps}>
-//       <Stack.Screen name= "Calendar">
-//         {props => <Calendar {...props} extraData={user} />}
-//       </Stack.Screen>
-//     </Stack.Navigator>
-//   )
-// }
+  return (
+    <Stack.Navigator headerMode = "screen" screenOptions= {navigationProps}>
+      <Stack.Screen name= "Calendar">
+        {props => <Calendar {...props} extraData={user} />}
+      </Stack.Screen>
+    </Stack.Navigator>
+  )
+}

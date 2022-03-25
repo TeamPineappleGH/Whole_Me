@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-import { getAuth } from 'firebase/auth';
+// import { getAuth } from 'firebase/auth';
 import "firebase/firestore"
 import "firebase/storage"
 
@@ -17,9 +17,9 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
-const auth = getAuth();
+// const auth = getAuth();
 
 export {
-    auth,
+    // auth,
     firebase
 }
