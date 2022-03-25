@@ -8,7 +8,7 @@ const colors = {
   darkBlue: '#1c9ab7',
   lightBlue: '#9ad0ec',
   palePink: '#efdad7',
-  orange: '#f98c41'
+  orange: '#f98c41' 
 }
 
 export default colors
