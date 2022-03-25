@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Calendar } from 'react-native-calendars';
-import { Text, View, Button, useColorScheme, Alert } from 'react-native';
-import styles from './styles';
-import {auth, db} from '../../firebase/config.js';
-import dateFormat from "dateformat";
+import React, { useEffect, useState } from 'react'
+import { Calendar } from 'react-native-calendars'
+import { Text, View, Button, useColorScheme, Alert } from 'react-native'
+import styles from './styles'
+import { auth, db } from '../../firebase/config.js'
+import dateFormat from 'dateformat'
 
 // Menstrual phase (From day 1 to 5)
 // Follicular phase (From day 1 to 13)
@@ -31,7 +31,7 @@ export default function CalendarView() {
   const userId = auth.currentUser.uid
   const userRef = db.collection('users').doc(userId)
 
-  const [periodStart, setPeriodStart] = useState("")
+  const [periodStart, setPeriodStart] = useState('')
   const [periodDuration, setPeriodDuration] = useState(0)
 
   const userInformation = async () => {
@@ -52,7 +52,6 @@ export default function CalendarView() {
     userInformation()
   }, [])
 
-
   console.log("PERIOD START STATE", periodStart)
   console.log("PERIOD DURATION STATE", periodDuration)
   console.log('PERIOD START BOOLEAN', periodStart === '2022-03-08')
@@ -68,33 +67,100 @@ export default function CalendarView() {
             [`${periodStart}`]: {dots: [menstrualPhase]}
           }}
         />
-  
-        <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>Key:</Text>
-        <View >
-          <View style={{width: 30, height: 8, backgroundColor: '#1c9ab7', margin: 5, flexDirection: 'row'}}></View>
-          <Text style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}>Menstrual Phase</Text>
-        </View>
-  
+
+      <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>
+        Key:
+      </Text>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <View
+          style={{
+            width: 30,
+            height: 8,
+            backgroundColor: '#1c9ab7',
+            margin: 5,
+          }}
+        ></View>
+
         <View>
-          <View style={{width: 30, height: 8, backgroundColor: '#9ad0ec', margin: 5, flexDirection: 'row'}}></View>
-          <Text style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}>Follicular Phase</Text>
+          <Text
+            style={
+              scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle
+            }
+          >
+            Menstrual Phase
+          </Text>
         </View>
-        
-        <View >
-          <View style={{width: 30, height: 8, backgroundColor: '#efdad7', margin: 5}}></View>
-          <Text style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}>Ovulation Phase</Text>
-        </View>
-  
-        <View style={{flex: 1, flexDirection: "row"}}>
-          <View style={{width: 30, height: 8, backgroundColor: '#f98c41', margin: 5}}></View>
-          <Text style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}>Luteal Phase</Text>
-        </View>
-  
-        <Button
-          title="Update Period Entry"
-          onPress={() => Alert.alert('Button pressed')}
-          color='#1c9ab7'
-        />
       </View>
-    )
-  } 
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <View
+          style={{
+            width: 30,
+            height: 8,
+            backgroundColor: '#9ad0ec',
+            margin: 5,
+          }}
+        ></View>
+        <Text
+          style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}
+        >
+          Follicular Phase
+        </Text>
+      </View>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <View
+          style={{
+            width: 30,
+            height: 8,
+            backgroundColor: '#efdad7',
+            margin: 5,
+          }}
+        ></View>
+        <Text
+          style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}
+        >
+          Ovulation Phase
+        </Text>
+      </View>
+      <View
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <View
+          style={{
+            width: 30,
+            height: 8,
+            backgroundColor: '#f98c41',
+            margin: 5,
+          }}
+        ></View>
+        <Text
+          style={scheme === 'dark' ? styles.darkPhaseTitle : styles.phaseTitle}
+        >
+          Luteal Phase
+        </Text>
+      </View>
+      <Button
+        title="Update Period Entry"
+        onPress={() => Alert.alert('Button pressed')}
+        color="#1c9ab7"
+      />
+    </View>
+  )
+}
