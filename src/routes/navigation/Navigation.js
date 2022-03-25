@@ -32,32 +32,9 @@ export default function App() {
   const scheme = useColorScheme()
 
   const navigationProps = {
-    header: (props) => {
-      const routeName = props.scene.route.name
-      return (
-        <View
-          style={{
-            height: 100,
-            backgroundColor: scheme === 'dark' ? colors.dark : colors.palePink,
-            justifyContent: 'center',
-            alignItems: 'center',
-
-          }}
-        >
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 22,
-              // flex: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: 40
-            }}
-          >
-            {routeName}
-          </Text>
-        </View>
-      )
+    headerTintColor: 'white',
+    headerStyle: { 
+      backgroundColor: scheme === 'dark' ? colors.dark : colors.palePink
     },
   }
 
