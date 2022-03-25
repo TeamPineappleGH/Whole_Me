@@ -35,7 +35,6 @@ export default StyleSheet.create({
     marginLeft: 10,
     textAlign: 'left',
     color: 'white',
-    flexDirection: 'row'
   },
   field: {
     fontSize: 15,
