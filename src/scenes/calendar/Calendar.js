@@ -15,15 +15,18 @@ import dateFormat from 'dateformat'
 // note: avg cycle is 28 days
 
 // STEPS:
-// 1. Need to grab the above info from firebase for signed in user
-// DONE
+  // 1. Need to grab the above info from firebase for signed in user
+    // DONE
 
-// 2. LOGIC - psuedo code?
+  // 2. CREATE FUNCTION FOR SETTING STATE AND GETTING DATE ARRAYS
+  // 2. MAP ACROSS DATE ARRAYS
+  // 3. PUT MAPPED ARRAY RESLTS INTO GLOBAL markedDates VARIABLE 
 
-// 3. Integrating logic with the API
+  // 3. Integrating logic with the API
 
 export default function CalendarView() {
   const scheme = useColorScheme()
+  // let markedDates = {};
 
   const userId = auth.currentUser.uid
   const userRef = db.collection('users').doc(userId)
@@ -31,31 +34,39 @@ export default function CalendarView() {
   const [periodStart, setPeriodStart] = useState('')
   const [periodDuration, setPeriodDuration] = useState(0)
 
-  useEffect(async () => {
+  const userInformation = async () => {
     const user = await userRef.get()
     const periodDuration = user.data().duration
     const startDate = user.data().periodStartDate.toDate()
-    setPeriodStart(dateFormat(startDate, 'yyyy-mm-dd'))
+
+    setPeriodStart(dateFormat(startDate, "yyyy-mm-dd"))
     setPeriodDuration(periodDuration)
+  }
+
+  const phases = async () => {
+    console.log(userInformation())
+    // console.log("SET DATE", startDate.setDate(startDate.getDate() + 1).toDate())
+  }
+
+  useEffect(async () => {
+    userInformation()
   }, [])
 
-  // createMarkedDates = (dates) => {
-  //   let markedPhases = {};
-  // }
+  console.log("PERIOD START STATE", periodStart)
+  console.log("PERIOD DURATION STATE", periodDuration)
+  console.log('PERIOD START BOOLEAN', periodStart === '2022-03-08')
 
-  console.log('PERIOD START STATE', periodStart)
-  console.log('PERIOD DURATION STATE', periodDuration)
+  const menstrualPhase = {color: 'red'};
+  const periodDate = '2022-03-08'
 
-  const menstrualPhase = { color: 'red' }
-
-  return (
-    <View>
-      <Calendar
-        markingType={'multi-dot'}
-        markedDates={{
-          '2022-03-08': { dots: [menstrualPhase] },
-        }}
-      />
+    return (
+      <View>
+        <Calendar 
+          markingType={'multi-dot'}
+          markedDates={{
+            [`${periodStart}`]: {dots: [menstrualPhase]}
+          }}
+        />
 
       <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>
         Key:
