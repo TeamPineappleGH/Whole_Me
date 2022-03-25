@@ -35,12 +35,13 @@ class AllRecipes extends React.Component {
   }
   
   render() {
-    // console.log("what are my props for nutrition", this.props)
+    console.log("what are my state for nutrition", this.props.allRecipes)
     return (
        <DismissKeyboard>
         <View style={styles.body}>
           <Text style={styles.header}>Discover New Recipes</Text>
-          <KeyboardAwareScrollView
+          <Text style={styles.instructions}>Search by Ingredient</Text>
+          <View
             style={{ flex: 1, width: '100%' }}
             keyboardShouldPersistTaps="always"
           >
@@ -66,6 +67,7 @@ class AllRecipes extends React.Component {
             {this.props.allRecipes.length ? (
               <ScrollView>
                 {this.props.allRecipes.map((recipe) => {
+                  console.log("what my recipe ho", recipe)
                   return (
                     <TouchableWithoutFeedback key={recipe.website} >
                       <View style = {styles.container}>
@@ -80,7 +82,7 @@ class AllRecipes extends React.Component {
                         onPress={() => this.handlePress(recipe.website)}
                         style = {styles.detailButton}
                       >
-                      <MaterialIcons name = "open-in-new" style = {styles.exitIcon} size = {30}/>
+                      {/* <MaterialIcons name = "open-in-new" style = {styles.exitIcon} size = {30}/> */}
                       <Text style = {styles.detailText}>Details</Text>
                       </TouchableOpacity>
                       </View>
@@ -95,7 +97,7 @@ class AllRecipes extends React.Component {
                 </Text>
               </View>
             )}
-          </KeyboardAwareScrollView>
+          </View>
         </View>
       </DismissKeyboard>
             
