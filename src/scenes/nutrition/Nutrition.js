@@ -1,57 +1,123 @@
-import React, { useEffect, useState } from 'react'
-import { StyleSheet, FlatList, Text, View, ScrollView, StatusBar, ActivityIndicator, SafeAreaView, useColorScheme } from 'react-native'
-import styles from './styles'
-import { firebase } from '../../firebase/config'
-// import { ListItem, SearchBar } from "react-native-elements";
-import SearchBar from './SearchBar'
-//const data = apidata
+import React from 'react';
+import {
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
+import { connect } from 'react-redux';
+import {fetchRecipes} from '../../store/nutrition'
+import styles from './styles';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import * as Linking from 'expo-linking';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-export default function Nutrition(props) {
-  const userData = props.extraData
-  const scheme = useColorScheme()
-  const [searchPhrase, setSearchPhrase] = useState("");
-  const [clicked, setClicked] = useState(false);
-  const [fakeData, setFakeData] = useState();
+const DismissKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 
-  // get data from the fake api endpoint
-
-  useEffect(() => {
-    const getData = async () => {
-      const apiResponse = await fetch(
-        "https://api.edamam.com/api/recipes/v2?type=public&q=potato&app_id=151c33c7&app_key=78e0354faa1fdc0978f19b87851f7c7d"
-      );
-      const data = await apiResponse.json();
-      setFakeData(data);
+class AllRecipes extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      ingredient: '',
     };
-    getData();
-  });
+    this.handlePress = this.handlePress.bind(this);
+  }
+  handlePress(item) {
+    Linking.openURL(item);
+  }
+  
+  render() {
+    // console.log("what are my props for nutrition", this.props)
+    return (
+       <DismissKeyboard>
+        <View style={styles.body}>
+          <Text style={styles.header}>Discover New Recipes</Text>
+          <KeyboardAwareScrollView
+            style={{ flex: 1, width: '100%' }}
+            keyboardShouldPersistTaps="always"
+          >
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Ingredient"
+                placeholderTextColor="#aaaaaa"
+                onChangeText={(text) => this.setState({ ingredient: text })}
+                value={this.state.ingredient}
+                autoCapitalize="none"
+              />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                  this.props.fetchRecipes(this.state.ingredient);
+                  Keyboard.dismiss();
+                }}
+              >
+                <Text style={styles.searchText}>Search</Text>
+              </TouchableOpacity>
+            </View>
+            {this.props.allRecipes.length ? (
+              <ScrollView>
+                {this.props.allRecipes.map((recipe) => {
+                  return (
+                    <TouchableWithoutFeedback key={recipe.website} >
+                      <View style = {styles.container}>
+                        <Image
+                          style={styles.tinyLogo}
+                          source={{
+                            uri: recipe.imageUrl,
+                          }}
+                        />
+                        <Text style={styles.text}>{recipe.label}</Text>
+                         <TouchableOpacity
+                        onPress={() => this.handlePress(recipe.website)}
+                        style = {styles.detailButton}
+                      >
+                      <MaterialIcons name = "open-in-new" style = {styles.exitIcon} size = {30}/>
+                      <Text style = {styles.detailText}>Details</Text>
+                      </TouchableOpacity>
+                      </View>
+                    </TouchableWithoutFeedback>
+                  );
+                })}
+              </ScrollView>
+            ) : (
+              <View>
+                <Text style={styles.instructions}>
+                  Search for recipes by ingredient!
+                </Text>
+              </View>
+            )}
+          </KeyboardAwareScrollView>
+        </View>
+      </DismissKeyboard>
+            
+    );
+  }
+}
 
-  return (
-    <View>
-    <SafeAreaView style={{
-      justifyContent: "center",
-    alignItems: "center",
-    }}>
-        <SearchBar
-          searchPhrase={searchPhrase}
-          setSearchPhrase={setSearchPhrase}
-          clicked={clicked}
-          setClicked={setClicked}
-        />
-    </SafeAreaView>
-    <View style={styles.container}>
-    <View style={{ flex: 1, width: '100%' }}>
-      <ScrollView style={styles.main}>
-        <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>
-          hi world
-        </Text>
-        </ScrollView>
-      </View>
-    </View>
-    </View>
-  );
+const mapState = (state) => {
+  console.log('what is my recipe state', state)
+  return {
+    allRecipes: state.allRecipes,
+  };
 };
 
+const mapDispatch = (dispatch) => {
+  return {
+    fetchRecipes: (ingredient) => dispatch(fetchRecipes(ingredient)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(AllRecipes);
+//open-in-new material icons
 
 
 

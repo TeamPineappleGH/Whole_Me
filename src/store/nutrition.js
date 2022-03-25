@@ -13,31 +13,36 @@ const getRecipes = (recipes) => {
 };
 
 export const fetchRecipes = (ingredient, type) => {
+  console.log('hello world')
   return async (dispatch) => {
     try {
+      console.log("we are fetching recipes")
       let options = {
         method: 'GET',
         url: 'https://yummly2.p.rapidapi.com/feeds/search',
         params: { 
           q: `${ingredient}`,
-          start: '0',
-          maxResult: '10' 
+          // start: '0',
+          // maxResult: '10' 
         },
         headers: {
-          'x-rapidapi-key': `98289f03damsh39a7fa8164574fep1cde95jsn0d3fd6b172f0`,
+          'x-rapidapi-key': 'e76b17f41bmsh48aefae4c3f6274p187698jsn16752868c9a3',
           'x-rapidapi-host': 'yummly2.p.rapidapi.com',
         },
       };
       const res = await axios.request(options);
-      let resultArr = [];
-      res.data.hits.forEach((element) => {
-        resultArr.push({
-          label: element.recipe.label,
-          imageUrl: element.recipe.image,
-          website: element.recipe.url,
-        });
-      });
-        dispatch(getRecipes(resultArr));
+      console.log("what is my api data", res)
+      // let resultArr = [];
+      // res.data.hits.forEach((element) => {
+      //   resultArr.push({
+      //     label: element.recipe.label,
+      //     imageUrl: element.recipe.image,
+      //     website: element.recipe.url,
+      //   });
+      // });
+      // if (type === 'search') {
+        dispatch(getRecipes(res));
+      // }
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +54,7 @@ const initialState = [];
 const allRecipeReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPES:
-      return [...state, action.recipes];
+      return action.recipes;
     default:
       return state;
   }
