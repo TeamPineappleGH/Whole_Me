@@ -38,7 +38,7 @@ class AllRecipes extends React.Component {
   render() {
     return (
        <DismissKeyboard>
-        <View style={styles.body}>
+        <View style={{ flex: 1, width: '100%' }}>
           <Text style={styles.header}>Discover New Recipes</Text>
           <Text style={styles.instructions}>Search by Ingredient</Text>
           <View
@@ -58,13 +58,13 @@ class AllRecipes extends React.Component {
                 style={styles.button}
                 onPress={ () => {
                   this.props.fetchRecipes(this.state.ingredient);
-                  // Keyboard.dismiss();
+                  Keyboard.dismiss();
                 }}
               >
                 <Text style={styles.searchText}>Search</Text>
               </TouchableOpacity>
             </View>
-            {/* {this.props.allRecipes ? ( */}
+            {this.props.allRecipes ? ( 
               <ScrollView>
                 {this.props.allRecipes.map((recipe) => {
                   console.log("what my recipe ho", recipe)
@@ -90,13 +90,13 @@ class AllRecipes extends React.Component {
                   );
                 })}
               </ScrollView>
-            {/* ) : (
+            ) : (
               <View>
                 <Text style={styles.instructions}>
                   Search for recipes by ingredient!
                 </Text>
               </View>
-            )} */}
+            )} 
           </View>
         </View>
       </DismissKeyboard>
