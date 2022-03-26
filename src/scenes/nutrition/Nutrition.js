@@ -38,9 +38,44 @@ class AllRecipes extends React.Component {
 
   render() {
     return (
-       <DismissKeyboard>
-        <View style={{ flex: 1, width: '100%' }}>
-          <Text style={styles.header}>Discover New Recipes</Text>
+      <View>
+      <View style = {styles.phaseContainer}>
+      <View style = {styles.flexLeft1}>
+        <Text style = {styles.phaseHeader}>MENSTRUAL PHASE</Text>
+        <Text style = {styles.phaseDetails}>- dark chocolate</Text>
+        <Text style = {styles.phaseDetails}>- sweet potato</Text>
+        <Text style = {styles.phaseDetails}>- zucchini</Text>
+        <Text style = {styles.phaseDetails}>- cauliflower</Text>
+        <Text style = {styles.phaseDetails}>- carrots</Text>
+      </View>
+      <View style = {styles.flexRight1}>
+      <Text style = {styles.phaseHeader}>FOLLICULAR PHASE</Text>
+        <Text style = {styles.phaseDetails}>- grassfed beef</Text>
+        <Text style = {styles.phaseDetails}>- kale</Text>
+        <Text style = {styles.phaseDetails}>- lentils</Text>
+        <Text style = {styles.phaseDetails}>- chickpeas</Text>
+        <Text style = {styles.phaseDetails}>- salmon</Text>
+      </View>
+      <View style = {styles.flexRight2}>
+      <Text style = {styles.phaseHeader}>OVULATORY PHASE</Text>
+        <Text style = {styles.phaseDetails}>- eggs</Text>
+        <Text style = {styles.phaseDetails}>- quinoa</Text>
+        <Text style = {styles.phaseDetails}>- brussel sprouts</Text>
+        <Text style = {styles.phaseDetails}>- berries</Text>
+        <Text style = {styles.phaseDetails}>- asperagus</Text>
+      </View>
+      <View style = {styles.flexLeft2}>
+      <Text style = {styles.phaseHeader}>LUTEAL PHASE</Text>
+        <Text style = {styles.phaseDetails}>- butternut squash</Text>
+        <Text style = {styles.phaseDetails}>- avocado</Text>
+        <Text style = {styles.phaseDetails}>- parsnip</Text>
+        <Text style = {styles.phaseDetails}>- pumpkin</Text>
+        <Text style = {styles.phaseDetails}>- tuna</Text>
+      </View>
+      </View>
+       <View>
+        <View style={{ width: '100%' }}>
+          <Text style={styles.header}>Find Recipes for Your Phase</Text>
           <Text style={styles.instructions}>Search by Ingredient</Text>
           <View
             style={{ flex: 1, width: '100%' }}
@@ -103,7 +138,8 @@ class AllRecipes extends React.Component {
             )} 
           </View>
         </View>
-      </DismissKeyboard>
+      </View>
+      </View>
             
     );
   }
