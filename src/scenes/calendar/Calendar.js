@@ -41,7 +41,7 @@ export default function CalendarView() {
     const startDate = user.data().periodStartDate.toDate()
     const markedDatesObj = {};
 
-    for (let i = 1; i < periodDuration; i++) {
+    for (let i = 1; i <= periodDuration; i++) {
       menstrualPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
       startDate.setDate(startDate.getDate() + 1)
     }
