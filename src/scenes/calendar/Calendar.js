@@ -26,57 +26,51 @@ import dateFormat from 'dateformat'
 
 export default function CalendarView() {
   const scheme = useColorScheme()
+  const menstrualPhase = {color: 'red'};
   // let markedDates = {};
+  let menstrualPhaseArray = [];
 
   const userId = auth.currentUser.uid
   const userRef = db.collection('users').doc(userId)
 
-  const [periodStart, setPeriodStart] = useState('')
-  const [periodDuration, setPeriodDuration] = useState(0)
-
-  const userInformation = async () => {
-    const user = await userRef.get()
-    const periodDuration = user.data().duration
-    const startDate = user.data().periodStartDate.toDate()
-
-    setPeriodStart(dateFormat(startDate, "yyyy-mm-dd"))
-    setPeriodDuration(periodDuration)
-  }
+  const [markedDates, setMarkedDates] = useState({})
 
   const phases = async () => {
     const user = await userRef.get()
     const periodDuration = user.data().duration
     const startDate = user.data().periodStartDate.toDate()
-
-    let menstrualPhaseArray = []
+    const markedDatesObj = {};
 
     for (let i = 1; i < periodDuration; i++) {
-      console.log(startDate)
       menstrualPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
       startDate.setDate(startDate.getDate() + 1)
     }
-    console.log(menstrualPhaseArray)
-    return menstrualPhaseArray
+
+    menstrualPhaseArray.map((date) => {
+      markedDatesObj[`${date}`] = {dots: [menstrualPhase]}
+    })
+
+    setMarkedDates(markedDatesObj)
+    return markedDates
   }
-  phases()
 
   useEffect(async () => {
-    await userInformation()
+    await phases()
+    // console.log("USE EFFECT PHASES FUNC", await phases())
   }, [])
 
-  console.log("PERIOD START STATE", periodStart)
-  console.log("PERIOD DURATION STATE", periodDuration)
-  console.log('PERIOD START BOOLEAN', periodStart === '2022-03-08')
+  console.log("MENSTRUAL PHASE ARR", menstrualPhaseArray)
+  console.log("MARKED DATES OBJ", markedDates)
 
-  const menstrualPhase = {color: 'red'};
+  // console.log("PERIOD START STATE", periodStart)
+  // console.log("PERIOD DURATION STATE", periodDuration)
+  // console.log('PERIOD START BOOLEAN', periodStart === '2022-03-08')
 
     return (
       <View>
         <Calendar 
           markingType={'multi-dot'}
-          markedDates={{
-            [`${periodStart}`]: {dots: [menstrualPhase]}
-          }}
+          markedDates={markedDates}
         />
 
       <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>
