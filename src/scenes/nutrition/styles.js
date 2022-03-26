@@ -132,6 +132,15 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderWidth: 1
   },
+  flexLeftInner1: {
+    backgroundColor: 'white',
+    height: 175,
+    width: '97%',
+    marginTop: 1,
+    marginLeft: 3,
+    borderColor: 'black',
+    borderWidth: 0.5
+  },
   flexRight1: {
     backgroundColor: colors.lightBlue,
     height: 200,
@@ -160,7 +169,7 @@ export default StyleSheet.create({
     borderWidth: 1
   },
   phaseHeader: {
-    fontSize: 17,
+    fontSize: 15,
     textAlign: 'center',
     fontWeight: 'bold',
     padding: 2
