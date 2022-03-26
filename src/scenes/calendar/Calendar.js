@@ -26,9 +26,14 @@ import dateFormat from 'dateformat'
 
 export default function CalendarView() {
   const scheme = useColorScheme()
-  const menstrualPhase = {color: 'red'};
-  // let markedDates = {};
+  const menstrualPhase = {color: '#1c9ab7'};
+  const follicularPhase = {color: '#9ad0ec'}
+  const ovulationPhase = {color: '#efdad7'}
+  const lutealPhase = {color: '#f98c41'}
   let menstrualPhaseArray = [];
+  let follicularPhaseArray = [];
+  let ovulationPhaseArray = [];
+  let lutealPhaseArray = [];
 
   const userId = auth.currentUser.uid
   const userRef = db.collection('users').doc(userId)
@@ -41,13 +46,37 @@ export default function CalendarView() {
     const startDate = user.data().periodStartDate.toDate()
     const markedDatesObj = {};
 
-    for (let i = 1; i <= periodDuration; i++) {
-      menstrualPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
-      startDate.setDate(startDate.getDate() + 1)
+    for (let i = 1; i <= 28; i++) {
+      if (i <= periodDuration) {
+        menstrualPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
+        // follicularPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
+        startDate.setDate(startDate.getDate() + 1)
+      } else if (i > periodDuration && i <= 13) {
+        follicularPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
+        startDate.setDate(startDate.getDate() + 1)
+      } else if (i === 14) {
+        ovulationPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
+        startDate.setDate(startDate.getDate() + 1)
+      } else {
+        lutealPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
+        startDate.setDate(startDate.getDate() + 1)
+      }
     }
 
     menstrualPhaseArray.map((date) => {
-      markedDatesObj[`${date}`] = {dots: [menstrualPhase]}
+      markedDatesObj[`${date}`] = {dots: [menstrualPhase], selected: true, selectedColor: '#1c9ab7'}
+    })
+
+    follicularPhaseArray.map((date) => {
+      markedDatesObj[`${date}`] = {dots: [follicularPhase], selected: true, selectedColor: '#9ad0ec'}
+    })
+
+    ovulationPhaseArray.map((date) => {
+      markedDatesObj[`${date}`] = {dots: [ovulationPhase], selected: true, selectedColor: '#efdad7'}
+    })
+
+    lutealPhaseArray.map((date) => {
+      markedDatesObj[`${date}`] = {dots: [lutealPhase], selected: true, selectedColor: '#f98c41'}
     })
 
     setMarkedDates(markedDatesObj)
