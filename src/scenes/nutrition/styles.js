@@ -1,6 +1,7 @@
 import color from 'color';
 import { StyleSheet } from 'react-native';
 import colors from '../../theme/colors'
+import {fonts} from '../../theme/fonts'
 
 export default StyleSheet.create({
   container: {
@@ -109,10 +110,74 @@ export default StyleSheet.create({
     fontSize: 18,
   },
   header: {
-    marginTop: 60,
+    marginTop: 10,
     fontSize: 30,
     marginBottom: 0,
     padding: 0,
     textAlign: 'center',
+    fontWeight: 'bold',
   },
+  phaseContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 12
+  },
+  flexLeft1: {
+    backgroundColor: colors.darkBlue,
+    height: 200,
+    width: '45%',
+    padding: 10,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  flexLeftInner1: {
+    backgroundColor: 'white',
+    height: 175,
+    width: '97%',
+    marginTop: 1,
+    marginLeft: 3,
+    borderColor: 'black',
+    borderWidth: 0.5
+  },
+  flexRight1: {
+    backgroundColor: colors.lightBlue,
+    height: 200,
+    width: '45%',
+    padding: 10,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  flexRight2: {
+    backgroundColor: colors.palePink,
+    height: 200,
+    width: '45%',
+    padding: 10,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  flexLeft2: {
+    backgroundColor: colors.orange,
+    height: 200,
+    width: '45%',
+    padding: 10,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  phaseHeader: {
+    fontSize: 15,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    padding: 2
+  },
+  phaseDetails: {
+    fontSize: 16,
+    textAlign: 'center',
+    padding: 2,
+    marginTop: 6
+  }
 })
