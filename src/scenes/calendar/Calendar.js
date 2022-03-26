@@ -51,20 +51,11 @@ export default function CalendarView() {
     })
 
     setMarkedDates(markedDatesObj)
-    return markedDates
   }
 
   useEffect(async () => {
     await phases()
-    // console.log("USE EFFECT PHASES FUNC", await phases())
   }, [])
-
-  console.log("MENSTRUAL PHASE ARR", menstrualPhaseArray)
-  console.log("MARKED DATES OBJ", markedDates)
-
-  // console.log("PERIOD START STATE", periodStart)
-  // console.log("PERIOD DURATION STATE", periodDuration)
-  // console.log('PERIOD START BOOLEAN', periodStart === '2022-03-08')
 
     return (
       <View>
