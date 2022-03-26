@@ -1,4 +1,6 @@
+import color from 'color';
 import { StyleSheet } from 'react-native';
+import colors from '../../theme/colors'
 
 export default StyleSheet.create({
   container: {
@@ -14,7 +16,7 @@ export default StyleSheet.create({
     width: '90%',
     marginLeft: '5%',
     marginRight: '5%',
-    backgroundColor: '#B8E0D2',
+    backgroundColor: colors.lightBlue,
   },
   title: {
     fontSize: 24,
@@ -60,7 +62,7 @@ export default StyleSheet.create({
     paddingLeft: 16,
   },
   button: {
-    backgroundColor: '#B8E0D2',
+    backgroundColor: colors.darkBlue,
     borderColor: 'black',
     borderRadius: 5,
     borderWidth: 1,
@@ -84,7 +86,7 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 20,
-    color: '#757575',
+    color: 'black',
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -95,11 +97,11 @@ export default StyleSheet.create({
   },
   exitIcon: {
     marginRight: 10,
-    color: '#757575',
+    color: colors.darkBlue,
     marginLeft: 5
   },
   detailText: {
-    color: '#757575',
+    color: 'black',
     marginRight: 10
   },
   instructions: {

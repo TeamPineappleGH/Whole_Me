@@ -4,6 +4,7 @@ import {
   View,
   Image,
   ScrollView,
+  SafeAreaView,
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -64,7 +65,9 @@ class AllRecipes extends React.Component {
                 <Text style={styles.searchText}>Search</Text>
               </TouchableOpacity>
             </View>
-            {this.props.allRecipes ? ( 
+            
+            {this.props.allRecipes ? (
+              <SafeAreaView> 
               <ScrollView>
                 {this.props.allRecipes.map((recipe) => {
                   console.log("what my recipe ho", recipe)
@@ -83,13 +86,14 @@ class AllRecipes extends React.Component {
                         style = {styles.detailButton}
                       >
                       {/* <MaterialIcons name = "open-in-new" style = {styles.exitIcon} size = {30}/> */}
-                      <Text style = {styles.detailText}>Details</Text>
+                      <Text style = {styles.detailText}>View Recipe</Text>
                       </TouchableOpacity>
                       </View>
                     </View>
                   );
                 })}
               </ScrollView>
+              </SafeAreaView>
             ) : (
               <View>
                 <Text style={styles.instructions}>
