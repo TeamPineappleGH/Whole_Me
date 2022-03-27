@@ -1,30 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Calendar } from 'react-native-calendars'
-import { Text, View, Button, useColorScheme, Alert } from 'react-native'
+import { Text, View, TouchableOpacity, useColorScheme, Alert } from 'react-native'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
 import dateFormat from 'dateformat'
+import { connect } from 'react-redux';
 
-// Menstrual phase (From day 1 to 5)
-// Follicular phase (From day 1 to 13)
-// Ovulation phase (Day 14)
-// Luteal phase (From day 15 to 28)
-
-// first day of last period start date: 3/5/2022
-// duration: 5
-// note: avg cycle is 28 days
-
-// STEPS:
-  // 1. Need to grab the above info from firebase for signed in user
-    // DONE
-
-  // 2. CREATE FUNCTION FOR SETTING STATE AND GETTING DATE ARRAYS
-  // 2. MAP ACROSS DATE ARRAYS
-  // 3. PUT MAPPED ARRAY RESLTS INTO GLOBAL markedDates VARIABLE 
-
-  // 3. Integrating logic with the API
-
-export default function CalendarView() {
+function CalendarView(props) {
   const scheme = useColorScheme()
   const menstrualPhase = {color: '#1c9ab7'};
   const follicularPhase = {color: '#9ad0ec'}
@@ -34,6 +16,8 @@ export default function CalendarView() {
   let follicularPhaseArray = [];
   let ovulationPhaseArray = [];
   let lutealPhaseArray = [];
+
+  const todaysDate = dateFormat(new Date (), "yyyy-mm-dd")
 
   const userId = auth.currentUser.uid
   const userRef = db.collection('users').doc(userId)
@@ -85,14 +69,32 @@ export default function CalendarView() {
     await phases()
   }, [])
 
+  useEffect (() => {
+    for (const key in markedDates) {
+      if (key === todaysDate) {
+        const colorArray = markedDates[key]["dots"]
+        const currentPhaseColor = colorArray[0]["color"]
+        console.log(currentPhaseColor)
+      }
+    }
+  })
+
     return (
       <View style={{margin: 20, borderRadius: 15, backgroundColor: 'white', paddingTop: 15}}>
         <Calendar 
           markingType={'multi-dot'}
           markedDates={markedDates}
+          hideExtraDays={true}
+          enableSwipeMonths={true}
+          style={{height: 325}}
+          theme={{
+            arrowColor: '#1c9ab7',
+            textDayFontSize: 14,
+            textDayFontWeight: '200',
+          }}
         />
 
-      <View style={{margin: 20}}>
+      <View style={{margin: 15}}>
       <View
         style={{
           display: 'flex',
@@ -182,13 +184,32 @@ export default function CalendarView() {
           Luteal Phase
         </Text>
       </View>
-      <Button
+      <TouchableOpacity
         title="Update Period Entry"
         onPress={() => Alert.alert('Button pressed')}
         color="#1c9ab7"
-        style={{marginTop: 20}}
-      />
+        style={{
+          display: 'flex',
+          marginTop: 35,
+          marginLeft: 20,
+          marginRight: 20,
+          alignItems: 'center',
+          backgroundColor: '#1c9ab7',
+          borderRadius: 10,
+          padding: 10,
+        }}
+      >
+        <Text style={{color: 'white', fontSize: 15}}>Update Period Entry</Text>
+      </TouchableOpacity>
     </View>
     </View>
   )
 }
+
+const mapDispatch = (dispatch) => {
+  return {
+    setCurrentPhase: (phaseColor) => dispatch(setCurrentPhase(phaseColor)),
+  };
+};
+
+export default connect(null, mapDispatch)(CalendarView);
