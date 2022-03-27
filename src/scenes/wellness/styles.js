@@ -1,11 +1,7 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../theme/colors'
 
 export default StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   title: {
     fontSize: 24,
     marginTop: 5,
@@ -37,5 +33,70 @@ export default StyleSheet.create({
   main: {
     flex: 1,
     width: '100%',
+  },
+  iconContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 55
+  },
+  flexLeft1: {
+    backgroundColor: colors.darkBlue,
+    width: 190,
+    height: 250,
+    padding: 10,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  flexLeftInner1: {
+    backgroundColor: 'white',
+    width: '97%',
+    marginTop: 1,
+    marginLeft: 3,
+    borderColor: 'black',
+    borderWidth: 0.5
+  },
+  flexRight1: {
+    backgroundColor: colors.lightBlue,
+    width: 190,
+    height: 250,
+    padding: 10,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  flexRight2: {
+    backgroundColor: colors.palePink,
+    width: 190,
+    height: 250,
+    padding: 10,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  flexLeft2: {
+    backgroundColor: colors.orange,
+    width: 190,
+    padding: 10,
+    height: 250,
+    margin: 10,
+    borderColor: 'black',
+    borderWidth: 1
+  },
+  tinyLogo: {
+    alignItems: 'center',
+    alignContent: 'center',
+    width: 110,
+    height: 110,
+    marginLeft: 32,
+    marginTop: 50
+  },
+  text: {
+    fontSize: 20,
+    color: 'black',
+    flex: 1,
+    marginLeft: 45,
+    marginTop: 15
   },
 })
