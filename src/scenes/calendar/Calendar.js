@@ -35,6 +35,8 @@ export default function CalendarView() {
   let ovulationPhaseArray = [];
   let lutealPhaseArray = [];
 
+  const todaysDate = dateFormat(new Date (), "yyyy-mm-dd")
+
   const userId = auth.currentUser.uid
   const userRef = db.collection('users').doc(userId)
 
@@ -84,6 +86,16 @@ export default function CalendarView() {
   useEffect(async () => {
     await phases()
   }, [])
+
+  useEffect (() => {
+    for (const key in markedDates) {
+      if (key === todaysDate) {
+        const colorArray = markedDates[key]["dots"]
+        const currentPhaseColor = colorArray[0]["color"]
+        console.log(currentPhaseColor)
+      }
+    }
+  })
 
     return (
       <View style={{margin: 20, borderRadius: 15, backgroundColor: 'white', paddingTop: 15}}>
