@@ -90,7 +90,7 @@ function CalendarView(props) {
           theme={{
             arrowColor: '#1c9ab7',
             textDayFontSize: 14,
-            textDayFontWeight: '200',
+            textDayFontWeight: '400',
           }}
         />
 
@@ -108,6 +108,7 @@ function CalendarView(props) {
             height: 8,
             backgroundColor: '#1c9ab7',
             margin: 5,
+            borderRadius: 30
           }}
         ></View>
 
@@ -134,6 +135,7 @@ function CalendarView(props) {
             height: 8,
             backgroundColor: '#9ad0ec',
             margin: 5,
+            borderRadius: 30
           }}
         ></View>
         <Text
@@ -155,6 +157,7 @@ function CalendarView(props) {
             height: 8,
             backgroundColor: '#efdad7',
             margin: 5,
+            borderRadius: 30
           }}
         ></View>
         <Text
@@ -176,6 +179,7 @@ function CalendarView(props) {
             height: 8,
             backgroundColor: '#f98c41',
             margin: 5,
+            borderRadius: 30
           }}
         ></View>
         <Text
