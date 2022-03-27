@@ -43,6 +43,7 @@ class AllRecipes extends React.Component {
         <View style = {styles.flexLeft1}>
         <View style = {styles.flexLeftInner1}>
           <Text style = {styles.phaseHeader}>MENSTRUAL PHASE</Text>
+          <Text>As your hormones flucuate throughout your cycle, so do your nutritional requirements. Here are some top foods to include in your diet during this phase.</Text>
           <Text style = {styles.phaseDetails}>Chocolate</Text>
           <Text style = {styles.phaseDetails}>Sweet Potato</Text>
           <Text style = {styles.phaseDetails}>Zucchini</Text>
@@ -134,6 +135,7 @@ class AllRecipes extends React.Component {
       <View style = {styles.flexRight1}>
       <View style = {styles.flexLeftInner1}>
         <Text style = {styles.phaseHeader}>FOLLICULAR PHASE</Text>
+        <Text>As your hormones flucuate throughout your cycle, so do your nutritional requirements. Here are some top foods to include in your diet during this phase.</Text>
         <Text style = {styles.phaseDetails}>Grassfed Beef</Text>
         <Text style = {styles.phaseDetails}>Kale</Text>
         <Text style = {styles.phaseDetails}>Lentils</Text>
@@ -224,6 +226,7 @@ class AllRecipes extends React.Component {
       <View style = {styles.flexRight2}>
       <View style = {styles.flexLeftInner1}>
         <Text style = {styles.phaseHeader}>OVULATORY PHASE</Text>
+        <Text>As your hormones flucuate throughout your cycle, so do your nutritional requirements. Here are some top foods to include in your diet during this phase.</Text>
         <Text style = {styles.phaseDetails}>Eggs</Text>
         <Text style = {styles.phaseDetails}>Quinoa</Text>
         <Text style = {styles.phaseDetails}>Brussel Sprouts</Text>
@@ -315,6 +318,7 @@ class AllRecipes extends React.Component {
         <View style = {styles.flexLeft2}>
         <View style = {styles.flexLeftInner1}>
           <Text style = {styles.phaseHeader}>LUTEAL PHASE</Text>
+          <Text>As your hormones flucuate throughout your cycle, so do your nutritional requirements. Here are some top foods to include in your diet during this phase.</Text>
           <Text style = {styles.phaseDetails}>Butternut Squash</Text>
           <Text style = {styles.phaseDetails}>Avocado</Text>
           <Text style = {styles.phaseDetails}>Parsnip</Text>

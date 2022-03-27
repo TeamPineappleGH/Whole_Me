@@ -6,6 +6,7 @@ import { auth, db } from '../../firebase/config.js'
 import dateFormat from 'dateformat'
 import { connect } from 'react-redux';
 import { setPhase } from '../../store/calendar.js'
+import FontIcon2 from 'react-native-vector-icons/Ionicons'
 
 function CalendarView(props) {
   const scheme = useColorScheme()
@@ -204,7 +205,14 @@ function CalendarView(props) {
           padding: 10,
         }}
       >
-        <Text style={{color: 'white', fontSize: 15}}>Update Period Entry</Text>
+        <Text style={{color: 'white', fontSize: 15}}>
+          <FontIcon2 
+            name='add-circle-outline'
+            size={15}
+            margin={20}
+          />
+          Add Period Entry
+        </Text>
       </TouchableOpacity>
     </View>
     </View>
