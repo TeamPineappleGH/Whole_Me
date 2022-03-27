@@ -34,57 +34,27 @@ class AllRecipes extends React.Component {
   handlePress(item) {
     WebBrowser.openBrowserAsync(item);
   }
-  
 
   render() {
-    return (
+    if (this.props.currentPhase.color === '#1c9ab7') {
+      return (
       <ScrollView style = {{flex : 1}}>
       <View style = {styles.phaseContainer}>
-      <View style = {styles.flexLeft1}>
+        <View style = {styles.flexLeft1}>
         <View style = {styles.flexLeftInner1}>
-        <Text style = {styles.phaseHeader}>MENSTRUAL PHASE</Text>
-        <Text style = {styles.phaseDetails}>- dark chocolate</Text>
-        <Text style = {styles.phaseDetails}>- sweet potato</Text>
-        <Text style = {styles.phaseDetails}>- zucchini</Text>
-        <Text style = {styles.phaseDetails}>- cauliflower</Text>
-        <Text style = {styles.phaseDetails}>- carrots</Text>
+          <Text style = {styles.phaseHeader}>MENSTRUAL PHASE</Text>
+          <Text style = {styles.phaseDetails}>Chocolate</Text>
+          <Text style = {styles.phaseDetails}>Sweet Potato</Text>
+          <Text style = {styles.phaseDetails}>Zucchini</Text>
+          <Text style = {styles.phaseDetails}>Cauliflower</Text>
+          <Text style = {styles.phaseDetails}>Carrots</Text>
         </View>
-      </View>
-      <View style = {styles.flexRight1}>
-      <View style = {styles.flexLeftInner1}>
-      <Text style = {styles.phaseHeader}>FOLLICULAR PHASE</Text>
-        <Text style = {styles.phaseDetails}>- grassfed beef</Text>
-        <Text style = {styles.phaseDetails}>- kale</Text>
-        <Text style = {styles.phaseDetails}>- lentils</Text>
-        <Text style = {styles.phaseDetails}>- chickpeas</Text>
-        <Text style = {styles.phaseDetails}>- salmon</Text>
         </View>
-      </View>
-      <View style = {styles.flexRight2}>
-      <View style = {styles.flexLeftInner1}>
-      <Text style = {styles.phaseHeader}>OVULATORY PHASE</Text>
-        <Text style = {styles.phaseDetails}>- eggs</Text>
-        <Text style = {styles.phaseDetails}>- quinoa</Text>
-        <Text style = {styles.phaseDetails}>- brussel sprouts</Text>
-        <Text style = {styles.phaseDetails}>- berries</Text>
-        <Text style = {styles.phaseDetails}>- asperagus</Text>
         </View>
-      </View>
-      <View style = {styles.flexLeft2}>
-      <View style = {styles.flexLeftInner1}>
-      <Text style = {styles.phaseHeader}>LUTEAL PHASE</Text>
-        <Text style = {styles.phaseDetails}>- butternut squash</Text>
-        <Text style = {styles.phaseDetails}>- avocado</Text>
-        <Text style = {styles.phaseDetails}>- parsnip</Text>
-        <Text style = {styles.phaseDetails}>- pumpkin</Text>
-        <Text style = {styles.phaseDetails}>- tuna</Text>
-        </View>
-      </View>
-      </View>
+
        <View>
         <View style={{ width: '100%' }}>
-          <Text style={styles.header}>Find Recipes for Your Phase</Text>
-          <Text style={styles.instructions}>Search by Ingredient</Text>
+          <Text style={styles.header}>Discover Recipes</Text>
           <View
             style={{ flex: 1, width: '100%' }}
             keyboardShouldPersistTaps="always"
@@ -92,20 +62,29 @@ class AllRecipes extends React.Component {
             <View>
               <TextInput
                 style={styles.input}
-                placeholder="Ingredient"
+                placeholder="Search by Ingredient"
                 placeholderTextColor="#aaaaaa"
                 onChangeText={(text) => this.setState({ ingredient: text })}
                 value={this.state.ingredient}
                 autoCapitalize="none"
               />
               <TouchableOpacity
-                style={styles.button}
+                style={{
+                  display: 'flex',
+                  marginTop: 35,
+                  marginLeft: 20,
+                  marginRight: 20,
+                  alignItems: 'center',
+                  backgroundColor: '#1c9ab7',
+                  borderRadius: 10,
+                  padding: 10,
+                }}
                 onPress={ () => {
                   this.props.fetchRecipes(this.state.ingredient);
                   Keyboard.dismiss();
                 }}
               >
-                <Text style={styles.searchText}>Search</Text>
+                <Text style={{color: 'white', fontSize: 15}}>Search</Text>
               </TouchableOpacity>
             </View>
             
@@ -113,7 +92,6 @@ class AllRecipes extends React.Component {
               <SafeAreaView> 
               <ScrollView>
                 {this.props.allRecipes.map((recipe) => {
-                  console.log("what my recipe ho", recipe)
                   return (
                     <View key={recipe.website} >
                       <View style = {styles.container}>
@@ -128,7 +106,6 @@ class AllRecipes extends React.Component {
                         onPress={() => this.handlePress(recipe.website)}
                         style = {styles.detailButton}
                       >
-                      {/* <MaterialIcons name = "open-in-new" style = {styles.exitIcon} size = {30}/> */}
                       <Text style = {styles.detailText}>View Recipe</Text>
                       </TouchableOpacity>
                       </View>
@@ -148,15 +125,284 @@ class AllRecipes extends React.Component {
         </View>
       </View>
       </ScrollView>
+      )
+    } else if (this.props.currentPhase.color === '#9ad0ec') {
+      return (
+      <ScrollView style = {{flex : 1}}>
+      <View style = {styles.phaseContainer}>
+      <View style = {styles.flexLeft1}>
+      <View style = {styles.flexLeftInner1}>
+        <Text>FOLLICULAR PHASE</Text>
+        <Text style = {styles.phaseDetails}>Grassfed Beef</Text>
+        <Text style = {styles.phaseDetails}>Kale</Text>
+        <Text style = {styles.phaseDetails}>Lentils</Text>
+        <Text style = {styles.phaseDetails}>Chickpeas</Text>
+        <Text style = {styles.phaseDetails}>Salmon</Text>
+      </View>
+      </View>
+      </View>
+       <View>
+        <View style={{ width: '100%' }}>
+          <Text style={styles.header}>Discover Recipes</Text>
+          <View
+            style={{ flex: 1, width: '100%' }}
+            keyboardShouldPersistTaps="always"
+          >
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Search by Ingredient"
+                placeholderTextColor="#aaaaaa"
+                onChangeText={(text) => this.setState({ ingredient: text })}
+                value={this.state.ingredient}
+                autoCapitalize="none"
+              />
+              <TouchableOpacity
+                style={{
+                  display: 'flex',
+                  marginTop: 35,
+                  marginLeft: 20,
+                  marginRight: 20,
+                  alignItems: 'center',
+                  backgroundColor: '#1c9ab7',
+                  borderRadius: 10,
+                  padding: 10,
+                }}
+                onPress={ () => {
+                  this.props.fetchRecipes(this.state.ingredient);
+                  Keyboard.dismiss();
+                }}
+              >
+                <Text style={{color: 'white', fontSize: 15}}>Search</Text>
+              </TouchableOpacity>
+            </View>
             
-    );
+            {this.props.allRecipes ? (
+              <SafeAreaView> 
+              <ScrollView>
+                {this.props.allRecipes.map((recipe) => {
+                  return (
+                    <View key={recipe.website} >
+                      <View style = {styles.container}>
+                        <Image
+                          style={styles.tinyLogo}
+                          source={{
+                            uri: recipe.imageUrl,
+                          }}
+                        />
+                        <Text style={styles.text}>{recipe.label}</Text>
+                         <TouchableOpacity
+                        onPress={() => this.handlePress(recipe.website)}
+                        style = {styles.detailButton}
+                      >
+                      <Text style = {styles.detailText}>View Recipe</Text>
+                      </TouchableOpacity>
+                      </View>
+                    </View>
+                  );
+                })}
+              </ScrollView>
+              </SafeAreaView>
+            ) : (
+              <View>
+                <Text style={styles.instructions}>
+                  Search for recipes by ingredient!
+                </Text>
+              </View>
+            )} 
+          </View>
+        </View>
+      </View>
+      </ScrollView>
+      )
+    } else if (this.props.currentPhase.color === '#efdad7') {
+      return (
+      <ScrollView style = {{flex : 1}}>
+      <View style = {styles.phaseContainer}>
+      <View style = {styles.flexLeft1}>
+      <View style = {styles.flexLeftInner1}>
+        <Text>OVULATORY PHASE</Text>
+        <Text style = {styles.phaseDetails}>Eggs</Text>
+        <Text style = {styles.phaseDetails}>Quinoa</Text>
+        <Text style = {styles.phaseDetails}>Brussel Sprouts</Text>
+        <Text style = {styles.phaseDetails}>Berries</Text>
+        <Text style = {styles.phaseDetails}>Asperagus</Text>
+      </View>
+      </View>
+      </View>
+
+       <View>
+        <View style={{ width: '100%' }}>
+          <Text style={styles.header}>Discover Recipes</Text>
+          <View
+            style={{ flex: 1, width: '100%' }}
+            keyboardShouldPersistTaps="always"
+          >
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder="Search by Ingredient"
+                placeholderTextColor="#aaaaaa"
+                onChangeText={(text) => this.setState({ ingredient: text })}
+                value={this.state.ingredient}
+                autoCapitalize="none"
+              />
+              <TouchableOpacity
+                style={{
+                  display: 'flex',
+                  marginTop: 35,
+                  marginLeft: 20,
+                  marginRight: 20,
+                  alignItems: 'center',
+                  backgroundColor: '#1c9ab7',
+                  borderRadius: 10,
+                  padding: 10,
+                }}
+                onPress={ () => {
+                  this.props.fetchRecipes(this.state.ingredient);
+                  Keyboard.dismiss();
+                }}
+              >
+                <Text style={{color: 'white', fontSize: 15}}>Search</Text>
+              </TouchableOpacity>
+            </View>
+            
+            {this.props.allRecipes ? (
+              <SafeAreaView> 
+              <ScrollView>
+                {this.props.allRecipes.map((recipe) => {
+                  return (
+                    <View key={recipe.website} >
+                      <View style = {styles.container}>
+                        <Image
+                          style={styles.tinyLogo}
+                          source={{
+                            uri: recipe.imageUrl,
+                          }}
+                        />
+                        <Text style={styles.text}>{recipe.label}</Text>
+                         <TouchableOpacity
+                        onPress={() => this.handlePress(recipe.website)}
+                        style = {styles.detailButton}
+                      >
+                      <Text style = {styles.detailText}>View Recipe</Text>
+                      </TouchableOpacity>
+                      </View>
+                    </View>
+                  );
+                })}
+              </ScrollView>
+              </SafeAreaView>
+            ) : (
+              <View>
+                <Text style={styles.instructions}>
+                  Search for recipes by ingredient!
+                </Text>
+              </View>
+            )} 
+          </View>
+        </View>
+      </View>
+      </ScrollView>
+      )
+    } else {
+      return (
+        <ScrollView style = {{flex : 1}}>
+        <View style = {styles.phaseContainer}>
+        <View style = {styles.flexLeft1}>
+        <View style = {styles.flexLeftInner1}>
+          <Text style = {styles.phaseHeader}>LUTEAL PHASE</Text>
+          <Text style = {styles.phaseDetails}>Butternut Squash</Text>
+          <Text style = {styles.phaseDetails}>Avocado</Text>
+          <Text style = {styles.phaseDetails}>Parsnip</Text>
+          <Text style = {styles.phaseDetails}>Pumpkin</Text>
+          <Text style = {styles.phaseDetails}>Tuna</Text>
+        </View>
+        </View>
+        </View>
+
+         <View>
+          <View style={{ width: '100%' }}>
+            <Text style={styles.header}>Discover Recipes</Text>
+            <View
+              style={{ flex: 1, width: '100%' }}
+              keyboardShouldPersistTaps="always"
+            >
+              <View>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Search by Ingredient"
+                  placeholderTextColor="#aaaaaa"
+                  onChangeText={(text) => this.setState({ ingredient: text })}
+                  value={this.state.ingredient}
+                  autoCapitalize="none"
+                />
+                <TouchableOpacity
+                  style={{
+                    display: 'flex',
+                    marginTop: 35,
+                    marginLeft: 20,
+                    marginRight: 20,
+                    alignItems: 'center',
+                    backgroundColor: '#1c9ab7',
+                    borderRadius: 10,
+                    padding: 10,
+                  }}
+                  onPress={ () => {
+                    this.props.fetchRecipes(this.state.ingredient);
+                    Keyboard.dismiss();
+                  }}
+                >
+                  <Text style={{color: 'white', fontSize: 15}}>Search</Text>
+                </TouchableOpacity>
+              </View>
+              
+              {this.props.allRecipes ? (
+                <SafeAreaView> 
+                <ScrollView>
+                  {this.props.allRecipes.map((recipe) => {
+                    return (
+                      <View key={recipe.website} >
+                        <View style = {styles.container}>
+                          <Image
+                            style={styles.tinyLogo}
+                            source={{
+                              uri: recipe.imageUrl,
+                            }}
+                          />
+                          <Text style={styles.text}>{recipe.label}</Text>
+                           <TouchableOpacity
+                          onPress={() => this.handlePress(recipe.website)}
+                          style = {styles.detailButton}
+                        >
+                        <Text style = {styles.detailText}>View Recipe</Text>
+                        </TouchableOpacity>
+                        </View>
+                      </View>
+                    );
+                  })}
+                </ScrollView>
+                </SafeAreaView>
+              ) : (
+                <View>
+                  <Text style={styles.instructions}>
+                    Search for recipes by ingredient!
+                  </Text>
+                </View>
+              )} 
+            </View>
+          </View>
+        </View>
+        </ScrollView>
+        )
+      }
+    }
   }
-}
 
 const mapState = (state) => {
-  console.log('what is my recipe state', state)
   return {
     allRecipes: state.allRecipes,
+    currentPhase: state.currentPhase
   };
 };
 
@@ -168,7 +414,3 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapState, mapDispatch)(AllRecipes);
 //open-in-new material icons
-
-
-
-

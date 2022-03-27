@@ -1,9 +1,9 @@
 import axios from "axios"
 
-//action creator
+// ACTION TYPES
 const GET_RECIPES = 'GET_RECIPES'
 
-//action item
+// ACTION CREATORS
 
 const getRecipes = (recipes) => {
   return {
@@ -12,6 +12,7 @@ const getRecipes = (recipes) => {
   };
 };
 
+// THUNK CREATORS
 export const fetchRecipes = (ingredient, history) => {
   console.log('hello world')
   return async (dispatch) => {
@@ -49,8 +50,9 @@ export const fetchRecipes = (ingredient, history) => {
   };
 };
 
-const initialState = [];
+const initialState = []
 
+// REDUCER
 const allRecipeReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_RECIPES:

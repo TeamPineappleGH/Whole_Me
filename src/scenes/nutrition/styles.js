@@ -124,20 +124,17 @@ export default StyleSheet.create({
     marginTop: 12
   },
   flexLeft1: {
+    flex: 1,
     backgroundColor: colors.darkBlue,
-    width: '45%',
+    width: '100%',
     padding: 10,
     margin: 10,
-    borderColor: 'black',
-    borderWidth: 1
+    borderRadius: 15
   },
   flexLeftInner1: {
     backgroundColor: 'white',
-    width: '97%',
-    marginTop: 1,
-    marginLeft: 3,
-    borderColor: 'black',
-    borderWidth: 0.5
+    borderRadius: 15,
+    padding: 10
   },
   flexRight1: {
     backgroundColor: colors.lightBlue,
@@ -164,15 +161,17 @@ export default StyleSheet.create({
     borderWidth: 1
   },
   phaseHeader: {
-    fontSize: 15,
+    fontSize: 16,
     textAlign: 'center',
     fontWeight: 'bold',
     padding: 2
   },
   phaseDetails: {
-    fontSize: 16,
+    fontSize: 15,
     textAlign: 'center',
     padding: 2,
-    marginTop: 6
+    marginTop: 6,
+    marginBottom: 6,
+    flexDirection: 'column',
   }
 })
