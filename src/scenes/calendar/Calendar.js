@@ -5,6 +5,7 @@ import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
 import dateFormat from 'dateformat'
 import { connect } from 'react-redux';
+import { setPhase } from '../../store/calendar.js'
 
 function CalendarView(props) {
   const scheme = useColorScheme()
@@ -74,7 +75,7 @@ function CalendarView(props) {
       if (key === todaysDate) {
         const colorArray = markedDates[key]["dots"]
         const currentPhaseColor = colorArray[0]["color"]
-        console.log(currentPhaseColor)
+        props.setCurrentPhase(currentPhaseColor)
       }
     }
   })
@@ -212,7 +213,7 @@ function CalendarView(props) {
 
 const mapDispatch = (dispatch) => {
   return {
-    setCurrentPhase: (phaseColor) => dispatch(setCurrentPhase(phaseColor)),
+    setCurrentPhase: (phaseColor) => dispatch(setPhase(phaseColor)),
   };
 };
 

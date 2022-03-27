@@ -8,11 +8,12 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import allRecipeReducer from '../store/nutrition';
+import phaseReducer from '../store/calendar'
 
 const rootReducer = combineReducers({
   app: appReducer,
   allRecipes: allRecipeReducer,
-  // add more reducers
+  currentPhase: phaseReducer
 })
 
 // const defaultMiddleware = getDefaultMiddleware({
