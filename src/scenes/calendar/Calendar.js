@@ -211,7 +211,7 @@ function CalendarView(props) {
             size={15}
             margin={20}
           />
-          Update Period Entry
+          Add Period Entry
         </Text>
       </TouchableOpacity>
     </View>
