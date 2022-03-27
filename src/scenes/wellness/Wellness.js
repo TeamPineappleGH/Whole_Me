@@ -15,9 +15,17 @@ export default function Wellness(props) {
       <Image style = {styles.tinyLogo} source={require('../../../assets/images/fitness.png')}  />
       <Text style = {styles.text} >FITNESS</Text>
       </View>
-      <View style = {styles.flexRight1}></View>
-      <View style = {styles.flexRight2}></View>
-      <View style = {styles.flexLeft2}></View>
+      <View style = {styles.flexRight1}>
+      <Image style = {styles.tinyLogo} source={require('../../../assets/images/meditating.png')}  />
+      <Text style = {styles.text} >MEDITATION</Text>
+      </View>
+      <View style = {styles.flexRight2}>
+      <Image style = {styles.tinyLogo} source={require('../../../assets/images/brain.png')}  />
+      <Text style = {styles.text} >MENTAL HEALTH</Text>
+      </View>
+      <View style = {styles.flexLeft2}>
+      <Text style = {styles.text} >CYCLE PHASES</Text>
+      </View>
       </View>
     </ScrollView>
   )
