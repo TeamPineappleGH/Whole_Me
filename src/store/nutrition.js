@@ -24,7 +24,7 @@ export const fetchRecipes = (ingredient, history) => {
         params: { 
           q: `${ingredient}`,
           start: '0',
-          maxResult: '10' 
+          maxResult: '20' 
         },
         headers: {
           'x-rapidapi-key': '98289f03damsh39a7fa8164574fep1cde95jsn0d3fd6b172f0',
