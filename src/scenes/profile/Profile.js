@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, TouchableOpacity, StatusBar, ScrollView, useColorScheme } from 'react-native'
+import { Text, View, TouchableOpacity, StatusBar, ScrollView, useColorScheme, Image } from 'react-native'
 import styles from './styles'
 import { firebase } from '../../firebase/config'
 import { Avatar } from 'react-native-elements'
 import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
 import { Restart } from '../../components/reload/reload'
-
+import WholeMeLogo from '../../../assets/images/whole-me-logo.png'
 export default function Profile(props) {
   const userData = props.extraData
   const scheme = useColorScheme()
@@ -51,11 +51,7 @@ export default function Profile(props) {
       <ScrollView style={{ flex: 1, width: '100%' }}>
         <View style={styles.main}>
           <View style={styles.avatar}>
-            <Avatar
-              size="xlarge"
-              rounded
-              title="NI"
-              source={{ uri: userData.avatar }}
+          <Image source={require( '../../../assets/images/whole-me-logo.png')}
             />
           </View>
           <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>Name:</Text>

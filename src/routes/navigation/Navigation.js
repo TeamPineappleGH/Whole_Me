@@ -34,7 +34,7 @@ export default function App() {
   const navigationProps = {
     headerTintColor: 'white',
     headerStyle: { 
-      backgroundColor: scheme === 'dark' ? colors.dark : colors.palePink
+      backgroundColor: scheme === 'dark' ? colors.dark : colors.darkBlue,
     },
   }
 
