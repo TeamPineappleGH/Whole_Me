@@ -49,7 +49,6 @@ export default function CalendarView() {
     for (let i = 1; i <= 28; i++) {
       if (i <= periodDuration) {
         menstrualPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
-        // follicularPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
         startDate.setDate(startDate.getDate() + 1)
       } else if (i > periodDuration && i <= 13) {
         follicularPhaseArray.push(dateFormat(startDate, "yyyy-mm-dd"))
@@ -87,19 +86,18 @@ export default function CalendarView() {
   }, [])
 
     return (
-      <View>
+      <View style={{margin: 20, borderRadius: 15, backgroundColor: 'white', paddingTop: 15}}>
         <Calendar 
           markingType={'multi-dot'}
           markedDates={markedDates}
         />
 
-      <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>
-        Key:
-      </Text>
+      <View style={{margin: 20}}>
       <View
         style={{
           display: 'flex',
           flexDirection: 'row',
+          alignItems: 'center',
         }}
       >
         <View
@@ -125,6 +123,7 @@ export default function CalendarView() {
         style={{
           display: 'flex',
           flexDirection: 'row',
+          alignItems: 'center',
         }}
       >
         <View
@@ -145,6 +144,7 @@ export default function CalendarView() {
         style={{
           display: 'flex',
           flexDirection: 'row',
+          alignItems: 'center',
         }}
       >
         <View
@@ -165,6 +165,7 @@ export default function CalendarView() {
         style={{
           display: 'flex',
           flexDirection: 'row',
+          alignItems: 'center',
         }}
       >
         <View
@@ -185,7 +186,9 @@ export default function CalendarView() {
         title="Update Period Entry"
         onPress={() => Alert.alert('Button pressed')}
         color="#1c9ab7"
+        style={{margin: 50}}
       />
+    </View>
     </View>
   )
 }

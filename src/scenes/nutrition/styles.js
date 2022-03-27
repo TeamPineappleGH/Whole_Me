@@ -125,7 +125,6 @@ export default StyleSheet.create({
   },
   flexLeft1: {
     backgroundColor: colors.darkBlue,
-    height: 200,
     width: '45%',
     padding: 10,
     margin: 10,
@@ -134,7 +133,6 @@ export default StyleSheet.create({
   },
   flexLeftInner1: {
     backgroundColor: 'white',
-    height: 175,
     width: '97%',
     marginTop: 1,
     marginLeft: 3,
@@ -143,7 +141,6 @@ export default StyleSheet.create({
   },
   flexRight1: {
     backgroundColor: colors.lightBlue,
-    height: 200,
     width: '45%',
     padding: 10,
     margin: 10,
@@ -152,7 +149,6 @@ export default StyleSheet.create({
   },
   flexRight2: {
     backgroundColor: colors.palePink,
-    height: 200,
     width: '45%',
     padding: 10,
     margin: 10,
@@ -161,7 +157,6 @@ export default StyleSheet.create({
   },
   flexLeft2: {
     backgroundColor: colors.orange,
-    height: 200,
     width: '45%',
     padding: 10,
     margin: 10,
