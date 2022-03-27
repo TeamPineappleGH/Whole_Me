@@ -3,8 +3,8 @@
 // import { auth, db } from '../../firebase/config'
 // import firestore from '@react-native-firebase/firestore'
 
-const userId = auth.currentUser.uid
-const userRef = db.collection('users').doc(userId)
+// const userId = auth.currentUser.uid
+// const userRef = db.collection('users').doc(userId)
 
 // action constants
 const ADD_ENTRY = 'ADD_ENTRY'

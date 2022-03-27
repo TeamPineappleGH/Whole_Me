@@ -42,7 +42,7 @@ const decodedMoodColours = [
   '#0000008A',
 ]
 
-export default function Diary(props) {
+function Diary(props) {
   const userData = props.extraData
   // console.log('this is userData', userData);
 
@@ -224,8 +224,8 @@ export default function Diary(props) {
   )
 }
 
-// const mapStateToProps = (state) => ({
-//   entries: state.entries,
-// })
+const mapStateToProps = (state) => ({
+  entries: state.entries,
+})
 
-// export default connect(mapStateToProps, { addEntry: addEntry })(Diary)
+export default connect(mapStateToProps, { addEntry: addEntry })(Diary)
