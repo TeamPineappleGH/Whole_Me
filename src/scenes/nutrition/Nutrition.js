@@ -131,9 +131,9 @@ class AllRecipes extends React.Component {
       return (
       <ScrollView style = {{flex : 1}}>
       <View style = {styles.phaseContainer}>
-      <View style = {styles.flexLeft1}>
+      <View style = {styles.flexRight1}>
       <View style = {styles.flexLeftInner1}>
-        <Text>FOLLICULAR PHASE</Text>
+        <Text style = {styles.phaseHeader}>FOLLICULAR PHASE</Text>
         <Text style = {styles.phaseDetails}>Grassfed Beef</Text>
         <Text style = {styles.phaseDetails}>Kale</Text>
         <Text style = {styles.phaseDetails}>Lentils</Text>
@@ -221,9 +221,9 @@ class AllRecipes extends React.Component {
       return (
       <ScrollView style = {{flex : 1}}>
       <View style = {styles.phaseContainer}>
-      <View style = {styles.flexLeft1}>
+      <View style = {styles.flexRight2}>
       <View style = {styles.flexLeftInner1}>
-        <Text>OVULATORY PHASE</Text>
+        <Text style = {styles.phaseHeader}>OVULATORY PHASE</Text>
         <Text style = {styles.phaseDetails}>Eggs</Text>
         <Text style = {styles.phaseDetails}>Quinoa</Text>
         <Text style = {styles.phaseDetails}>Brussel Sprouts</Text>
@@ -312,7 +312,7 @@ class AllRecipes extends React.Component {
       return (
         <ScrollView style = {{flex : 1}}>
         <View style = {styles.phaseContainer}>
-        <View style = {styles.flexLeft1}>
+        <View style = {styles.flexLeft2}>
         <View style = {styles.flexLeftInner1}>
           <Text style = {styles.phaseHeader}>LUTEAL PHASE</Text>
           <Text style = {styles.phaseDetails}>Butternut Squash</Text>

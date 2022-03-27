@@ -137,28 +137,28 @@ export default StyleSheet.create({
     padding: 10
   },
   flexRight1: {
+    flex: 1,
     backgroundColor: colors.lightBlue,
-    width: '45%',
+    width: '100%',
     padding: 10,
     margin: 10,
-    borderColor: 'black',
-    borderWidth: 1
+    borderRadius: 15
   },
   flexRight2: {
+    flex: 1,
     backgroundColor: colors.palePink,
-    width: '45%',
+    width: '100%',
     padding: 10,
     margin: 10,
-    borderColor: 'black',
-    borderWidth: 1
+    borderRadius: 15
   },
   flexLeft2: {
+    flex: 1,
     backgroundColor: colors.orange,
-    width: '45%',
+    width: '100%',
     padding: 10,
     margin: 10,
-    borderColor: 'black',
-    borderWidth: 1
+    borderRadius: 15
   },
   phaseHeader: {
     fontSize: 16,
