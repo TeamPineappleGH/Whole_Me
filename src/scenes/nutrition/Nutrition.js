@@ -14,8 +14,8 @@ import { connect } from 'react-redux';
 import {fetchRecipes} from '../../store/nutrition'
 import styles from './styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import * as Linking from 'expo-linking';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import * as WebBrowser from 'expo-web-browser';
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -32,13 +32,13 @@ class AllRecipes extends React.Component {
     this.handlePress = this.handlePress.bind(this);
   }
   handlePress(item) {
-    Linking.openURL(item);
+    WebBrowser.openBrowserAsync(item);
   }
   
 
   render() {
     return (
-      <View>
+      <ScrollView style = {{flex : 1}}>
       <View style = {styles.phaseContainer}>
       <View style = {styles.flexLeft1}>
         <View style = {styles.flexLeftInner1}>
@@ -147,7 +147,7 @@ class AllRecipes extends React.Component {
           </View>
         </View>
       </View>
-      </View>
+      </ScrollView>
             
     );
   }
