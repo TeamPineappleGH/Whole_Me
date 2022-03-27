@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { colors } from 'theme'
 
 export default StyleSheet.create({
   container: {
@@ -12,6 +13,20 @@ export default StyleSheet.create({
     marginBottom: 5,
     marginLeft: 10,
     textAlign: 'center',
+  },
+  h1: {
+    fontSize: 30,
+    padding: 20,
+    paddingBottom: 10,
+    textAlign: "center",
+  },
+  emoji: {},
+  input: {
+    marginHorizontal: 30,
+    marginVertical: 40,
+    textAlign: "justify",
+    // fontFamily: "sans-serif-light",
+    fontSize: 16,
   },
   darktitle: {
     fontSize: 24,
@@ -38,4 +53,12 @@ export default StyleSheet.create({
     flex: 1,
     width: '100%',
   },
+  linebreak: {
+    borderBottomColor: colors.gray,
+    borderBottomWidth: 1,
+    marginVertical: 30, 
+    alignSelf: 'center',
+    width: '85%',
+    // flex:1
+  }
 })
