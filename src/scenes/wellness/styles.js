@@ -47,7 +47,8 @@ export default StyleSheet.create({
     padding: 10,
     margin: 10,
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    borderRadius: 15
   },
   flexLeftInner1: {
     backgroundColor: 'white',
@@ -64,7 +65,8 @@ export default StyleSheet.create({
     padding: 10,
     margin: 10,
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    borderRadius: 15
   },
   flexRight2: {
     backgroundColor: colors.palePink,
@@ -73,7 +75,8 @@ export default StyleSheet.create({
     padding: 10,
     margin: 10,
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    borderRadius: 15
   },
   flexLeft2: {
     backgroundColor: colors.orange,
@@ -82,7 +85,8 @@ export default StyleSheet.create({
     height: 250,
     margin: 10,
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+    borderRadius: 15
   },
   tinyLogo: {
     alignItems: 'center',
@@ -90,13 +94,13 @@ export default StyleSheet.create({
     width: 110,
     height: 110,
     marginLeft: 32,
-    marginTop: 50
+    marginTop: 35
   },
   text: {
     fontSize: 20,
     color: 'black',
     flex: 1,
-    marginLeft: 45,
+    textAlign: 'center',
     marginTop: 15
   },
 })
