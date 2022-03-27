@@ -186,7 +186,7 @@ export default function CalendarView() {
         title="Update Period Entry"
         onPress={() => Alert.alert('Button pressed')}
         color="#1c9ab7"
-        style={{margin: 50}}
+        style={{marginTop: 20}}
       />
     </View>
     </View>
