@@ -71,9 +71,10 @@ class AllRecipes extends React.Component {
               <TouchableOpacity
                 style={{
                   display: 'flex',
-                  marginTop: 35,
+                  marginTop: 7,
                   marginLeft: 20,
                   marginRight: 20,
+                  marginBottom: 40,
                   alignItems: 'center',
                   backgroundColor: '#1c9ab7',
                   borderRadius: 10,
@@ -160,9 +161,10 @@ class AllRecipes extends React.Component {
               <TouchableOpacity
                 style={{
                   display: 'flex',
-                  marginTop: 35,
+                  marginTop: 7,
                   marginLeft: 20,
                   marginRight: 20,
+                  marginBottom: 40,
                   alignItems: 'center',
                   backgroundColor: '#1c9ab7',
                   borderRadius: 10,
@@ -250,9 +252,10 @@ class AllRecipes extends React.Component {
               <TouchableOpacity
                 style={{
                   display: 'flex',
-                  marginTop: 35,
+                  marginTop: 7,
                   marginLeft: 20,
                   marginRight: 20,
+                  marginBottom: 40,
                   alignItems: 'center',
                   backgroundColor: '#1c9ab7',
                   borderRadius: 10,
@@ -340,9 +343,10 @@ class AllRecipes extends React.Component {
                 <TouchableOpacity
                   style={{
                     display: 'flex',
-                    marginTop: 35,
+                    marginTop: 7,
                     marginLeft: 20,
                     marginRight: 20,
+                    marginBottom: 40,
                     alignItems: 'center',
                     backgroundColor: '#1c9ab7',
                     borderRadius: 10,
