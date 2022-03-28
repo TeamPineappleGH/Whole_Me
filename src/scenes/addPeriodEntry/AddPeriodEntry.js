@@ -44,18 +44,21 @@ export default function AddPeriodEntry(props) {
 
   return (
     <View style={styles.container}>
-      <SafeAreaView>
-        <Button title='Select Date' onPress={showDatePicker}/>
+      <TouchableOpacity 
+          onPress={showDatePicker}
+          style={scheme === 'dark' ? styles.darkinput : styles.input}
+        >
+          <Text style={{textAlign: 'left', color: '#a9a9a9', marginTop: 14}}>Select Period Start Date: <Text style={{color: 'black'}}>{`${" "} ${periodStartDate}`}</Text></Text>
+        </TouchableOpacity>
 
+        <SafeAreaView>
             <DateTimePickerModal
               isVisible={isDatePickerVisible}
               mode="date"
               onConfirm={handleConfirm}
               onCancel={hideDatePicker}
-            />
-      </SafeAreaView>
-
-      <Text>{periodStartDate}</Text>
+              />
+          </SafeAreaView>
 
       <TextInput
           style={scheme === 'dark' ? styles.darkinput : styles.input}
