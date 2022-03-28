@@ -11,14 +11,12 @@ import allRecipeReducer from '../store/nutrition';
 import phaseReducer from '../store/calendar'
 import allMeditationReducer from './meditation';
 
+
 const rootReducer = combineReducers({
   app: appReducer,
   allRecipes: allRecipeReducer,
   currentPhase: phaseReducer,
-<<<<<<< HEAD
   meditations: allMeditationReducer,
-=======
->>>>>>> a45896d6a1aefba534b8ea82f5c7f7e395612649
 })
 
 // const defaultMiddleware = getDefaultMiddleware({
