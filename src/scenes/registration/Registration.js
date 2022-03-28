@@ -43,7 +43,7 @@ export default function Registration({navigation}) {
     }
     const toDate = new Date(periodStartDate)
     const myTimeStamp = firebase.firestore.Timestamp.fromDate(toDate)
-    
+
     setSpinner(true)
     firebase
       .auth()
@@ -124,18 +124,23 @@ export default function Registration({navigation}) {
           underlineColorAndroid="transparent"
           autoCapitalize="none"
         />
+        
+        <TouchableOpacity 
+          onPress={showDatePicker}
+          style={scheme === 'dark' ? styles.darkinput : styles.input}
+        >
+          <Text style={{textAlign: 'left', color: '#a9a9a9', marginTop: 14}}>Select Period Start Date: <Text style={{color: 'black'}}>{`${" "} ${periodStartDate}`}</Text></Text>
+        </TouchableOpacity>
         <SafeAreaView>
-        <Button title='Select Period Start Date' onPress={showDatePicker}/>
-
             <DateTimePickerModal
               isVisible={isDatePickerVisible}
               mode="date"
               onConfirm={handleConfirm}
               onCancel={hideDatePicker}
-            />
-        </SafeAreaView>
+              />
+          </SafeAreaView>
 
-        <Text style={styles.periodDate}>{periodStartDate}</Text>
+        {/* <Text style={styles.periodDate}>{periodStartDate}</Text> */}
 
         <TextInput
           style={scheme === 'dark' ? styles.darkinput : styles.input}
