@@ -10,6 +10,7 @@ import Nutrition from '../../../scenes/nutrition'
 import Wellness from '../../../scenes/wellness'
 import Calendar from '../../../scenes/calendar'
 import AddPeriodEntry from '../../../scenes/addPeriodEntry'
+import AllEntries from '../../../scenes/diary/AllEntries'
 
 // ------------------------------------
 // Constants
@@ -70,10 +71,15 @@ export const DiaryNavigator = (props) => {
   const navigationProps = props.navigationProps;
 
   return (
+    
     <Stack.Navigator headerMode = "screen" screenOptions= {navigationProps}>
+    <Stack.Screen name= "All Entries">
+        {props => <AllEntries {...props} extraData={user} />}
+      </Stack.Screen>
       <Stack.Screen name= "Diary">
         {props => <Diary {...props} extraData={user} />}
       </Stack.Screen>
+      
     </Stack.Navigator>
   )
 }

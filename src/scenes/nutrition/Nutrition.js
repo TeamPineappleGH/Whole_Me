@@ -366,7 +366,7 @@ class AllRecipes extends React.Component {
               </View>
               
               {this.props.allRecipes ? (
-                <SafeAreaView> 
+                <SafeAreaView>
                 <ScrollView>
                   {this.props.allRecipes.map((recipe) => {
                     return (
