@@ -54,7 +54,7 @@ export default function Profile(props) {
           <View>
           <Image 
             style={styles.logo}
-            source={require( '../../../assets/images/whole-me-logo.png')}
+            source={require('../../../assets/images/whole-me-logo.png')}
           />
           </View>
           <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>{userData.fullName}</Text>
