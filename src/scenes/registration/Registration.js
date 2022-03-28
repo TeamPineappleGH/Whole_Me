@@ -140,8 +140,6 @@ export default function Registration({navigation}) {
               />
           </SafeAreaView>
 
-        {/* <Text style={styles.periodDate}>{periodStartDate}</Text> */}
-
         <TextInput
           style={scheme === 'dark' ? styles.darkinput : styles.input}
           placeholder='Period Duration'
