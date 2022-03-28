@@ -12,13 +12,13 @@ import allExerciseReducer from './fitness';
 import phaseReducer from '../store/calendar'
 import allMeditationReducer from './meditation';
 
+
 const rootReducer = combineReducers({
   app: appReducer,
   allRecipes: allRecipeReducer,
   allExercises: allExerciseReducer,
   currentPhase: phaseReducer,
   meditations: allMeditationReducer,
-
 })
 
 // const defaultMiddleware = getDefaultMiddleware({
