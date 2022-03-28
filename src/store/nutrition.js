@@ -13,27 +13,36 @@ const getRecipes = (recipes) => {
 }
 
 // THUNK CREATORS
-export const fetchRecipes = (ingredient) => {
+export const fetchRecipes = (ingredient, history) => {
+  console.log('hello world')
   return async (dispatch) => {
     try {
-      console.log('we are fetching recipes');
+      console.log("we are fetching recipes")
       let options = {
         method: 'GET',
         url: 'https://yummly2.p.rapidapi.com/feeds/search',
-        params: {
+        params: { 
           q: `${ingredient}`,
           start: '0',
-          maxResult: '10'
+          maxResult: '10' 
         },
         headers: {
-          'x-rapidapi-key': 'e76b17f41bmsh48aefae4c3f6274p187698jsn16752868c9a3',
-          'x-rapidapi-host': 'yummly2.p.rapidapi.com',
-          },
+          'x-rapidapi-key': '98289f03damsh39a7fa8164574fep1cde95jsn0d3fd6b172f0',
+          'x-rapidapi-host': 'yummly2.p.rapidapi.comr',
+        },
       };
       const res = await axios.request(options);
-
+      let resultArr = [];
+      res.data.feed.forEach((element) => {
+        const title = element.content.details.attribution.text;
+        resultArr.push({
+          label: title.slice(0, title.length - 31),
+          imageUrl: element.content.details.images[0].resizableImageUrl,
+          website: element.content.details.attribution.url,
+        });
+      });
       // if (type === 'search') {
-        dispatch(getRecipes(res));
+        dispatch(getRecipes(resultArr));
       // }
     } catch (error) {
       console.log(error);
