@@ -23,6 +23,8 @@ import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
 // import { addEntry } from '../redux/diary'
 import { auth, db } from '../../firebase/config.js'
+// import firestore from '@react-native-firebase/firestore';
+// import { getFirestore, setDoc, doc } from 'firebase/firestore';
 
 // const addEntry = (newEntry) => {
 //   firestore()
@@ -50,27 +52,14 @@ const decodedMoodColours = [
   '#0000008A',
 ]
 
-function Diary(props) {
+export default function Diary(props) {
   const userData = props.extraData
-  // console.log('this is userData', userData);
 
   const userId = auth.currentUser.uid
-  console.log('this is userId!!', userId)
-
-  const addEntry = (newEntry) => {
-  db
-    .collection('users')
-    .doc(userId)
-    .update({ entries: newEntry })
-    .then(() => console.log('user updated!'))
-}
 
   let convertedDate = new Date(
     userData.periodStartDate.seconds * 1000,
   ).toDateString()
-
-  // console.log('converted date', convertedDate);
-  // console.log('testing', dateFormat(convertedDate, 'dddd, mmmm dS'))
 
   const scheme = useColorScheme()
 
@@ -89,8 +78,23 @@ function Diary(props) {
     setAllowPopulate(false)
   }
 
-  console.log('addEntry--->', props.addEntry);
-  console.log('entries!!!!', props.entries);
+  let diaryEntries;
+
+    db.collection('users').doc(userId).get().then(documentSnapShot => {
+      diaryEntries = documentSnapShot.get('entries');
+      // console.log('this is diaryEntries', diaryEntries);
+      });
+  
+
+    const addEntry = (newEntry) => {
+      db
+        .collection('users')
+        .doc(userId)
+        .update({ entries: [...diaryEntries, newEntry] })
+        .then(() => console.log('user updated!'))
+    }
+
+
 
   const showDatePicker = () => {
     setDatePickerVisibility(true)
@@ -101,9 +105,8 @@ function Diary(props) {
   }
 
   const handleConfirm = (date) => {
-    // console.warn('A date has been picked: ', date)
+
     setPickedDate(date)
-    // console.log('this is picked Date!', pickedDate)
     hideDatePicker()
   }
 
@@ -244,15 +247,3 @@ function Diary(props) {
     </KeyboardAvoidingView>
   )
 }
-
-const mapStateToProps = (state) => ({
-  entries: state.entries,
-})
-
-const mapDispatchToProps = (dispatch) => ({
-  addEntry: (entry) => dispatch(addEntry(entry))
-})
-
-// export default connect(mapStateToProps, { addEntry: addEntry })(Diary)
-
-export default connect(mapStateToProps, mapDispatchToProps)(Diary)
