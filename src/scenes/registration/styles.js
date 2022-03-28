@@ -37,14 +37,15 @@ export default StyleSheet.create({
     color: 'white'
   },
   button: {
-    backgroundColor: '#788eec',
+    backgroundColor: '#1c9ab7',
     marginLeft: 30,
     marginRight: 30,
     marginTop: 20,
     height: 48,
-    borderRadius: 5,
+    borderRadius: 10,
     alignItems: "center",
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 10
   },
   buttonTitle: {
     color: 'white',
@@ -65,12 +66,17 @@ export default StyleSheet.create({
     color: 'white'
   },
   footerLink: {
-    color: "#788eec",
+    color: '#f98c41',
     fontWeight: "bold",
     fontSize: 16
   },
   link: {
-    color: 'blue',
+    color: '#1c9ab7',
+    textAlign: 'center',
+    marginTop: 5
+  },
+  periodDate: {
+    color: '#1c9ab7',
     textAlign: 'center',
     marginTop: 5
   },
