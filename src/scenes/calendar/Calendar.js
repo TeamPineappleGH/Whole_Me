@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Calendar } from 'react-native-calendars'
-import { Text, View, TouchableOpacity, useColorScheme, Alert } from 'react-native'
+import { Text, View, TouchableOpacity, useColorScheme } from 'react-native'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
 import dateFormat from 'dateformat'
