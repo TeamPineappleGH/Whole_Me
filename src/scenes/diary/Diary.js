@@ -21,7 +21,7 @@ import { Icon } from 'react-native-elements'
 import Constants from 'expo-constants'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { addEntry } from '../redux/diary'
+// import { addEntry } from '../redux/diary'
 import { auth, db } from '../../firebase/config.js'
 
 // const addEntry = (newEntry) => {
@@ -53,6 +53,17 @@ const decodedMoodColours = [
 function Diary(props) {
   const userData = props.extraData
   // console.log('this is userData', userData);
+
+  const userId = auth.currentUser.uid
+  console.log('this is userId!!', userId)
+
+  const addEntry = (newEntry) => {
+  db
+    .collection('users')
+    .doc(userId)
+    .update({ entries: newEntry })
+    .then(() => console.log('user updated!'))
+}
 
   let convertedDate = new Date(
     userData.periodStartDate.seconds * 1000,
@@ -111,7 +122,7 @@ function Diary(props) {
       status: writtenDiary ? 'Diary Added' : 'No Diary Added',
       writtenDiary: writtenDiary,
     }
-    props.addEntry(entryObj)
+    addEntry(entryObj)
     props.navigation.goBack()
     console.log('this is entry object----->', entryObj)
   }
