@@ -7,6 +7,7 @@ import Dialog from "react-native-dialog"
 import Spinner from 'react-native-loading-spinner-overlay'
 import { Restart } from '../../components/reload/reload'
 import WholeMeLogo from '../../../assets/images/whole-me-logo.png'
+
 export default function Profile(props) {
   const userData = props.extraData
   const scheme = useColorScheme()
@@ -50,13 +51,13 @@ export default function Profile(props) {
       <StatusBar barStyle="light-content" />
       <ScrollView style={{ flex: 1, width: '100%' }}>
         <View style={styles.main}>
-          <View style={styles.avatar}>
-          <Image source={require( '../../../assets/images/whole-me-logo.png')}
-            />
+          <View>
+          <Image 
+            style={styles.logo}
+            source={require('../../../assets/images/whole-me-logo.png')}
+          />
           </View>
-          <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>Name:</Text>
           <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>{userData.fullName}</Text>
-          <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>Mail:</Text>
           <Text style={scheme === 'dark' ? styles.darktitle : styles.title}>{userData.email}</Text>
           <TouchableOpacity style={styles.button} onPress={goDetail}>
             <Text style={styles.buttonText}>Edit</Text>

@@ -52,7 +52,7 @@ export default function Login({navigation}) {
         keyboardShouldPersistTaps="always">
         <Image
           style={styles.logo}
-          source={require('../../../assets/icon.png')}
+          source={require('../../../assets/images/whole-me-logo.png')}
         />
         <TextInput
           style={scheme === 'dark' ? styles.darkinput : styles.input}

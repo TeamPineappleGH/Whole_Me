@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
   input: {
     height: 48,
-    width: 150,
+    width: 325,
     borderRadius: 5,
     overflow: 'hidden',
     backgroundColor: 'white',
@@ -40,14 +40,15 @@ export default StyleSheet.create({
     color: 'white'
   },
   button: {
-    backgroundColor: '#788eec',
-    marginLeft: 30,
-    marginRight: 30,
+    display: 'flex',
     marginTop: 20,
-    height: 48,
-    borderRadius: 5,
-    alignItems: "center",
-    justifyContent: 'center'
+    marginLeft: 20,
+    marginRight: 20,
+    width: '80%',
+    alignItems: 'center',
+    backgroundColor: '#1c9ab7',
+    borderRadius: 10,
+    padding: 10,
   },
   buttonTitle: {
     color: 'white',
