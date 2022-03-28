@@ -17,7 +17,6 @@ import { connect } from 'react-redux'
 import { fetchMeditations } from '../../store/meditation'
 import styles from './styles'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as WebBrowser from 'expo-web-browser'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
@@ -64,17 +63,13 @@ class AllMeditations extends React.Component {
         <ScrollView style={{ flex: 1, width: '100%' }}>
             <View style={{ width: '100%' }}>
               <Text style={styles.header}>Discover Meditations</Text>
-                <View>
+                <View style={styles.video}>
                   <YoutubePlayer
                     height={300}
                     width={Dimensions.get('window').width}
                     play={this.state.playing}
                     videoId={'5qap5aO4i9A'}
                     onChangeState={this.onStateChange}
-                  />
-                  <Button
-                    title={this.state.playing ? 'pause' : 'play'}
-                    onPress={this.togglePlaying}
                   />
                 </View>
           </View>
@@ -85,10 +80,8 @@ class AllMeditations extends React.Component {
 
 
 const mapState = (state) => {
-  // console.log('state-->', state);
   return {
     meditations: state.meditations,
-    currentPhase: state.currentPhase,
   }
 }
 
