@@ -21,8 +21,16 @@ import { Icon } from 'react-native-elements'
 import Constants from 'expo-constants'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { addEntry } from '../redux/reducer'
+import { addEntry } from '../redux/diary'
 import { auth, db } from '../../firebase/config.js'
+
+// const addEntry = (newEntry) => {
+//   firestore()
+//     .collection('users')
+//     .doc(userId)
+//     .update({ entries: newEntry })
+//     .then(() => console.log('user updated!'))
+// }
 
 const decodedMoodPhrase = [
   'Depressed',
@@ -70,7 +78,8 @@ function Diary(props) {
     setAllowPopulate(false)
   }
 
-  console.log('this was pressed', props);
+  console.log('addEntry--->', props.addEntry);
+  console.log('entries!!!!', props.entries);
 
   const showDatePicker = () => {
     setDatePickerVisibility(true)
@@ -83,7 +92,7 @@ function Diary(props) {
   const handleConfirm = (date) => {
     // console.warn('A date has been picked: ', date)
     setPickedDate(date)
-    console.log('this is picked Date!', pickedDate)
+    // console.log('this is picked Date!', pickedDate)
     hideDatePicker()
   }
 
@@ -104,6 +113,7 @@ function Diary(props) {
     }
     props.addEntry(entryObj)
     props.navigation.goBack()
+    console.log('this is entry object----->', entryObj)
   }
 
   return (
@@ -228,4 +238,10 @@ const mapStateToProps = (state) => ({
   entries: state.entries,
 })
 
-export default connect(mapStateToProps, { addEntry: addEntry })(Diary)
+const mapDispatchToProps = (dispatch) => ({
+  addEntry: (entry) => dispatch(addEntry(entry))
+})
+
+// export default connect(mapStateToProps, { addEntry: addEntry })(Diary)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Diary)

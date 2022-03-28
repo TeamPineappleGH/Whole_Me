@@ -11,9 +11,9 @@ const ADD_ENTRY = 'ADD_ENTRY'
 const REMOVE_ENTRY = 'REMOVE_ENTRY'
 
 // action creators
-export const addEntry = (newEntry) => ({
+const _addEntry = (entry) => ({
   type: ADD_ENTRY,
-  newEntry,
+  entry,
 })
 
 export const removeEntry = (date) => ({
@@ -23,13 +23,13 @@ export const removeEntry = (date) => ({
 
 // thunk creators
 
-// export const addEntry = (newEntry) => {
-//   firestore()
-//     .collection('users')
-//     .doc(userId)
-//     .update({ entries: newEntry })
-//     .then(() => console.log('user updated!'))
-// }
+export const addEntry = (newEntry) => {
+  firestore()
+    .collection('users')
+    .doc(userId)
+    .update({ entries: newEntry })
+    .then(() => console.log('user updated!'))
+}
 
 const merge = (prev, next) => Object.assign({}, prev, next)
 
