@@ -36,6 +36,7 @@ function CalendarView(props) {
     const periodDuration = user.data().duration
     const startDate = user.data().periodStartDate.toDate()
     const markedDatesObj = {};
+    console.log(startDate)
 
     for (let i = 1; i <= 28; i++) {
       if (i <= periodDuration) {

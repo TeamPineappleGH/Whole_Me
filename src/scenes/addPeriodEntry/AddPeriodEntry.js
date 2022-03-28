@@ -7,14 +7,29 @@ import styles from './styles'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import dateFormat from 'dateformat'
 
-export default function AddPeriodEntry() {
+export default function AddPeriodEntry(props) {
   const todaysDate = dateFormat(new Date(), 'yyyy-mm-dd')
+  const userData = props.extraData
+  const navigation = props.navigation
 
   const [periodStartDate, setPeriodStartDate] = useState(todaysDate)
   const [periodDuration, setPeriodDuration] = useState(0)
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
 
   const scheme = useColorScheme()
+
+  const periodUpdate = () => {
+    const toDate = new Date(periodStartDate)
+    const myTimeStamp = firebase.firestore.Timestamp.fromDate(toDate)
+
+    const data = {
+      duration: periodDuration,
+      periodStartDate: myTimeStamp,
+    }
+    const userRef = firebase.firestore().collection('users').doc(userData.id)
+    userRef.update(data)
+    navigation.goBack()
+  }
 
   const showDatePicker = () => {
     setDatePickerVisibility(true)
@@ -30,20 +45,20 @@ export default function AddPeriodEntry() {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <SafeAreaView>
-      <Button title="Select Date" onPress={showDatePicker}/>
+        <Button title='Select Date' onPress={showDatePicker}/>
 
-          <DateTimePickerModal
-            isVisible={isDatePickerVisible}
-            mode="date"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
-          />
-    </SafeAreaView>
+            <DateTimePickerModal
+              isVisible={isDatePickerVisible}
+              mode="date"
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
+            />
+      </SafeAreaView>
 
-    <Text>{periodStartDate}</Text>
-    
+      <Text>{periodStartDate}</Text>
+
       <TextInput
           style={scheme === 'dark' ? styles.darkinput : styles.input}
           placeholder='Period Duration'
@@ -56,12 +71,13 @@ export default function AddPeriodEntry() {
         />
 
         <TouchableOpacity
-          onPress={() => console.log('PRESSED')}
+          onPress={periodUpdate}
           style={{
             display: 'flex',
             marginTop: 20,
             marginLeft: 20,
             marginRight: 20,
+            width: '80%',
             alignItems: 'center',
             backgroundColor: '#1c9ab7',
             borderRadius: 10,
