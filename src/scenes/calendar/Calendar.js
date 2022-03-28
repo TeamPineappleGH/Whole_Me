@@ -7,6 +7,7 @@ import dateFormat from 'dateformat'
 import { connect } from 'react-redux';
 import { setPhase } from '../../store/calendar.js'
 import FontIcon2 from 'react-native-vector-icons/Ionicons'
+import { useIsFocused } from '@react-navigation/native';
 
 function CalendarView(props) {
   const scheme = useColorScheme()
@@ -18,6 +19,7 @@ function CalendarView(props) {
   let follicularPhaseArray = [];
   let ovulationPhaseArray = [];
   let lutealPhaseArray = [];
+  const isFocused = useIsFocused();
 
   const onAddEntryPress = () => {
     console.log('Hello world')
@@ -76,6 +78,10 @@ function CalendarView(props) {
   useEffect(async () => {
     await phases()
   }, [])
+
+  useEffect(async () => {
+    await phases()
+  }, [isFocused])
 
   useEffect (() => {
     for (const key in markedDates) {
