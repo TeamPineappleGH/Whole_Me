@@ -11,7 +11,7 @@ import {
   Keyboard,
 } from 'react-native';
 import { connect } from 'react-redux';
-import {fetchRecipes} from '../../store/nutrition'
+import { fetchMeditations } from '../../store/meditation';
 import styles from './styles';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -23,11 +23,11 @@ const DismissKeyboard = ({ children }) => (
   </TouchableWithoutFeedback>
 );
 
-class AllRecipes extends React.Component {
+class AllMeditations extends React.Component {
   constructor() {
     super();
     this.state = {
-      ingredient: '',
+      meditation: '',
     };
     this.handlePress = this.handlePress.bind(this);
   }
@@ -38,24 +38,19 @@ class AllRecipes extends React.Component {
   render() {
     if (this.props.currentPhase.color === '#1c9ab7') {
       return (
-      <ScrollView style = {{flex : 1}}>
+      <ScrollView style = {{flex : 1, width: '100%'}}>
       <View style = {styles.phaseContainer}>
         <View style = {styles.flexLeft1}>
         <View style = {styles.flexLeftInner1}>
           <Text style = {styles.phaseHeader}>MENSTRUAL PHASE</Text>
-          <Text>As your hormones flucuate throughout your cycle, so do your nutritional requirements. Here are some top foods to include in your diet during this phase.</Text>
           <Text style = {styles.phaseDetails}>Chocolate</Text>
-          <Text style = {styles.phaseDetails}>Sweet Potato</Text>
-          <Text style = {styles.phaseDetails}>Zucchini</Text>
-          <Text style = {styles.phaseDetails}>Cauliflower</Text>
-          <Text style = {styles.phaseDetails}>Carrots</Text>
         </View>
         </View>
         </View>
 
        <View>
         <View style={{ width: '100%' }}>
-          <Text style={styles.header}>Discover Recipes</Text>
+          <Text style={styles.header}>Discover Meditations</Text>
           <View
             style={{ flex: 1, width: '100%' }}
             keyboardShouldPersistTaps="always"
@@ -63,9 +58,9 @@ class AllRecipes extends React.Component {
             <View>
               <TextInput
                 style={styles.input}
-                placeholder="Search by Ingredient"
+                placeholder="Search by Category"
                 placeholderTextColor="#aaaaaa"
-                onChangeText={(text) => this.setState({ ingredient: text })}
+                onChangeText={(text) => this.setState({ meditation: text })}
                 value={this.state.ingredient}
                 autoCapitalize="none"
               />
@@ -82,7 +77,7 @@ class AllRecipes extends React.Component {
                   padding: 10,
                 }}
                 onPress={ () => {
-                  this.props.fetchRecipes(this.state.ingredient);
+                  this.props.fetchmeditations(this.state.meditation);
                   Keyboard.dismiss();
                 }}
               >
@@ -90,25 +85,25 @@ class AllRecipes extends React.Component {
               </TouchableOpacity>
             </View>
             
-            {this.props.allRecipes ? (
+            {this.props.allmeditations ? (
               <SafeAreaView> 
               <ScrollView>
-                {this.props.allRecipes.map((recipe) => {
+                {this.props.allmeditations.map((meditation) => {
                   return (
-                    <View key={recipe.website} >
+                    <View key={meditation.id} >
                       <View style = {styles.container}>
                         <Image
                           style={styles.tinyLogo}
                           source={{
-                            uri: recipe.imageUrl,
+                            uri: meditation.gif,
                           }}
                         />
-                        <Text style={styles.text}>{recipe.label}</Text>
+                        <Text style={styles.text}>{meditation.name}</Text>
                          <TouchableOpacity
-                        onPress={() => this.handlePress(recipe.website)}
+                        onPress={() => this.handlePress(meditation.gif)}
                         style = {styles.detailButton}
                       >
-                      <Text style = {styles.detailText}>View Recipe</Text>
+                      <Text style = {styles.detailText}>View Meditations</Text>
                       </TouchableOpacity>
                       </View>
                     </View>
@@ -119,7 +114,7 @@ class AllRecipes extends React.Component {
             ) : (
               <View>
                 <Text style={styles.instructions}>
-                  Search for recipes by ingredient!
+                  Search for meditations by category!
                 </Text>
               </View>
             )} 
@@ -135,7 +130,6 @@ class AllRecipes extends React.Component {
       <View style = {styles.flexRight1}>
       <View style = {styles.flexLeftInner1}>
         <Text style = {styles.phaseHeader}>FOLLICULAR PHASE</Text>
-        <Text>As your hormones flucuate throughout your cycle, so do your nutritional requirements. Here are some top foods to include in your diet during this phase.</Text>
         <Text style = {styles.phaseDetails}>Grassfed Beef</Text>
         <Text style = {styles.phaseDetails}>Kale</Text>
         <Text style = {styles.phaseDetails}>Lentils</Text>
@@ -146,7 +140,7 @@ class AllRecipes extends React.Component {
       </View>
        <View>
         <View style={{ width: '100%' }}>
-          <Text style={styles.header}>Discover Recipes</Text>
+          <Text style={styles.header}>Discover Meditations</Text>
           <View
             style={{ flex: 1, width: '100%' }}
             keyboardShouldPersistTaps="always"
@@ -154,10 +148,10 @@ class AllRecipes extends React.Component {
             <View>
               <TextInput
                 style={styles.input}
-                placeholder="Search by Ingredient"
+                placeholder="Search by Category"
                 placeholderTextColor="#aaaaaa"
-                onChangeText={(text) => this.setState({ ingredient: text })}
-                value={this.state.ingredient}
+                onChangeText={(text) => this.setState({ meditation: text })}
+                value={this.state.meditation}
                 autoCapitalize="none"
               />
               <TouchableOpacity
@@ -173,7 +167,7 @@ class AllRecipes extends React.Component {
                   padding: 10,
                 }}
                 onPress={ () => {
-                  this.props.fetchRecipes(this.state.ingredient);
+                  this.props.fetchmeditations(this.state.meditation);
                   Keyboard.dismiss();
                 }}
               >
@@ -181,25 +175,25 @@ class AllRecipes extends React.Component {
               </TouchableOpacity>
             </View>
             
-            {this.props.allRecipes.length > 0 ? (
+            {this.props.allmeditations ? (
               <SafeAreaView> 
               <ScrollView>
-                {this.props.allRecipes.map((recipe) => {
+                {this.props.allmeditations.map((meditation) => {
                   return (
-                    <View key={recipe.website} >
+                    <View key={meditation.id} >
                       <View style = {styles.container}>
                         <Image
                           style={styles.tinyLogo}
                           source={{
-                            uri: recipe.imageUrl,
+                            uri: meditation.gif,
                           }}
                         />
-                        <Text style={styles.text}>{recipe.label}</Text>
+                        <Text style={styles.text}>{meditation.name}</Text>
                          <TouchableOpacity
-                        onPress={() => this.handlePress(recipe.website)}
+                        onPress={() => this.handlePress(meditation.gif)}
                         style = {styles.detailButton}
                       >
-                      <Text style = {styles.detailText}>View Recipe</Text>
+                      <Text style = {styles.detailText}>View meditation</Text>
                       </TouchableOpacity>
                       </View>
                     </View>
@@ -210,7 +204,7 @@ class AllRecipes extends React.Component {
             ) : (
               <View>
                 <Text style={styles.instructions}>
-                  No recipes found
+                  Search for meditations by category!
                 </Text>
               </View>
             )} 
@@ -226,7 +220,6 @@ class AllRecipes extends React.Component {
       <View style = {styles.flexRight2}>
       <View style = {styles.flexLeftInner1}>
         <Text style = {styles.phaseHeader}>OVULATORY PHASE</Text>
-        <Text>As your hormones flucuate throughout your cycle, so do your nutritional requirements. Here are some top foods to include in your diet during this phase.</Text>
         <Text style = {styles.phaseDetails}>Eggs</Text>
         <Text style = {styles.phaseDetails}>Quinoa</Text>
         <Text style = {styles.phaseDetails}>Brussel Sprouts</Text>
@@ -238,7 +231,7 @@ class AllRecipes extends React.Component {
 
        <View>
         <View style={{ width: '100%' }}>
-          <Text style={styles.header}>Discover Recipes</Text>
+          <Text style={styles.header}>Discover Meditations</Text>
           <View
             style={{ flex: 1, width: '100%' }}
             keyboardShouldPersistTaps="always"
@@ -246,10 +239,10 @@ class AllRecipes extends React.Component {
             <View>
               <TextInput
                 style={styles.input}
-                placeholder="Search by Ingredient"
+                placeholder="Search by Category"
                 placeholderTextColor="#aaaaaa"
-                onChangeText={(text) => this.setState({ ingredient: text })}
-                value={this.state.ingredient}
+                onChangeText={(text) => this.setState({ meditation: text })}
+                value={this.state.meditation}
                 autoCapitalize="none"
               />
               <TouchableOpacity
@@ -265,7 +258,7 @@ class AllRecipes extends React.Component {
                   padding: 10,
                 }}
                 onPress={ () => {
-                  this.props.fetchRecipes(this.state.ingredient);
+                  this.props.fetchmeditations(this.state.meditation);
                   Keyboard.dismiss();
                 }}
               >
@@ -273,25 +266,25 @@ class AllRecipes extends React.Component {
               </TouchableOpacity>
             </View>
             
-            {this.props.allRecipes ? (
+            {this.props.allmeditations ? (
               <SafeAreaView> 
               <ScrollView>
-                {this.props.allRecipes.map((recipe) => {
+                {this.props.allmeditations.map((meditation) => {
                   return (
-                    <View key={recipe.website} >
+                    <View key={meditation.id} >
                       <View style = {styles.container}>
                         <Image
                           style={styles.tinyLogo}
                           source={{
-                            uri: recipe.imageUrl,
+                            uri: meditation.gif,
                           }}
                         />
-                        <Text style={styles.text}>{recipe.label}</Text>
+                        <Text style={styles.text}>{meditation.name}</Text>
                          <TouchableOpacity
-                        onPress={() => this.handlePress(recipe.website)}
+                        onPress={() => this.handlePress(meditation.gif)}
                         style = {styles.detailButton}
                       >
-                      <Text style = {styles.detailText}>View Recipe</Text>
+                      <Text style = {styles.detailText}>View meditation</Text>
                       </TouchableOpacity>
                       </View>
                     </View>
@@ -302,7 +295,7 @@ class AllRecipes extends React.Component {
             ) : (
               <View>
                 <Text style={styles.instructions}>
-                  Search for recipes by ingredient!
+                  Search for meditations by category!
                 </Text>
               </View>
             )} 
@@ -318,7 +311,6 @@ class AllRecipes extends React.Component {
         <View style = {styles.flexLeft2}>
         <View style = {styles.flexLeftInner1}>
           <Text style = {styles.phaseHeader}>LUTEAL PHASE</Text>
-          <Text>As your hormones flucuate throughout your cycle, so do your nutritional requirements. Here are some top foods to include in your diet during this phase.</Text>
           <Text style = {styles.phaseDetails}>Butternut Squash</Text>
           <Text style = {styles.phaseDetails}>Avocado</Text>
           <Text style = {styles.phaseDetails}>Parsnip</Text>
@@ -330,7 +322,7 @@ class AllRecipes extends React.Component {
 
          <View>
           <View style={{ width: '100%' }}>
-            <Text style={styles.header}>Discover Recipes</Text>
+            <Text style={styles.header}>Discover Meditations</Text>
             <View
               style={{ flex: 1, width: '100%' }}
               keyboardShouldPersistTaps="always"
@@ -338,10 +330,10 @@ class AllRecipes extends React.Component {
               <View>
                 <TextInput
                   style={styles.input}
-                  placeholder="Search by Ingredient"
+                  placeholder="Search by Category"
                   placeholderTextColor="#aaaaaa"
-                  onChangeText={(text) => this.setState({ ingredient: text })}
-                  value={this.state.ingredient}
+                  onChangeText={(text) => this.setState({ meditation: text })}
+                  value={this.state.meditation}
                   autoCapitalize="none"
                 />
                 <TouchableOpacity
@@ -357,7 +349,7 @@ class AllRecipes extends React.Component {
                     padding: 10,
                   }}
                   onPress={ () => {
-                    this.props.fetchRecipes(this.state.ingredient);
+                    this.props.fetchMeditations(this.state.meditations);
                     Keyboard.dismiss();
                   }}
                 >
@@ -365,36 +357,38 @@ class AllRecipes extends React.Component {
                 </TouchableOpacity>
               </View>
               
-              {this.props.allRecipes.length ? (
-                <SafeAreaView>
-                <ScrollView>
-                  {this.props.allRecipes.map((recipe) => {
+              {this.props.meditations ? (
+                <SafeAreaView> 
+                <View>
+                  {this.props.meditations.map((meditation) => {
+                    console.log('HELLLOOOOOOO WORLD!!!!!!!!!!');
+                    console.log('meditation------------------------->', meditation);
                     return (
-                      <View key={recipe.website} >
+                      <View key={meditation.id} >
                         <View style = {styles.container}>
                           <Image
                             style={styles.tinyLogo}
                             source={{
-                              uri: recipe.imageUrl,
+                              uri: meditation.gif,
                             }}
                           />
-                          <Text style={styles.text}>{recipe.label}</Text>
+                          <Text style={styles.text}>{meditation.name}</Text>
                            <TouchableOpacity
-                          onPress={() => this.handlePress(recipe.website)}
+                          onPress={() => this.handlePress(meditation.gifUrl)}
                           style = {styles.detailButton}
                         >
-                        <Text style = {styles.detailText}>View Recipe</Text>
+                        <Text style = {styles.detailText}>View Meditation</Text>
                         </TouchableOpacity>
                         </View>
                       </View>
                     );
                   })}
-                </ScrollView>
+                </View>
                 </SafeAreaView>
               ) : (
                 <View>
                   <Text style={styles.instructions}>
-                    Search for recipes by ingredient!
+                    Search for Meditations to Soothe Your Soul!
                   </Text>
                 </View>
               )} 
@@ -408,17 +402,18 @@ class AllRecipes extends React.Component {
   }
 
 const mapState = (state) => {
+  // console.log('state-->', state);
   return {
-    allRecipes: state.allRecipes,
-    currentPhase: state.currentPhase
+   meditations: state.meditations,
+   currentPhase: state.currentPhase
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchRecipes: (ingredient) => dispatch(fetchRecipes(ingredient)),
+    fetchMeditations: (meditation) => dispatch(fetchMeditations(meditation)),
   };
 };
 
-export default connect(mapState, mapDispatch)(AllRecipes);
+export default connect(mapState, mapDispatch)(AllMeditations);
 //open-in-new material icons

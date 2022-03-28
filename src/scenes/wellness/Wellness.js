@@ -9,33 +9,43 @@ export default function Wellness(props) {
   const userData = props.extraData
   const scheme = useColorScheme()
 
-  const pressHandler = () => {
+  const pressHandler1 = () => {
     console.log('props in pressHandler-->', props);
     props.navigation.navigate('Fitness')
   }
 
+  const pressHandler2 = () => {
+    props.navigation.navigate('Meditation')
+  }
+
   return (
-    <ScrollView style = {styles.main} >
-      <View style = {styles.iconContainer}>
-      <TouchableWithoutFeedback style = {styles.flexLeft1} onPress={pressHandler}>
-      <View style = {styles.flexLeft1}>
-      <Image style = {styles.tinyLogo} source={require('../../../assets/images/fitness.png')} />
-      <Text style = {styles.text} >FITNESS</Text>
+    <ScrollView style={styles.main} >
+      <View style={styles.iconContainer}>
+
+        <TouchableWithoutFeedback style={styles.flexLeft1} onPress={pressHandler1}>
+          <View style={styles.flexLeft1}>
+            <Image style={styles.tinyLogo} source={require('../../../assets/images/fitness.png')} />
+            <Text style={styles.text} >FITNESS</Text>
+          </View>
+        </TouchableWithoutFeedback>
+
+        <TouchableWithoutFeedback style={styles.flexRight1} onPress={pressHandler2}>
+        <View style={styles.flexRight1}>
+          <Image style={styles.tinyLogo} source={require('../../../assets/images/meditating.png')} />
+          <Text style={styles.text} >MEDITATION</Text>
+        </View>
+        </TouchableWithoutFeedback>
+
+      <View style={styles.flexRight2}>
+        <Image style={styles.tinyLogo} source={require('../../../assets/images/brain.png')} />
+        <Text style={styles.text} >MENTAL HEALTH</Text>
       </View>
-      </TouchableWithoutFeedback>
-      {/* <Button title="Fitness" onPress={pressHandler}></Button> */}
-      <View style = {styles.flexRight1}>
-      <Image style = {styles.tinyLogo} source={require('../../../assets/images/meditating.png')}  />
-      <Text style = {styles.text} >MEDITATION</Text>
+
+      <View style={styles.flexLeft2}>
+        <Text style={styles.text} >CYCLE PHASES</Text>
       </View>
-      <View style = {styles.flexRight2}>
-      <Image style = {styles.tinyLogo} source={require('../../../assets/images/brain.png')}  />
-      <Text style = {styles.text} >MENTAL HEALTH</Text>
+
       </View>
-      <View style = {styles.flexLeft2}>
-      <Text style = {styles.text} >CYCLE PHASES</Text>
-      </View>
-      </View>
-    </ScrollView>
+    </ScrollView >
   )
-} 
+}
