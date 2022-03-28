@@ -14,9 +14,14 @@ export default function Wellness(props) {
     props.navigation.navigate('Fitness')
   }
 
+  const onCyclePress = () => {
+    props.navigation.navigate('Cycle')
+  }
+
   return (
     <ScrollView style = {styles.main} >
       <View style = {styles.iconContainer}>
+
       <TouchableWithoutFeedback style = {styles.flexLeft1} onPress={pressHandler}>
       <View style = {styles.flexLeft1}>
       <Image style = {styles.tinyLogo} source={require('../../../assets/images/fitness.png')} />
@@ -24,6 +29,7 @@ export default function Wellness(props) {
       </View>
       </TouchableWithoutFeedback>
       {/* <Button title="Fitness" onPress={pressHandler}></Button> */}
+
       <View style = {styles.flexRight1}>
       <Image style = {styles.tinyLogo} source={require('../../../assets/images/meditating.png')}  />
       <Text style = {styles.text} >MEDITATION</Text>
@@ -32,9 +38,11 @@ export default function Wellness(props) {
       <Image style = {styles.tinyLogo} source={require('../../../assets/images/brain.png')}  />
       <Text style = {styles.text} >MENTAL HEALTH</Text>
       </View>
-      <View style = {styles.flexLeft2}>
-      <Text style = {styles.text} >CYCLE PHASES</Text>
-      </View>
+      <TouchableWithoutFeedback style = {styles.flexLeft2} onPress={onCyclePress}>
+        <View style = {styles.flexLeft2}>
+        <Text style = {styles.text} >CYCLE PHASES</Text>
+        </View>
+      </TouchableWithoutFeedback>
       </View>
     </ScrollView>
   )

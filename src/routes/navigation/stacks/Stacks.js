@@ -12,6 +12,7 @@ import Calendar from '../../../scenes/calendar'
 import AddPeriodEntry from '../../../scenes/addPeriodEntry'
 import AllEntries from '../../../scenes/diary/AllEntries'
 import Fitness from '../../../scenes/fitness/Fitness'
+import Cycle from '../../../scenes/cycle/'
 
 // ------------------------------------
 // Constants
@@ -96,6 +97,9 @@ export const WellnessNavigator = (props) => {
       </Stack.Screen>
       <Stack.Screen name= "Fitness">
         {props => <Fitness {...props} extraData={user} />}
+      </Stack.Screen>
+      <Stack.Screen name= "Cycle">
+        {props => <Cycle {...props} extraData={user} />}
       </Stack.Screen>
     </Stack.Navigator>
   )
