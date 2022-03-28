@@ -7,7 +7,7 @@ import appReducer from 'slices/app.slice'
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import allExerciseReducer from '../store/fitness';
+import allRecipeReducer from '../store/nutrition';
 import phaseReducer from '../store/calendar'
 import allMeditationReducer from './meditation';
 
@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
   allRecipes: allRecipeReducer,
   currentPhase: phaseReducer,
   meditations: allMeditationReducer,
+
 })
 
 // const defaultMiddleware = getDefaultMiddleware({
