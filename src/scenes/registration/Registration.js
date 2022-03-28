@@ -129,7 +129,7 @@ export default function Registration({navigation}) {
           onPress={showDatePicker}
           style={scheme === 'dark' ? styles.darkinput : styles.input}
         >
-          <Text style={{textAlign: 'left', color: '#a9a9a9', marginTop: 14}}>Select Period Start Date: <Text style={{color: 'black'}}>{`${" "} ${periodStartDate}`}</Text></Text>
+          <Text style={{textAlign: 'left', color: '#a9a9a9', marginTop: 14}}>Select Period Start Date: <Text style={{color: 'black'}}>{`${"    "} ${periodStartDate}`}</Text></Text>
         </TouchableOpacity>
         <SafeAreaView>
             <DateTimePickerModal
