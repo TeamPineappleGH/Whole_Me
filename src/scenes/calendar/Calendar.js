@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Calendar } from 'react-native-calendars'
-import { Text, View, TouchableOpacity, useColorScheme, Alert } from 'react-native'
+import { Text, View, TouchableOpacity, useColorScheme } from 'react-native'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
 import dateFormat from 'dateformat'
 import { connect } from 'react-redux';
 import { setPhase } from '../../store/calendar.js'
 import FontIcon2 from 'react-native-vector-icons/Ionicons'
+import { useIsFocused } from '@react-navigation/native';
 
 function CalendarView(props) {
   const scheme = useColorScheme()
@@ -18,6 +19,12 @@ function CalendarView(props) {
   let follicularPhaseArray = [];
   let ovulationPhaseArray = [];
   let lutealPhaseArray = [];
+  const isFocused = useIsFocused();
+
+  const onAddEntryPress = () => {
+    console.log('Hello world')
+    props.navigation.navigate('Add Period Entry')
+  }
 
   const todaysDate = dateFormat(new Date (), "yyyy-mm-dd")
 
@@ -31,6 +38,7 @@ function CalendarView(props) {
     const periodDuration = user.data().duration
     const startDate = user.data().periodStartDate.toDate()
     const markedDatesObj = {};
+    console.log(startDate)
 
     for (let i = 1; i <= 28; i++) {
       if (i <= periodDuration) {
@@ -70,6 +78,10 @@ function CalendarView(props) {
   useEffect(async () => {
     await phases()
   }, [])
+
+  useEffect(async () => {
+    await phases()
+  }, [isFocused])
 
   useEffect (() => {
     for (const key in markedDates) {
@@ -191,8 +203,8 @@ function CalendarView(props) {
         </Text>
       </View>
       <TouchableOpacity
-        title="Update Period Entry"
-        onPress={() => Alert.alert('Button pressed')}
+        title="Add Period Entry"
+        onPress={onAddEntryPress}
         color="#1c9ab7"
         style={{
           display: 'flex',
