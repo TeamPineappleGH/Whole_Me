@@ -19,6 +19,11 @@ function CalendarView(props) {
   let ovulationPhaseArray = [];
   let lutealPhaseArray = [];
 
+  const onAddEntryPress = () => {
+    console.log('Hello world')
+    props.navigation.navigate('Add Period Entry')
+  }
+
   const todaysDate = dateFormat(new Date (), "yyyy-mm-dd")
 
   const userId = auth.currentUser.uid
@@ -191,8 +196,8 @@ function CalendarView(props) {
         </Text>
       </View>
       <TouchableOpacity
-        title="Update Period Entry"
-        onPress={() => Alert.alert('Button pressed')}
+        title="Add Period Entry"
+        onPress={onAddEntryPress}
         color="#1c9ab7"
         style={{
           display: 'flex',

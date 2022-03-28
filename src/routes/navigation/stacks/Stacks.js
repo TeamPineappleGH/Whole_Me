@@ -9,6 +9,7 @@ import Diary from '../../../scenes/diary'
 import Nutrition from '../../../scenes/nutrition'
 import Wellness from '../../../scenes/wellness'
 import Calendar from '../../../scenes/calendar'
+import AddPeriodEntry from '../../../scenes/addPeriodEntry'
 
 // ------------------------------------
 // Constants
@@ -111,6 +112,9 @@ export const CalendarNavigator = (props) => {
     <Stack.Navigator headerMode = "screen" screenOptions= {navigationProps}>
       <Stack.Screen name= "Calendar">
         {props => <Calendar {...props} extraData={user} />}
+      </Stack.Screen>
+      <Stack.Screen name= "Add Period Entry">
+        {props => <AddPeriodEntry {...props} extraData={user} />}
       </Stack.Screen>
     </Stack.Navigator>
   )

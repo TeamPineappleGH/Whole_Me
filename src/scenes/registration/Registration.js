@@ -5,13 +5,6 @@ import styles from './styles';
 import { firebase } from '../../firebase/config'
 import Spinner from 'react-native-loading-spinner-overlay'
 
-// const data = {
-//   id: uid,
-//   email,
-//   fullName,
-//   avatar: 'Your default icon URL',
-// };
-
 export default function Registration({navigation}) {
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
