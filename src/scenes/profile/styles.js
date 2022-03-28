@@ -14,7 +14,7 @@ export default StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     textAlign: 'center',
-    color: 'black',
+    color: 'grey',
   },
   darktitle: {
     fontSize: 24,
@@ -47,9 +47,9 @@ export default StyleSheet.create({
     padding: 10
   },
   deletebutton: {
-    backgroundColor: '#dc143c',
-    marginLeft: 45,
-    marginRight: 45,
+    backgroundColor: '#f98c41',
+    marginLeft: 60,
+    marginRight: 60,
     marginTop: 20,
     height: 48,
     borderRadius: 10,
