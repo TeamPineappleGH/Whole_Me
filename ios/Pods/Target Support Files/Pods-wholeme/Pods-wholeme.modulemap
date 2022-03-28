@@ -1,0 +1,6 @@
+module Pods_wholeme {
+  umbrella header "Pods-wholeme-umbrella.h"
+
+  export *
+  module * { export * }
+}
