@@ -181,7 +181,7 @@ class AllRecipes extends React.Component {
               </TouchableOpacity>
             </View>
             
-            {this.props.allRecipes ? (
+            {this.props.allRecipes.length > 0 ? (
               <SafeAreaView> 
               <ScrollView>
                 {this.props.allRecipes.map((recipe) => {
@@ -210,7 +210,7 @@ class AllRecipes extends React.Component {
             ) : (
               <View>
                 <Text style={styles.instructions}>
-                  Search for recipes by ingredient!
+                  No recipes found
                 </Text>
               </View>
             )} 
@@ -365,7 +365,7 @@ class AllRecipes extends React.Component {
                 </TouchableOpacity>
               </View>
               
-              {this.props.allRecipes ? (
+              {this.props.allRecipes.length ? (
                 <SafeAreaView>
                 <ScrollView>
                   {this.props.allRecipes.map((recipe) => {
