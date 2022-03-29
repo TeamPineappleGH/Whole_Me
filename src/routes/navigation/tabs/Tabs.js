@@ -19,15 +19,6 @@ const TabNavigator = (props) => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
           switch (route.name) {
-            case 'Home':
-              return (
-                <FontIcon
-                  name="home"
-                  color={focused ? colors.orange : colors.gray}
-                  size={20}
-                  solid
-                />
-              )
             case 'Profile':
               return (
                 <FontIcon
@@ -87,10 +78,10 @@ const TabNavigator = (props) => {
       swipeEnabled={false}
     >
       <Tab.Screen
-        name="Home"
-        children={() => (
-          <HomeNavigator user={user} navigationProps={navigationProps} />
-        )}
+      name= "Calendar"
+      children = {() => (
+        <CalendarNavigator user= {user} navigationProps={navigationProps} />
+      )}
       />
       <Tab.Screen
         name="Profile"
@@ -112,11 +103,6 @@ const TabNavigator = (props) => {
       name= "Wellness"
       children = {() => (
         <WellnessNavigator user= {user} navigationProps={navigationProps} />
-      )} />
-      <Tab.Screen
-      name= "Calendar"
-      children = {() => (
-        <CalendarNavigator user= {user} navigationProps={navigationProps} />
       )} />
     </Tab.Navigator>
   )
