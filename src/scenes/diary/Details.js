@@ -32,23 +32,41 @@ const decodedMoodColours = [
 ]
 
 export default function DetailsScreen(props) {
+  const userId = auth.currentUser.uid
+  const userRef = db.collection('users').doc(userId)
+  const [allEntries, setAllEntries] = useState([])
 
-    const userId = auth.currentUser.uid;
-    const userRef = db.collection('users').doc(userId);
-    const [allEntries, setAllEntries] = useState([])
+  const diaryEntries = async () => {
+    const user = await userRef.get()
+    const entries = user.data().entries
 
-    const diaryEntries = async() => {
-        const user = await userRef.get()
-        const entries = user.data().entries;
-  
-        setAllEntries(entries);
-      }
-  
-      useEffect(async () => {
-        await diaryEntries()
-      }, [])
+    setAllEntries(entries)
+  }
 
-    
+  useEffect(async () => {
+    await diaryEntries()
+  }, [])
+
+//   const targetEntry = {
+
+//   }
+// console.log('this is props in details!!', props.route.params);
+
+const targetEntry = props.route.params;
+
+  const deleteEntry = (targetEntry) => {
+    db.collection('users')
+      .doc(userId)
+      .update({
+        entries: allEntries.filter(
+          (entry) => entry.writtenDiary !== targetEntry.writtenDiary,
+        ),
+      })
+      // .update({ entries: db.FieldValue.arrayRemove(currentEntry) })
+      .then(() => console.log('diary entry deleted!'))
+    // return
+  }
+
   const entryObj = allEntries.filter(
     (entry) => entry.date === props.route.params.date,
   )[0]
@@ -65,13 +83,7 @@ export default function DetailsScreen(props) {
           <Button
             onPress={() => props.navigation.goBack()}
             color="#fff"
-            icon={
-              <Icon
-                name="arrow-left"
-                size={32}
-                type="feather"
-              />
-            }
+            icon={<Icon name="arrow-left" size={32} type="feather" />}
             style={{ position: 'absolute', left: 0, flex: 1 }}
             iconLeft
             type="clear"
@@ -99,21 +111,15 @@ export default function DetailsScreen(props) {
             <Text style={[styles.text, { fontWeight: '700' }]}>
               {entryObj.date}
             </Text>
-    
+
+            <Text style={[styles.text, { fontWeight: '700' }]}>{targetEntry.writtenDiary}</Text>
           </View>
-          <Button
-            title="Edit"
-            type="clear"
-            onPress={() =>
-              props.navigation.navigate('Diary', { ...entryObj })
-            }
-          ></Button>
+        
           <Button
             title="Delete"
             type="clear"
             onPress={() => {
-            //   props.removeEntry(entryObj.date)
-            console.log('deleting!!')
+             deleteEntry(targetEntry);
               props.navigation.goBack()
             }}
             buttonStyle={{ paddingTop: 10 }}

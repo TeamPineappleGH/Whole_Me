@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 import { colors } from 'theme'
 
 export default StyleSheet.create({
@@ -8,36 +8,48 @@ export default StyleSheet.create({
   //   justifyContent: 'center',
   // },
   container: {
-    // display: 'flex',
-    // flexDirection: 'row',
     flex: 1,
+    display: 'flex',
     borderColor: 'black',
-    // borderWidth: 1,
     marginBottom: 15,
-    // padding: 10,
     borderRadius: 5,
     alignItems: 'center',
-    // justifyContent: 'space-between',
     justifyContent: 'center',
     width: '90%',
+    // height: '90%',
     marginLeft: '5%',
     marginRight: '5%',
-    backgroundColor: colors.lightBlue,
+    marginTop: '5%',
+    height: '1300%',
+    // marginBottom: 30,
+    backgroundColor: colors.orange,
   },
   flatList: {
-
     flex: 1,
-      marginBottom: 60 
-
+    marginBottom: 60,
+    marginTop: 20,
+  },
+  phaseContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 12
   },
   flexLeftInner1: {
     backgroundColor: 'white',
     borderRadius: 15,
     // width: '90%',
-    padding: 30,
-    flex: 1
+    padding: 20,
+    flex: 1,
   },
-
+  header: {
+    marginTop: 10,
+    fontSize: 30,
+    marginBottom: 0,
+    padding: 0,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
   title: {
     fontSize: 24,
     marginTop: 5,
@@ -49,13 +61,13 @@ export default StyleSheet.create({
     fontSize: 30,
     padding: 20,
     paddingBottom: 10,
-    textAlign: "center",
+    textAlign: 'center',
   },
   emoji: {},
   input: {
     marginHorizontal: 30,
     marginVertical: 40,
-    textAlign: "justify",
+    textAlign: 'justify',
     // fontFamily: "sans-serif-light",
     fontSize: 16,
   },
@@ -86,11 +98,11 @@ export default StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    textAlign: "center",
-    color: "#656565",
+    textAlign: 'center',
+    color: '#656565',
   },
   journalText: {
-    textAlign: "center",
+    textAlign: 'center',
     margin: 40,
   },
   customButton: {
@@ -107,9 +119,9 @@ export default StyleSheet.create({
   linebreak: {
     borderBottomColor: colors.gray,
     borderBottomWidth: 1,
-    marginVertical: 30, 
+    marginVertical: 30,
     alignSelf: 'center',
     width: '85%',
     // flex:1
-  }
+  },
 })

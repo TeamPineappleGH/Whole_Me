@@ -29,44 +29,23 @@ export default function AllEntries(props) {
     props.navigation.navigate('Diary')
   }
 
-
-  const deleteEntry = (entry) => {
-    for (let i = 0; i < diaryEntries.length; i++) {
-      let currentEntry = diaryEntries[i]
-
-    }
-  }
-  
-
   return (
-    <View style={styles.container}>
+    <View style={{flex: 1, marginVertical: 10}}>
+    <View style= {styles.container}>
       <View
         style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
+          backgroundColor: 'white',
+          borderRadius: 15,
+          width: '90%',
+          // padding: 30,
+          flex: 1,
         }}
       >
-        <Text style={styles.h1}>Entries</Text>
-      </View>
-      <View
-        // style={{
-        //   flex: 1,
-        //   backgroundColor: '#fff',
-        //   alignItems: 'center',
-        // }}
-        style={ {
-    backgroundColor: 'white',
-    borderRadius: 15,
-    width: '90%',
-    // padding: 30,
-    flex: 1
-  }}
-      >
+        {/* <Text style={styles.header}>Entries</Text> */}
         <FlatList
           renderItem={renderEntries}
           data={allEntries.sort((a, b) => new Date(b.date) - new Date(a.date))}
           style={styles.flatList}
-          // keyExtractor={(item) => item.date.toString()}
           keyExtractor={(item) => item.date}
         />
 
@@ -75,6 +54,7 @@ export default function AllEntries(props) {
         </TouchableOpacity>
       </View>
       <FlashMessage position="top" />
+      </View>
     </View>
   )
 }
