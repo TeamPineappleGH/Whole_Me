@@ -42,6 +42,29 @@ const postitiveVideoKeys = [
   }
 ]
 
+const depressionVideoKeys = [
+  {
+    id: 'xRxT9cOKiM8',
+    title: 'meditation for depression'
+  },
+  {
+    id: 'xShv7mMmfW4',
+    title: 'meditation for depression'
+  },
+  {
+    id: 'O3Ku-cpdSJM',
+    title: 'meditation for depression'
+  },
+  {
+    id: 'VDLfVwMSbJ8',
+    title: 'meditation for depression'
+  },
+  {
+    id: 'd3xTelxky9A',
+    title: 'meditation for depression'
+  }
+]
+
 function randomize(array) {
   return Math.floor(Math.random() * array.length)
 }
@@ -57,22 +80,13 @@ export default class AllMeditations extends React.Component {
     super()
     this.state = {
       playing: false,
-      url: 'a1JOT30bP5g'
+      posUrl: 'a1JOT30bP5g',
+      depressUrl: 'xRxT9cOKiM8'
     }
     this.handlePress = this.handlePress.bind(this)
-    this.togglePlaying = this.togglePlaying.bind(this)
   }
   handlePress(item) {
     WebBrowser.openBrowserAsync(item)
-  }
-
-
-  togglePlaying = (() => {
-    this.setState({ playing: !this.state.playing });
-  });
-
-  componentDidMount() {
-    this.togglePlaying()
   }
 
   render() {
@@ -87,7 +101,7 @@ export default class AllMeditations extends React.Component {
               fontSize: 20,
               fontStyle: 'bold'
             }}>
-              Postive Energy Meditations
+              Positive Energy Meditations
             </Text>
             </View>
             <View style={styles.video}>
@@ -95,7 +109,7 @@ export default class AllMeditations extends React.Component {
                 height={300}
                 width={Dimensions.get('window').width}
                 play={this.state.playing}
-                videoId={this.state.url}
+                videoId={this.state.posUrl}
               />
             </View>
             <View>
@@ -111,7 +125,121 @@ export default class AllMeditations extends React.Component {
                     marginTop: -35
                   }}
                   onPress={ () => {
-                    this.setState({url: postitiveVideoKeys[randomize(postitiveVideoKeys)].id})
+                    this.setState({posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id})
+                  }}
+                >
+                  <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
+                </TouchableOpacity>
+                </View>
+
+                <View>
+            <Text style={{
+              marginTop: 20,
+              textAlign: 'center',
+              fontSize: 20,
+              fontStyle: 'bold'
+            }}>
+              Meditations for Depression
+            </Text>
+            </View>
+            <View style={styles.video}>
+              <YoutubePlayer
+                height={300}
+                width={Dimensions.get('window').width}
+                play={this.state.playing}
+                videoId={this.state.depressUrl}
+              />
+            </View>
+            <View>
+          <TouchableOpacity
+                  style={{
+                    display: 'flex',
+                    marginLeft: 50,
+                    marginRight: 50,
+                    alignItems: 'center',
+                    backgroundColor: '#1c9ab7',
+                    borderRadius: 10,
+                    padding: 10,
+                    marginTop: -35
+                  }}
+                  onPress={ () => {
+                    this.setState({depressUrl: depressionVideoKeys[randomize(depressionVideoKeys)].id})
+                  }}
+                >
+                  <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
+                </TouchableOpacity>
+                </View>
+
+                <View>
+            <Text style={{
+              marginTop: 20,
+              textAlign: 'center',
+              fontSize: 20,
+              fontStyle: 'bold'
+            }}>
+              Postive Energy Meditations
+            </Text>
+            </View>
+            <View style={styles.video}>
+              <YoutubePlayer
+                height={300}
+                width={Dimensions.get('window').width}
+                play={this.state.playing}
+                videoId={this.state.posUrl}
+              />
+            </View>
+            <View>
+          <TouchableOpacity
+                  style={{
+                    display: 'flex',
+                    marginLeft: 50,
+                    marginRight: 50,
+                    alignItems: 'center',
+                    backgroundColor: '#1c9ab7',
+                    borderRadius: 10,
+                    padding: 10,
+                    marginTop: -35
+                  }}
+                  onPress={ () => {
+                    this.setState({posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id})
+                  }}
+                >
+                  <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
+                </TouchableOpacity>
+                </View>
+
+                <View>
+            <Text style={{
+              marginTop: 20,
+              textAlign: 'center',
+              fontSize: 20,
+              fontStyle: 'bold'
+            }}>
+              Postive Energy Meditations
+            </Text>
+            </View>
+            <View style={styles.video}>
+              <YoutubePlayer
+                height={300}
+                width={Dimensions.get('window').width}
+                play={this.state.playing}
+                videoId={this.state.posUrl}
+              />
+            </View>
+            <View>
+          <TouchableOpacity
+                  style={{
+                    display: 'flex',
+                    marginLeft: 50,
+                    marginRight: 50,
+                    alignItems: 'center',
+                    backgroundColor: '#1c9ab7',
+                    borderRadius: 10,
+                    padding: 10,
+                    marginTop: -35
+                  }}
+                  onPress={ () => {
+                    this.setState({posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id})
                   }}
                 >
                   <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
