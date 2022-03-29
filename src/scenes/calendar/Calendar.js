@@ -20,9 +20,9 @@ function CalendarView(props) {
   let ovulationPhaseArray = [];
   let lutealPhaseArray = [];
   const isFocused = useIsFocused();
+  console.log(props.extraData.fullName)
 
   const onAddEntryPress = () => {
-    console.log('Hello world')
     props.navigation.navigate('Add Period Entry')
   }
 
@@ -38,7 +38,6 @@ function CalendarView(props) {
     const periodDuration = user.data().duration
     const startDate = user.data().periodStartDate.toDate()
     const markedDatesObj = {};
-    console.log(startDate)
 
     for (let i = 1; i <= 28; i++) {
       if (i <= periodDuration) {
@@ -94,6 +93,9 @@ function CalendarView(props) {
   })
 
     return (
+      <View>
+      <Text style={{textAlign: 'center', marginTop: 10, fontWeight: 'bold', fontSize: 20, color: '#1c9ab7'}}>Hi, {props.extraData.fullName[0].toUpperCase() + props.extraData.fullName.slice(1)}!</Text>
+      <Text style={{textAlign: 'center', marginLeft: 20, marginRight: 20, marginTop: 15}}>Welcome to Whole Me! As the months change, add your period start date and duration to view your phase forecast.</Text>
       <View style={{margin: 20, borderRadius: 15, backgroundColor: 'white', paddingTop: 15}}>
         <Calendar 
           markingType={'multi-dot'}
@@ -226,6 +228,7 @@ function CalendarView(props) {
           Add Period Entry
         </Text>
       </TouchableOpacity>
+    </View>
     </View>
     </View>
   )
