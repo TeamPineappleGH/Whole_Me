@@ -5,6 +5,7 @@ import { Icon, Button } from 'react-native-elements'
 import FlashMessage from 'react-native-flash-message'
 import { auth, db } from '../../firebase/config.js'
 import styles from './styles'
+import Diary from './Diary'
 
 export default function AllEntries(props) {
   renderEntries = ({ item, navigation }) => (
@@ -29,32 +30,52 @@ export default function AllEntries(props) {
     props.navigation.navigate('Diary')
   }
 
-  return (
-    <View style={{flex: 1, marginVertical: 10}}>
-    <View style= {styles.container}>
-      <View
-        style={{
-          backgroundColor: 'white',
-          borderRadius: 15,
-          width: '90%',
-          // padding: 30,
-          flex: 1,
-        }}
-      >
-        {/* <Text style={styles.header}>Entries</Text> */}
-        <FlatList
-          renderItem={renderEntries}
-          data={allEntries.sort((a, b) => new Date(b.date) - new Date(a.date))}
-          style={styles.flatList}
-          keyExtractor={(item) => item.date}
-        />
+  if (allEntries.length > 0) {
+    return (
+      <View style={{ flex: 1, marginVertical: 10 }}>
+        <View style={styles.container}>
+          <View
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 15,
+              width: '90%',
+              // padding: 30,
+              flex: 1,
+            }}
+          >
+            {/* <Text style={styles.header}>Entries</Text> */}
+            <FlatList
+              renderItem={renderEntries}
+              data={allEntries.sort(
+                (a, b) => new Date(b.date) - new Date(a.date),
+              )}
+              style={styles.flatList}
+              keyExtractor={(item) => item.date}
+            />
 
-        <TouchableOpacity style={styles.customButton} onPress={pressHandler}>
-          <Text style={{ color: 'white', fontSize: 15 }}>Add New Entry</Text>
-        </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={pressHandler}
+            >
+              <Text style={{ color: 'white', fontSize: 15 }}>
+                Add New Entry
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <FlashMessage position="top" />
+        </View>
       </View>
-      <FlashMessage position="top" />
-      </View>
-    </View>
-  )
+    )
+  } else {
+    return (
+      <TouchableOpacity
+      style={styles.customButton}
+      onPress={pressHandler}
+    >
+      <Text style={{ color: 'white', fontSize: 15 }}>
+        Add New Entry
+      </Text>
+    </TouchableOpacity>
+    )
+  }
 }
