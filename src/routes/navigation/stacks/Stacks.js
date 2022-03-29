@@ -105,6 +105,7 @@ export const WellnessNavigator = (props) => {
       </Stack.Screen>
       <Stack.Screen name= "Cycle">
         {props => <Cycle {...props} extraData={user} />}
+      </Stack.Screen>
       <Stack.Screen name= "Meditation">
         {props => <Meditation {...props} extraData={user} />}
       </Stack.Screen>
