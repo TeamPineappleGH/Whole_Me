@@ -30,9 +30,8 @@ const Entry = (props) => {
       onPress={() =>
         navigation.navigate("Details", {
           date: props.date,
-          description: props.description,
           mood: props.mood,
-          writtenJournal: props.writtenJournal,
+          writtenDiary: props.writtenDiary,
           status: props.status,
         })
       }
@@ -48,7 +47,7 @@ const Entry = (props) => {
         <Text style={[{ fontSize: 15, fontWeight: "700" }, styles.text]}>
           {props.date}
         </Text>
-        <Text style={[{ fontSize: 14 }, styles.text]}>{props.status}</Text>
+        <Text style={[{ fontSize: 14 }, styles.text]}>{props.writtenDiary}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -71,16 +70,5 @@ const styles = StyleSheet.create({
   },
 });
 
-Entry.propTypes = {
-  mood: PropTypes.number,
-  date: PropTypes.string,
-  description: PropTypes.string,
-};
-
-Entry.defaultProps = {
-  mood: 3,
-  date: "Wed Jul 22 2020",
-  description: `Video Added`,
-};
 
 export default Entry;

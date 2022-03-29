@@ -12,6 +12,7 @@ import Calendar from '../../../scenes/calendar'
 import AddPeriodEntry from '../../../scenes/addPeriodEntry'
 import AllEntries from '../../../scenes/diary/AllEntries'
 import Fitness from '../../../scenes/fitness/Fitness'
+import Details from '../../../scenes/diary/Details'
 import Meditation from '../../../scenes/meditation/Meditation'
 
 // ------------------------------------
@@ -80,6 +81,9 @@ export const DiaryNavigator = (props) => {
       </Stack.Screen>
       <Stack.Screen name= "Diary">
         {props => <Diary {...props} extraData={user} />}
+      </Stack.Screen>
+      <Stack.Screen name= "Details">
+        {props => <Details {...props} extraData={user} />}
       </Stack.Screen>
       
     </Stack.Navigator>
