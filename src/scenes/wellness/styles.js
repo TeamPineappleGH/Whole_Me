@@ -59,6 +59,7 @@ export default StyleSheet.create({
     borderWidth: 0.5
   },
   flexRight1: {
+    flex: 1,
     backgroundColor: colors.lightBlue,
     width: 190,
     height: 250,
@@ -79,6 +80,7 @@ export default StyleSheet.create({
     borderRadius: 15
   },
   flexLeft2: {
+    flex: 1,
     backgroundColor: colors.orange,
     width: 190,
     padding: 10,
