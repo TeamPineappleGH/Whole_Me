@@ -10,18 +10,18 @@ const styles = StyleSheet.create({
   },
   item: {
     width: '100%',
-    height: screenWidth - 80, //height will be 20 units less than screen width.
+    height: screenWidth - 125, 
   },
     imageContainer: {
     flex: 1,
     borderRadius: 15,
     backgroundColor: 'lightblue',
-    marginBottom: Platform.select({ ios: 0, android: 1 }),
+    marginBottom: Platform.select({ ios: 2, android: 1 }),
   },
 
   image: {
     ...StyleSheet.absoluteFillObject,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
   },
   dotContainer: {
     backgroundColor: 'rgb(230,0,0)',
@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
   inactiveDotStyle: {
     backgroundColor: 'rgb(255,230,230)',
   },
+  header: {
+      fontSize: 30,
+      textAlign: 'center',
+      marginTop: 20
+  }
 });
 
 export default styles;

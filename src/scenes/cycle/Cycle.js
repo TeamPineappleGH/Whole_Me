@@ -3,11 +3,17 @@ import { Text, View, ScrollView, Pressable, SafeAreaView, Dimensions } from 'rea
 import styles from './styles'
 import data from './data'
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
+import * as WebBrowser from 'expo-web-browser';
 
 
 function CarouselItem({ item, index }, parallaxProps) {
+
+    async function handlePress (item) {
+        await WebBrowser.openBrowserAsync(encodeURI(item))
+    }
+    
     return (
-      <Pressable onPress={() => alert('Image description:' + item.description)}>
+      <Pressable onPress={() => handlePress(item.link)}>
         <SafeAreaView style={styles.item}>
           <ParallaxImage
             source={{ uri: item.source }} 
@@ -28,10 +34,10 @@ function CustomSlider({data}) {
         const settings = {
             sliderWidth: width,
             sliderHeight: width,
-            itemWidth: width - 90,
+            itemWidth: width - 100,
             data: data,
             renderItem: CarouselItem,
-            hasParallaxImages: false,
+            hasParallaxImages: true,
           };
           return (
             <View style={styles.container}>
@@ -42,10 +48,22 @@ function CustomSlider({data}) {
 
 
 export default function CycleResources () {
-    return (
-        <View>
-            <Text>Menstrual Cycle</Text>
-            <CustomSlider data={data}/>
-        </View>
-    )
+    const [loading, isLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            isLoading(false)
+        }, 10)
+    })
+
+    if (loading) {
+        return null;
+    } else {
+        return (
+            <View removeClippedSubviews={false}>
+                <Text style={styles.header}>Menstrual Cycle</Text>
+                <CustomSlider data={data}/>
+            </View>
+        )
+    }
 }
