@@ -53,6 +53,11 @@ export default StyleSheet.create({
     flex: 1,
     width: '100%',
   },
+  text: {
+    fontSize: 18,
+    textAlign: "center",
+    color: "#656565",
+  },
   journalText: {
     textAlign: "center",
     margin: 40,

@@ -70,16 +70,5 @@ const styles = StyleSheet.create({
   },
 });
 
-Entry.propTypes = {
-  mood: PropTypes.number,
-  date: PropTypes.string,
-  description: PropTypes.string,
-};
-
-Entry.defaultProps = {
-  mood: 3,
-  date: "Wed Jul 22 2020",
-  description: `Video Added`,
-};
 
 export default Entry;
