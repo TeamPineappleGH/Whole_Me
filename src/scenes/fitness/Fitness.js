@@ -43,11 +43,7 @@ class AllExercises extends React.Component {
             <View style={styles.flexLeft1}>
               <View style={styles.flexLeftInner1}>
                 <Text style={styles.phaseHeader}>MENSTRUAL PHASE</Text>
-                <Text style={styles.phaseDetails}>Chocolate</Text>
-                <Text style={styles.phaseDetails}>Sweet Potato</Text>
-                <Text style={styles.phaseDetails}>Zucchini</Text>
-                <Text style={styles.phaseDetails}>Cauliflower</Text>
-                <Text style={styles.phaseDetails}>Carrots</Text>
+                <Text style={styles.phaseDetails}>Walking or any form of mild exercise is recommended during your menstrual phase, even if you're not feeling major discomfort.</Text>
               </View>
             </View>
           </View>
@@ -136,11 +132,7 @@ class AllExercises extends React.Component {
             <View style={styles.flexRight1}>
               <View style={styles.flexLeftInner1}>
                 <Text style={styles.phaseHeader}>FOLLICULAR PHASE</Text>
-                <Text style={styles.phaseDetails}>Grassfed Beef</Text>
-                <Text style={styles.phaseDetails}>Kale</Text>
-                <Text style={styles.phaseDetails}>Lentils</Text>
-                <Text style={styles.phaseDetails}>Chickpeas</Text>
-                <Text style={styles.phaseDetails}>Salmon</Text>
+                <Text style={styles.phaseDetails}>The follicular phase is the week or so after your period.  Running or another form of cardio is recommended mid-day, as your estrogen will be low and your cortisol levels will be just right for a challenging cardio burst.</Text>
               </View>
             </View>
           </View>
@@ -228,11 +220,7 @@ class AllExercises extends React.Component {
             <View style={styles.flexRight2}>
               <View style={styles.flexLeftInner1}>
                 <Text style={styles.phaseHeader}>OVULATORY PHASE</Text>
-                <Text style={styles.phaseDetails}>Eggs</Text>
-                <Text style={styles.phaseDetails}>Quinoa</Text>
-                <Text style={styles.phaseDetails}>Brussel Sprouts</Text>
-                <Text style={styles.phaseDetails}>Berries</Text>
-                <Text style={styles.phaseDetails}>Asperagus</Text>
+                <Text style={styles.phaseDetails}>During ovulation, high-intensity interval training or bodyweight circuit is recommended in the early morning.  Your testosterone is higher and you'll have tons of energy during this time of the month.</Text>
               </View>
             </View>
           </View>
@@ -321,11 +309,7 @@ class AllExercises extends React.Component {
             <View style={styles.flexLeft2}>
               <View style={styles.flexLeftInner1}>
                 <Text style={styles.phaseHeader}>LUTEAL PHASE</Text>
-                <Text style={styles.phaseDetails}>Butternut Squash</Text>
-                <Text style={styles.phaseDetails}>Avocado</Text>
-                <Text style={styles.phaseDetails}>Parsnip</Text>
-                <Text style={styles.phaseDetails}>Pumpkin</Text>
-                <Text style={styles.phaseDetails}>Tuna</Text>
+                <Text style={styles.phaseDetails}>As you transition to the luteal phase, keep your intense workouts early in the day and pilates or strength training in the early evening.  As estrogen and testoterone drop during the luteal phase, your energy for high intensity workouts will drop.  Restorative yoga before bed can help combat moodiness and bloat.</Text>
               </View>
             </View>
           </View>
