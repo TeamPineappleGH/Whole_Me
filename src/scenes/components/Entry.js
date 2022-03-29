@@ -30,9 +30,8 @@ const Entry = (props) => {
       onPress={() =>
         navigation.navigate("Details", {
           date: props.date,
-          description: props.description,
           mood: props.mood,
-          writtenJournal: props.writtenJournal,
+          writtenDiary: props.writtenDiary,
           status: props.status,
         })
       }

@@ -1,33 +1,100 @@
-import React from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import React, { useEffect, useState } from 'react'
+import { View, Text, FlatList, StyleSheet,  ScrollView } from "react-native";
 import Entry from "../components/Entry";
 import Constants from "expo-constants";
 import { Icon, Button } from "react-native-elements";
 import {connect} from 'react-redux'
 import { showMessage } from "react-native-flash-message";
 import FlashMessage from "react-native-flash-message"; 
+import { auth, db } from '../../firebase/config.js'
+import styles from './styles'
+import dateFormat from 'dateformat'
 
-class AllEntries extends React.Component {
-  // renderEntries = ({ item, navigation }) => (
-  //   <Entry {...item} date={item.date} navigation={this.props.navigation} />
-  // );
+export default function AllEntries(props) {
+  renderEntries = ({ item, navigation }) => (
+    <Entry {...item} date={item.date} navigation={props.navigation} />
+  );
 
-  constructor(props) {
-    super(props);
 
-    this.pressHandler = this.pressHandler.bind(this);
-    // console.log('this is props!!', this.props)
+  
+  const pressHandler = () => {
+    props.navigation.navigate('Diary')
   }
+
+
   
-  pressHandler = () => {
-    this.props.navigation.navigate('Diary')
-  }
+    // const userId = auth.currentUser.uid;
+    // const userRef = db.collection('users').doc(userId);
+
+    // const [allEntries, setAllEntries] = useState([])
+    // // let allEntries;
+
+    // const diaryEntries = async() => {
+    //   const user = await userRef.get()
+    //   const entries = user.data().entries;
+    //   // console.log('this is user data diary entries~', entries);
+    //   // setAllEntries(entries)
+    //   setAllEntries(entries);
+    // }
+
+    // useEffect(async () => {
+    //   await diaryEntries()
+    // }, [])
+// let diaryEntries = db.collection('users').doc(userId).get();
+// let TEST;
+// db.collection('users').doc(userId).get().then(documentSnapShot => {
+//   diaryEntries = documentSnapShot.get('entries');
+//   console.log('diary entries in all entries num 2', diaryEntries)
+//   });
+
+// const [diaryEntries, setDiaryEntries] = useState([])
+
+// let diaryEntries;
+
+// function getDiaryEntries(documentSnapshot) {
+//   return documentSnapshot.get('entries');
+// }
+
+// db
+//   .collection('users')
+//   .doc(userId)
+//   .get()
+//   .then(documentSnapshot => getDiaryEntries(documentSnapshot))
+//   .then(entries => {
+//     diaryEntries = entries;
+//     console.log('Diary entry is ', entries);
+//   });
+
+// const diaryEntries = userRef.get().data().entries;
+
+
+
+
+  // console.log('diary entries in all entries', allEntries);
+  let allEntries = [{
+    "date": '2019-06-22',
+    "mood": 2,
+    "status": "Diary Added"},
+    {
+      "date": '2022-02-02',
+      "mood": 3,
+      "status": "Diary Added"
+    },
+    {
+      "date": '2019-01-10',
+      "mood": 2,
+      "status": "Diary Added"
+    },
+    {
+      "date": '2019-07-21',
+      "mood": 5,
+      "status": "Diary Added"
+    }]
+
   
-  
-  render() {
     return (
       <View style={styles.container}>
-        {/* <View
+        <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
@@ -37,37 +104,27 @@ class AllEntries extends React.Component {
         </View>
         <View>
           <FlatList
-            renderItem={this.renderEntries}
-            data={this.props.entries.sort(
+            renderItem={renderEntries}
+            data={allEntries.sort(
               (a, b) => new Date(b.date) - new Date(a.date)
             )}
+
+
+
+
+            
             style={{ marginBottom: 60 }}
-            keyExtractor={(item) => item.date.toString()}
+            // keyExtractor={(item) => item.date.toString()}
+            keyExtractor={(item) => item.date}
           />
+          <Button title='Add New Entry' onPress={pressHandler}/>
+
+          <Text>hello</Text>
         </View>
-        <FlashMessage position="top" /> */}
+        <FlashMessage position="top" />
         <Text>This is the All Entries Page!!</Text>
-        <Button title='Add New Entry' onPress={this.pressHandler}/>
+        
       </View>
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: Constants.statusBarHeight,
-  },
-  h1: {
-    fontSize: 30,
-    padding: 20,
-    paddingBottom: 10,
-  },
-});
-
-const mapStateToProps = state => ({
-  entries: state.entries,
-})
-
-export default connect(mapStateToProps)(AllEntries)

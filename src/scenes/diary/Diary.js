@@ -87,11 +87,26 @@ export default function Diary(props) {
   
 
     const addEntry = (newEntry) => {
+      for (let i = 0; i < diaryEntries.length; i++) {
+        let currentEntry = diaryEntries[i];
+        if (currentEntry.date === newEntry.date) {
+          db
+          .collection('users')
+          .doc(userId)
+          .update({ entries : [...diaryEntries, element = newEntry]})
+          // .update({ entries: db.FieldValue.arrayRemove(currentEntry) })
+          .then(() => console.log('existing diary updated!'))
+          // return
+        } 
+      }
       db
-        .collection('users')
-        .doc(userId)
-        .update({ entries: [...diaryEntries, newEntry] })
-        .then(() => console.log('user updated!'))
+          .collection('users')
+          .doc(userId)
+          // 
+          // .update({ entries: db.FieldValue.arrayUnion(newEntry) })
+          .update({ entries : [...diaryEntries, newEntry]})
+          .then(() => console.log('new entry added!'))
+      
     }
 
 
@@ -120,7 +135,7 @@ export default function Diary(props) {
 
   storeEntry = () => {
     entryObj = {
-      date: dateFormat(pickedDate, 'dddd, mmmm dS'),
+      date: dateFormat(pickedDate, 'isoDate'),
       mood: mood,
       status: writtenDiary ? 'Diary Added' : 'No Diary Added',
       writtenDiary: writtenDiary,

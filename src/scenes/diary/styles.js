@@ -53,6 +53,10 @@ export default StyleSheet.create({
     flex: 1,
     width: '100%',
   },
+  journalText: {
+    textAlign: "center",
+    margin: 40,
+  },
   linebreak: {
     borderBottomColor: colors.gray,
     borderBottomWidth: 1,
