@@ -19,7 +19,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import * as WebBrowser from 'expo-web-browser'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
-const videoKeys = [
+const postitiveVideoKeys = [
   {
     id: 'jeGT1VXwfx4',
     title: 'meditation for postitive energy'
@@ -45,9 +45,6 @@ const videoKeys = [
 function randomize(array) {
   return Math.floor(Math.random() * array.length)
 }
-const random = randomize(videoKeys)
-
-//console.log('mapped', videoKeys[random].title)
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -59,36 +56,26 @@ export default class AllMeditations extends React.Component {
   constructor() {
     super()
     this.state = {
-      meditation: '',
       playing: false,
+      url: 'a1JOT30bP5g'
     }
     this.handlePress = this.handlePress.bind(this)
-    this.onStateChange = this.onStateChange.bind(this)
     this.togglePlaying = this.togglePlaying.bind(this)
   }
   handlePress(item) {
     WebBrowser.openBrowserAsync(item)
   }
 
-  onStateChange = ((state) => {
-    console.log('state---------->', state);
-    if (state === false) {
-      this.setState({ playing: true });
-      // Alert.alert("video has finished playing!");
-    }
-  });
 
   togglePlaying = (() => {
     this.setState({ playing: !this.state.playing });
   });
 
   componentDidMount() {
-    this.onStateChange(this.state.playing)
     this.togglePlaying()
   }
 
   render() {
-    console.log("video id ----->", videoKeys[random].id)
     return (
       <ScrollView style={{ flex: 1, width: '100%' }}>
         <View style={{ width: '100%' }}>
@@ -108,29 +95,28 @@ export default class AllMeditations extends React.Component {
                 height={300}
                 width={Dimensions.get('window').width}
                 play={this.state.playing}
-                videoId={videoKeys[random].id}
-                onChangeState={this.onStateChange}
+                videoId={this.state.url}
               />
             </View>
+            <View>
           <TouchableOpacity
                   style={{
                     display: 'flex',
-                    // marginTop: 2,
-                    marginLeft: 20,
-                    marginRight: 20,
-                    // marginBottom: 40,
+                    marginLeft: 50,
+                    marginRight: 50,
                     alignItems: 'center',
                     backgroundColor: '#1c9ab7',
                     borderRadius: 10,
                     padding: 10,
+                    marginTop: -35
                   }}
                   onPress={ () => {
-                    this.props.fetchRecipes(this.state.ingredient);
-                    Keyboard.dismiss();
+                    this.setState({url: postitiveVideoKeys[randomize(postitiveVideoKeys)].id})
                   }}
                 >
                   <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
                 </TouchableOpacity>
+                </View>
         </View>
       </ScrollView>
     )
