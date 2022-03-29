@@ -15,7 +15,7 @@ export default function Profile(props) {
   const [spinner, setSpinner] = useState(false)
 
   const goDetail = () => {
-    props.navigation.navigate('Detail', { userData: userData })
+    props.navigation.navigate('Edit Profile', { userData: userData })
   }
 
   const signOut = () => {
