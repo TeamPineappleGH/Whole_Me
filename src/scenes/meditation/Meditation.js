@@ -18,6 +18,7 @@ import styles from './styles'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as WebBrowser from 'expo-web-browser'
 import YoutubePlayer from 'react-native-youtube-iframe'
+import colors from '../../theme/colors'
 
 const postitiveVideoKeys = [
   {
@@ -101,7 +102,7 @@ export default class AllMeditations extends React.Component {
               fontSize: 20,
               fontStyle: 'bold'
             }}>
-              Positive Energy Meditations
+              Positive Energy
             </Text>
             </View>
             <View style={styles.video}>
@@ -119,7 +120,7 @@ export default class AllMeditations extends React.Component {
                     marginLeft: 50,
                     marginRight: 50,
                     alignItems: 'center',
-                    backgroundColor: '#1c9ab7',
+                    backgroundColor: colors.orange,
                     borderRadius: 10,
                     padding: 10,
                     marginTop: -35
@@ -139,7 +140,7 @@ export default class AllMeditations extends React.Component {
               fontSize: 20,
               fontStyle: 'bold'
             }}>
-              Meditations for Depression
+              Depression
             </Text>
             </View>
             <View style={styles.video}>
@@ -157,7 +158,7 @@ export default class AllMeditations extends React.Component {
                     marginLeft: 50,
                     marginRight: 50,
                     alignItems: 'center',
-                    backgroundColor: '#1c9ab7',
+                    backgroundColor: colors.darkBlue,
                     borderRadius: 10,
                     padding: 10,
                     marginTop: -35
@@ -177,7 +178,7 @@ export default class AllMeditations extends React.Component {
               fontSize: 20,
               fontStyle: 'bold'
             }}>
-              Postive Energy Meditations
+              Stress
             </Text>
             </View>
             <View style={styles.video}>
@@ -195,7 +196,7 @@ export default class AllMeditations extends React.Component {
                     marginLeft: 50,
                     marginRight: 50,
                     alignItems: 'center',
-                    backgroundColor: '#1c9ab7',
+                    backgroundColor: colors.orange,
                     borderRadius: 10,
                     padding: 10,
                     marginTop: -35
@@ -215,7 +216,7 @@ export default class AllMeditations extends React.Component {
               fontSize: 20,
               fontStyle: 'bold'
             }}>
-              Postive Energy Meditations
+              Anxiety
             </Text>
             </View>
             <View style={styles.video}>
@@ -233,7 +234,7 @@ export default class AllMeditations extends React.Component {
                     marginLeft: 50,
                     marginRight: 50,
                     alignItems: 'center',
-                    backgroundColor: '#1c9ab7',
+                    backgroundColor: colors.darkBlue,
                     borderRadius: 10,
                     padding: 10,
                     marginTop: -35
