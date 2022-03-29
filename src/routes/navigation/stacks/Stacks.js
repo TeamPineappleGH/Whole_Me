@@ -63,7 +63,7 @@ export const ProfileNavigator = (props) => {
       <Stack.Screen name="Profile">
         {props => <Profile {...props} extraData={user} />}
       </Stack.Screen>
-      <Stack.Screen name="Detail">
+      <Stack.Screen name="Edit Profile">
         {props => <Detail {...props} extraData={user} />}
       </Stack.Screen>
     </Stack.Navigator>

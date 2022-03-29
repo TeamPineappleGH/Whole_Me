@@ -20,7 +20,6 @@ function CalendarView(props) {
   let ovulationPhaseArray = [];
   let lutealPhaseArray = [];
   const isFocused = useIsFocused();
-  console.log(props.extraData.fullName)
 
   const onAddEntryPress = () => {
     props.navigation.navigate('Add Period Entry')
