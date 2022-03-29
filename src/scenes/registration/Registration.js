@@ -63,7 +63,7 @@ export default function Registration({navigation}) {
           .doc(uid)
           .set(data)
           .then(() => {
-            navigation.navigate('Home', {user: data})
+            navigation.navigate('Calendar', {user: data})
           })
           .catch((error) => {
             setSpinner(false)

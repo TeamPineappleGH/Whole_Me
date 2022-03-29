@@ -83,7 +83,7 @@ const TabNavigator = (props) => {
         activeTintColor: colors.orange,
         inactiveTintColor: colors.gray,
       }}
-      initialRouteName="Home"
+      initialRouteName="Calendar"
       swipeEnabled={false}
     >
       <Tab.Screen
