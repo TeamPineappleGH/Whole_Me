@@ -13,6 +13,8 @@ import AddPeriodEntry from '../../../scenes/addPeriodEntry'
 import AllEntries from '../../../scenes/diary/AllEntries'
 import Fitness from '../../../scenes/fitness/Fitness'
 import Cycle from '../../../scenes/cycle/'
+import Details from '../../../scenes/diary/Details'
+import Meditation from '../../../scenes/meditation/Meditation'
 
 // ------------------------------------
 // Constants
@@ -81,6 +83,9 @@ export const DiaryNavigator = (props) => {
       <Stack.Screen name= "Diary">
         {props => <Diary {...props} extraData={user} />}
       </Stack.Screen>
+      <Stack.Screen name= "Details">
+        {props => <Details {...props} extraData={user} />}
+      </Stack.Screen>
       
     </Stack.Navigator>
   )
@@ -100,6 +105,8 @@ export const WellnessNavigator = (props) => {
       </Stack.Screen>
       <Stack.Screen name= "Cycle">
         {props => <Cycle {...props} extraData={user} />}
+      <Stack.Screen name= "Meditation">
+        {props => <Meditation {...props} extraData={user} />}
       </Stack.Screen>
     </Stack.Navigator>
   )
