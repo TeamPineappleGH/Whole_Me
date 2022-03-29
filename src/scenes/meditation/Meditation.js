@@ -66,15 +66,56 @@ const depressionVideoKeys = [
   }
 ]
 
+const stressVideoKeys = [
+  {
+    id: 'MIr3RsUWrdo',
+    title: 'meditation for stress'
+  },
+  {
+    id: 'z6X5oEIg6Ak',
+    title: 'meditation for stress'
+  },
+  {
+    id: '9yj8mBfHlMk',
+    title: 'meditation for stress'
+  },
+  {
+    id: 'zYzFUBMJO9E',
+    title: 'meditation for stress'
+  },
+  {
+    id: 'sG7DBA-mgFY',
+    title: 'meditation for stress'
+  }
+]
+
+const sleepVideoKeys = [
+  {
+    id: 'U6Ay9v7gK9w',
+    title: 'meditation for sleep'
+  },
+  {
+    id: '2f5mRTjkHJ4',
+    title: 'meditation for sleep'
+  },
+  {
+    id: '69o0P7s8GHE',
+    title: 'meditation for sleep'
+  },
+  {
+    id: 'acLUWBuAvms',
+    title: 'meditation for sleep'
+  },
+  {
+    id: 'lC_kFBsRMw0',
+    title: 'meditation for sleep'
+  }
+]
+
 function randomize(array) {
   return Math.floor(Math.random() * array.length)
 }
 
-const DismissKeyboard = ({ children }) => (
-  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    {children}
-  </TouchableWithoutFeedback>
-)
 
 export default class AllMeditations extends React.Component {
   constructor() {
@@ -82,7 +123,9 @@ export default class AllMeditations extends React.Component {
     this.state = {
       playing: false,
       posUrl: 'a1JOT30bP5g',
-      depressUrl: 'xRxT9cOKiM8'
+      depressUrl: 'xRxT9cOKiM8',
+      stressUrl: 'zYzFUBMJO9E',
+      sleepUrl: 'lC_kFBsRMw0'
     }
     this.handlePress = this.handlePress.bind(this)
   }
@@ -104,36 +147,36 @@ export default class AllMeditations extends React.Component {
             }}>
               Positive Energy
             </Text>
-            </View>
-            <View style={styles.video}>
-              <YoutubePlayer
-                height={300}
-                width={Dimensions.get('window').width}
-                play={this.state.playing}
-                videoId={this.state.posUrl}
-              />
-            </View>
-            <View>
-          <TouchableOpacity
-                  style={{
-                    display: 'flex',
-                    marginLeft: 50,
-                    marginRight: 50,
-                    alignItems: 'center',
-                    backgroundColor: colors.orange,
-                    borderRadius: 10,
-                    padding: 10,
-                    marginTop: -35
-                  }}
-                  onPress={ () => {
-                    this.setState({posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id})
-                  }}
-                >
-                  <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
-                </TouchableOpacity>
-                </View>
+          </View>
+          <View style={styles.video}>
+            <YoutubePlayer
+              height={300}
+              width={Dimensions.get('window').width}
+              play={this.state.playing}
+              videoId={this.state.posUrl}
+            />
+          </View>
+          <View>
+            <TouchableOpacity
+              style={{
+                display: 'flex',
+                marginLeft: 50,
+                marginRight: 50,
+                alignItems: 'center',
+                backgroundColor: colors.orange,
+                borderRadius: 10,
+                padding: 15,
+                marginTop: -50
+              }}
+              onPress={() => {
+                this.setState({ posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id })
+              }}
+            >
+              <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
+            </TouchableOpacity>
+          </View>
 
-                <View>
+          <View>
             <Text style={{
               marginTop: 20,
               textAlign: 'center',
@@ -142,36 +185,36 @@ export default class AllMeditations extends React.Component {
             }}>
               Depression
             </Text>
-            </View>
-            <View style={styles.video}>
-              <YoutubePlayer
-                height={300}
-                width={Dimensions.get('window').width}
-                play={this.state.playing}
-                videoId={this.state.depressUrl}
-              />
-            </View>
-            <View>
-          <TouchableOpacity
-                  style={{
-                    display: 'flex',
-                    marginLeft: 50,
-                    marginRight: 50,
-                    alignItems: 'center',
-                    backgroundColor: colors.darkBlue,
-                    borderRadius: 10,
-                    padding: 10,
-                    marginTop: -35
-                  }}
-                  onPress={ () => {
-                    this.setState({depressUrl: depressionVideoKeys[randomize(depressionVideoKeys)].id})
-                  }}
-                >
-                  <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
-                </TouchableOpacity>
-                </View>
+          </View>
+          <View style={styles.video}>
+            <YoutubePlayer
+              height={300}
+              width={Dimensions.get('window').width}
+              play={this.state.playing}
+              videoId={this.state.depressUrl}
+            />
+          </View>
+          <View>
+            <TouchableOpacity
+              style={{
+                display: 'flex',
+                marginLeft: 50,
+                marginRight: 50,
+                alignItems: 'center',
+                backgroundColor: colors.darkBlue,
+                borderRadius: 10,
+                padding: 15,
+                marginTop: -50
+              }}
+              onPress={() => {
+                this.setState({ depressUrl: depressionVideoKeys[randomize(depressionVideoKeys)].id })
+              }}
+            >
+              <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
+            </TouchableOpacity>
+          </View>
 
-                <View>
+          <View>
             <Text style={{
               marginTop: 20,
               textAlign: 'center',
@@ -180,72 +223,72 @@ export default class AllMeditations extends React.Component {
             }}>
               Stress
             </Text>
-            </View>
-            <View style={styles.video}>
-              <YoutubePlayer
-                height={300}
-                width={Dimensions.get('window').width}
-                play={this.state.playing}
-                videoId={this.state.posUrl}
-              />
-            </View>
-            <View>
-          <TouchableOpacity
-                  style={{
-                    display: 'flex',
-                    marginLeft: 50,
-                    marginRight: 50,
-                    alignItems: 'center',
-                    backgroundColor: colors.orange,
-                    borderRadius: 10,
-                    padding: 10,
-                    marginTop: -35
-                  }}
-                  onPress={ () => {
-                    this.setState({posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id})
-                  }}
-                >
-                  <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
-                </TouchableOpacity>
-                </View>
+          </View>
+          <View style={styles.video}>
+            <YoutubePlayer
+              height={300}
+              width={Dimensions.get('window').width}
+              play={this.state.playing}
+              videoId={this.state.stressUrl}
+            />
+          </View>
+          <View>
+            <TouchableOpacity
+              style={{
+                display: 'flex',
+                marginLeft: 50,
+                marginRight: 50,
+                alignItems: 'center',
+                backgroundColor: colors.orange,
+                borderRadius: 10,
+                padding: 15,
+                marginTop: -50
+              }}
+              onPress={() => {
+                this.setState({ stressUrl: stressVideoKeys[randomize(stressVideoKeys)].id })
+              }}
+            >
+              <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
+            </TouchableOpacity>
+          </View>
 
-                <View>
+          <View>
             <Text style={{
               marginTop: 20,
               textAlign: 'center',
               fontSize: 20,
               fontStyle: 'bold'
             }}>
-              Anxiety
+              Sleep
             </Text>
-            </View>
-            <View style={styles.video}>
-              <YoutubePlayer
-                height={300}
-                width={Dimensions.get('window').width}
-                play={this.state.playing}
-                videoId={this.state.posUrl}
-              />
-            </View>
-            <View>
-          <TouchableOpacity
-                  style={{
-                    display: 'flex',
-                    marginLeft: 50,
-                    marginRight: 50,
-                    alignItems: 'center',
-                    backgroundColor: colors.darkBlue,
-                    borderRadius: 10,
-                    padding: 10,
-                    marginTop: -35
-                  }}
-                  onPress={ () => {
-                    this.setState({posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id})
-                  }}
-                >
-                  <Text style={{color: 'white', fontSize: 15}}>Randomize</Text>
-                </TouchableOpacity>
-                </View>
+          </View>
+          <View style={styles.video}>
+            <YoutubePlayer
+              height={300}
+              width={Dimensions.get('window').width}
+              play={this.state.playing}
+              videoId={this.state.sleepUrl}
+            />
+          </View>
+          <View>
+            <TouchableOpacity
+              style={{
+                display: 'flex',
+                marginLeft: 50,
+                marginRight: 50,
+                alignItems: 'center',
+                backgroundColor: colors.darkBlue,
+                borderRadius: 10,
+                padding: 15,
+                marginTop: -50
+              }}
+              onPress={() => {
+                this.setState({ sleepUrl: sleepVideoKeys[randomize(sleepVideoKeys)].id })
+              }}
+            >
+              <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     )
