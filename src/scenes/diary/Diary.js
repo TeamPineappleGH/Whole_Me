@@ -7,6 +7,7 @@ import {
   useColorScheme,
   StyleSheet,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Platform,
   TextInput,
   KeyboardAvoidingView,
@@ -21,18 +22,8 @@ import { Icon } from 'react-native-elements'
 import Constants from 'expo-constants'
 import { Button } from 'react-native-elements'
 import { connect } from 'react-redux'
-// import { addEntry } from '../redux/diary'
 import { auth, db } from '../../firebase/config.js'
 // import firestore from '@react-native-firebase/firestore';
-// import { getFirestore, setDoc, doc } from 'firebase/firestore';
-
-// const addEntry = (newEntry) => {
-//   firestore()
-//     .collection('users')
-//     .doc(userId)
-//     .update({ entries: newEntry })
-//     .then(() => console.log('user updated!'))
-// }
 
 const decodedMoodPhrase = [
   'Depressed',
@@ -57,11 +48,7 @@ export default function Diary(props) {
 
   const userId = auth.currentUser.uid
 
-  let convertedDate = new Date(
-    userData.periodStartDate.seconds * 1000,
-  ).toDateString()
-
-  const scheme = useColorScheme()
+  // const scheme = useColorScheme()
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
   const [pickedDate, setPickedDate] = useState(Date())
@@ -80,36 +67,33 @@ export default function Diary(props) {
 
   let diaryEntries;
 
-    db.collection('users').doc(userId).get().then(documentSnapShot => {
-      diaryEntries = documentSnapShot.get('entries');
+  db.collection('users')
+    .doc(userId)
+    .get()
+    .then((documentSnapShot) => {
+      diaryEntries = documentSnapShot.get('entries')
       // console.log('this is diaryEntries', diaryEntries);
-      });
-  
+    })
 
-    const addEntry = (newEntry) => {
-      for (let i = 0; i < diaryEntries.length; i++) {
-        let currentEntry = diaryEntries[i];
-        if (currentEntry.date === newEntry.date) {
-          db
-          .collection('users')
+  const addEntry = (newEntry) => {
+    for (let i = 0; i < diaryEntries.length; i++) {
+      let currentEntry = diaryEntries[i]
+      if (currentEntry.date === newEntry.date) {
+        db.collection('users')
           .doc(userId)
-          .update({ entries : [...diaryEntries, element = newEntry]})
+          .update({ entries: [...diaryEntries, (element = newEntry)] })
           // .update({ entries: db.FieldValue.arrayRemove(currentEntry) })
           .then(() => console.log('existing diary updated!'))
-          // return
-        } 
+        // return
       }
-      db
-          .collection('users')
-          .doc(userId)
-          // 
-          // .update({ entries: db.FieldValue.arrayUnion(newEntry) })
-          .update({ entries : [...diaryEntries, newEntry]})
-          .then(() => console.log('new entry added!'))
-      
     }
-
-
+    db.collection('users')
+      .doc(userId)
+      //
+      // .update({ entries: db.FieldValue.arrayUnion(newEntry) })
+      .update({ entries: [...diaryEntries, newEntry] })
+      .then(() => console.log('new entry added!'))
+  }
 
   const showDatePicker = () => {
     setDatePickerVisibility(true)
@@ -120,7 +104,6 @@ export default function Diary(props) {
   }
 
   const handleConfirm = (date) => {
-
     setPickedDate(date)
     hideDatePicker()
   }
@@ -133,7 +116,7 @@ export default function Diary(props) {
     setWrittenDiary(writtenDiary)
   }
 
-  storeEntry = () => {
+  const storeEntry = () => {
     entryObj = {
       date: dateFormat(pickedDate, 'isoDate'),
       mood: mood,
@@ -148,7 +131,7 @@ export default function Diary(props) {
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
       <View style={{ flex: 1, width: '100%', marginVertical: 30 }}>
-        <ScrollView style={styles.main}>
+        <ScrollView style={styles.flexLeftInner1}>
           {/* <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>
             This is the diary page!
           </Text> */}
@@ -183,6 +166,7 @@ export default function Diary(props) {
             style={{
               alignItems: 'center',
             }}
+
           >
             <View
               style={{
@@ -248,15 +232,17 @@ export default function Diary(props) {
             maxLength={400}
           />
 
-          <Button
-            title="Save"
-            onPress={storeEntry}
-            type="clear"
-            style={{ marginTop: 100 }}
-          ></Button>
+          <TouchableOpacity style={styles.customButton} onPress={storeEntry}>
+            <Text style={{ color: 'white', fontSize: 15 }}>Save</Text>
+          </TouchableOpacity>
 
           <View style={styles.linebreak} />
-          <Button title="See All Entries" onPress={pressHandler} />
+
+          <TouchableOpacity style={styles.customButton} onPress={pressHandler}>
+            <Text style={{ color: 'white', fontSize: 15 }}>
+              See All Entries
+            </Text>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     </KeyboardAvoidingView>

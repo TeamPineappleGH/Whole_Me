@@ -47,7 +47,7 @@ const Entry = (props) => {
         <Text style={[{ fontSize: 15, fontWeight: "700" }, styles.text]}>
           {props.date}
         </Text>
-        <Text style={[{ fontSize: 14 }, styles.text]}>{props.status}</Text>
+        <Text style={[{ fontSize: 14 }, styles.text]}>{props.writtenDiary}</Text>
       </View>
     </TouchableOpacity>
   );
