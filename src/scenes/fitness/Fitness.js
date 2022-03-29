@@ -116,7 +116,7 @@ class AllExercises extends React.Component {
                   <TouchableOpacity
                     style={{
                       display: 'flex',
-                      marginTop: 7,
+                      marginTop: 20,
                       marginLeft: 20,
                       marginRight: 20,
                       marginBottom: 40,
@@ -204,13 +204,12 @@ class AllExercises extends React.Component {
                   setOpen={this.setOpen}
                   setValue={this.setValue}
                   setItems={this.setItems}
-                  loading={this.setLoading}
                 />
                 <View>
                   <TouchableOpacity
                     style={{
                       display: 'flex',
-                      marginTop: 7,
+                      marginTop: 20,
                       marginLeft: 20,
                       marginRight: 20,
                       marginBottom: 40,
@@ -304,7 +303,7 @@ class AllExercises extends React.Component {
                   <TouchableOpacity
                     style={{
                       display: 'flex',
-                      marginTop: 7,
+                      marginTop: 20,
                       marginLeft: 20,
                       marginRight: 20,
                       marginBottom: 40,
@@ -401,7 +400,7 @@ class AllExercises extends React.Component {
                   <TouchableOpacity
                     style={{
                       display: 'flex',
-                      marginTop: 230,
+                      marginTop: 20,
                       marginLeft: 20,
                       marginRight: 20,
                       marginBottom: 40,
