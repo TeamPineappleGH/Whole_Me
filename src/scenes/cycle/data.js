@@ -8,6 +8,8 @@ const data = [
     {
       title: "What is the Menstrual Cycle?",
       description: "Some Article",
+      source: 'https://images.ctfassets.net/juauvlea4rbf/2lrztQzzscio6GMEQKKcoA/1174acf814497b4eb2db36b0251fed50/contenful__2_.svg',
+      link: 'https://helloclue.com/articles/cycle-a-z/the-menstrual-cycle-more-than-just-the-period'
     },
   
     {
