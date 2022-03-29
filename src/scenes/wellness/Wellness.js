@@ -47,7 +47,7 @@ export default function Wellness(props) {
 
       <TouchableWithoutFeedback style = {styles.flexLeft2} onPress={onCyclePress}>
         <View style = {styles.flexLeft2}>
-        <Image style = {styles.tinyLogo} source={require('../../../assets/images/cycle.png')}  />
+        <Image style = {styles.tinyLogo} source={require('../../../assets/images/cycle-grey-01.png')}  />
         <Text style = {styles.text} >YOUR CYCLE</Text>
         </View>
       </TouchableWithoutFeedback>
