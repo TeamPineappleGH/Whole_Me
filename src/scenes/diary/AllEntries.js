@@ -5,6 +5,7 @@ import { Icon, Button } from 'react-native-elements'
 import FlashMessage from 'react-native-flash-message'
 import { auth, db } from '../../firebase/config.js'
 import styles from './styles'
+import Diary from './Diary'
 
 export default function AllEntries(props) {
   renderEntries = ({ item, navigation }) => (
@@ -29,52 +30,52 @@ export default function AllEntries(props) {
     props.navigation.navigate('Diary')
   }
 
+  if (allEntries.length > 0) {
+    return (
+      <View style={{ flex: 1, marginVertical: 10 }}>
+        <View style={styles.container}>
+          <View
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 15,
+              width: '90%',
+              // padding: 30,
+              flex: 1,
+            }}
+          >
+            {/* <Text style={styles.header}>Entries</Text> */}
+            <FlatList
+              renderItem={renderEntries}
+              data={allEntries.sort(
+                (a, b) => new Date(b.date) - new Date(a.date),
+              )}
+              style={styles.flatList}
+              keyExtractor={(item) => item.date}
+            />
 
-  const deleteEntry = (entry) => {
-    for (let i = 0; i < diaryEntries.length; i++) {
-      let currentEntry = diaryEntries[i]
-
-    }
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={pressHandler}
+            >
+              <Text style={{ color: 'white', fontSize: 15 }}>
+                Add New Entry
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <FlashMessage position="top" />
+        </View>
+      </View>
+    )
+  } else {
+    return (
+      <TouchableOpacity
+      style={styles.customButton}
+      onPress={pressHandler}
+    >
+      <Text style={{ color: 'white', fontSize: 15 }}>
+        Add New Entry
+      </Text>
+    </TouchableOpacity>
+    )
   }
-  
-
-  return (
-    <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Text style={styles.h1}>Entries</Text>
-      </View>
-      <View
-        // style={{
-        //   flex: 1,
-        //   backgroundColor: '#fff',
-        //   alignItems: 'center',
-        // }}
-        style={ {
-    backgroundColor: 'white',
-    borderRadius: 15,
-    width: '90%',
-    // padding: 30,
-    flex: 1
-  }}
-      >
-        <FlatList
-          renderItem={renderEntries}
-          data={allEntries.sort((a, b) => new Date(b.date) - new Date(a.date))}
-          style={styles.flatList}
-          // keyExtractor={(item) => item.date.toString()}
-          keyExtractor={(item) => item.date}
-        />
-
-        <TouchableOpacity style={styles.customButton} onPress={pressHandler}>
-          <Text style={{ color: 'white', fontSize: 15 }}>Add New Entry</Text>
-        </TouchableOpacity>
-      </View>
-      <FlashMessage position="top" />
-    </View>
-  )
 }

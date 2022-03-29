@@ -56,6 +56,7 @@ export default function Registration({navigation}) {
           fullName,
           duration: periodDuration,
           periodStartDate: myTimeStamp,
+          entries: [],
         };
         const usersRef = firebase.firestore().collection('users')
         usersRef
