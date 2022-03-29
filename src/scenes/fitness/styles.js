@@ -110,9 +110,9 @@ export default StyleSheet.create({
     fontSize: 18,
   },
   header: {
-    marginTop: 10,
+    marginTop: 20,
     fontSize: 30,
-    marginBottom: 0,
+    marginBottom: 20,
     padding: 0,
     textAlign: 'center',
     fontWeight: 'bold',
