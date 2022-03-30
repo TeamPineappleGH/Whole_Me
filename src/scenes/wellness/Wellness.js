@@ -22,6 +22,10 @@ export default function Wellness(props) {
     props.navigation.navigate('Meditation')
   }
 
+  const onMentalHealthPress = () => {
+    props.navigation.navigate('Mental Health')
+  }
+
   return (
     <ScrollView style = {styles.main} >
       <View style = {styles.iconContainer}>
@@ -43,10 +47,12 @@ export default function Wellness(props) {
       </View>
 
       <View>
-      <View style = {styles.flexRight2}>
-      <Image style = {styles.tinyLogo} source={require('../../../assets/images/brain.png')}  />
-      <Text style = {styles.text} >MENTAL HEALTH</Text>
-      </View>
+      <TouchableWithoutFeedback style={styles.flexRight2} onPress={onMentalHealthPress}>
+        <View style = {styles.flexRight2}>
+          <Image style = {styles.tinyLogo} source={require('../../../assets/images/brain.png')}  />
+          <Text style = {styles.text} >MENTAL HEALTH</Text>
+        </View>
+      </TouchableWithoutFeedback>
 
       <TouchableWithoutFeedback style = {styles.flexLeft2} onPress={onCyclePress}>
         <View style = {styles.flexLeft2}>
