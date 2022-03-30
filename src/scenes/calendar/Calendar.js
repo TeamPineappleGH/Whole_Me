@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Calendar } from 'react-native-calendars'
-import { Text, View, TouchableOpacity, useColorScheme } from 'react-native'
+import { Text, View, TouchableOpacity, useColorScheme, ScrollView } from 'react-native'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
 import dateFormat from 'dateformat'
@@ -92,7 +92,7 @@ function CalendarView(props) {
   })
 
     return (
-      <View>
+      <ScrollView>
       <Text style={{textAlign: 'center', marginTop: 10, fontWeight: 'bold', fontSize: 20, color: '#1c9ab7'}}>Hi, {props.extraData.fullName[0].toUpperCase() + props.extraData.fullName.slice(1)}!</Text>
       <Text style={{textAlign: 'center', marginLeft: 20, marginRight: 20, marginTop: 15}}>Welcome to Whole Me! As the months change, add your period start date and duration to view your phase forecast.</Text>
       <View style={{margin: 20, borderRadius: 15, backgroundColor: 'white', paddingTop: 15}}>
@@ -229,7 +229,7 @@ function CalendarView(props) {
       </TouchableOpacity>
     </View>
     </View>
-    </View>
+    </ScrollView>
   )
 }
 
