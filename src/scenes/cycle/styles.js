@@ -41,11 +41,13 @@ const styles = StyleSheet.create({
         marginBottom: 50,
     },
     caption: {
+      flex: 1,
       color: "#222",
-      fontSize: 20,
+      fontSize: 15,
       fontWeight: "bold",
       textAlign: "center",
-      paddingTop: 20,
+      justifyContent: 'center',
+      marginTop: 15
     },
   })
 
