@@ -2,54 +2,12 @@ import { Dimensions, StyleSheet, Platform } from 'react-native';
 
 const { width: screenWidth } = Dimensions.get('window')
 
-// const styles = StyleSheet.create({
-//   container: {
-//     paddingTop: 50,
-//   },
-//   title: {
-//     fontSize: 20,
-//   },
-//   item: {
-//     width: '100%',
-//     height: screenWidth - 125, 
-//   },
-//     imageContainer: {
-//     flex: 1,
-//     borderRadius: 15,
-//     backgroundColor: 'white',
-//     marginBottom: Platform.select({ ios: 2, android: 1 }),
-//   },
-
-//   image: {
-//     ...StyleSheet.absoluteFillObject,
-//     resizeMode: 'cover',
-//     borderRadius: 15
-//   },
-//   dotContainer: {
-//     backgroundColor: 'rgb(230,0,0)',
-//   },
-//   dotStyle: {
-//     width: 10,
-//     height: 10,
-//     borderRadius: 5,
-//     backgroundColor: 'black',
-//   },
-//   inactiveDotStyle: {
-//     backgroundColor: 'rgb(255,230,230)',
-//   },
-//   header: {
-//       fontSize: 30,
-//       textAlign: 'center',
-//       marginTop: 20
-//   }
-// });
-
 const styles = StyleSheet.create({
     container: {
       backgroundColor: 'white',
       borderRadius: 15,
       width: screenWidth - 60,
-      height: screenWidth - 100,
+      height: screenWidth - 90,
       paddingBottom: 40,
       shadowColor: "#000",
       shadowOffset: {
@@ -59,7 +17,7 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.29,
       shadowRadius: 4.65,
       elevation: 7,
-      marginTop: 40,
+      marginTop: 30,
       marginLeft: 20,
       marginRight: 20,
       alignItems: 'center'
@@ -73,7 +31,7 @@ const styles = StyleSheet.create({
       fontSize: 20,
       fontWeight: "bold",
       textAlign: "center",
-      paddingTop: 20,
+      marginTop: 50,
     },
     body: {
       color: "#222",
@@ -83,11 +41,22 @@ const styles = StyleSheet.create({
       paddingRight: 20
     },
     carouselContainer: {
-        backgroundColor: '#fff',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: 50
-    }
+        // justifyContent: 'center',
+        padding: 50,
+        height: screenWidth - 50
+    },
+    sections: {
+      marginTop: 20,
+      marginBottom: 2
+    },
+    caption: {
+      color: "#222",
+      fontSize: 20,
+      fontWeight: "bold",
+      textAlign: "center",
+      paddingTop: 20,
+    },
   })
 
 export default styles;

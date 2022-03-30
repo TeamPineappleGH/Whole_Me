@@ -1,10 +1,10 @@
-const data = [
+const skinData = [
     {
-      title: "What is the Menstrual Cycle?",
-      description: "Some Article",
-      source: 'https://2rdnmg1qbg403gumla1v9i2h-wpengine.netdna-ssl.com/wp-content/uploads/sites/3/2018/11/MenstrualCycleAges-1176498451x533-1-650x428.jpg',
-      link: 'https://helloclue.com/articles/cycle-a-z/the-menstrual-cycle-more-than-just-the-period'
-    },
+        title: "Skin and your Cycle",
+        description: "Some Article",
+        source: 'https://images.ctfassets.net/juauvlea4rbf/3OV62HsCZGMiAywMygAyCy/a2aeb9ceaf96f95031112db24518d0ef/contenful_skin2x.png?w=1920&h=960&q=50&fm=webp',
+        link: 'https://helloclue.com/articles/cycle-a-z/skin-and-the-cycle-how-hormones-affect-your-skin'
+      },
     {
       title: "Irregular Menstrual Cycles",
       source: 'https://yesmomfertility.com/blog/wp-content/uploads/2019/09/unpredictable-mentrual-cycle-yesmom.-jpg.jpg',
@@ -17,4 +17,4 @@ const data = [
       link: 'https://helloclue.com/articles/cycle-a-z/period-cramps-101-why-menstrual-cramps-and-pain-occur-and-how-to-relieve'
     },
   ];
-  export default data;
+  export default skinData;
