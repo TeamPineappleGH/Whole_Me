@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
 import colors from '../../theme/colors'
+import {Dimensions} from 'react-native'
+
+const { width } = Dimensions.get('window')
+
 
 export default StyleSheet.create({
   title: {
@@ -32,23 +36,23 @@ export default StyleSheet.create({
   },
   main: {
     flex: 1,
-    width: '100%',
   },
   iconContainer: {
-    display: 'flex',
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 55
+    marginTop: 55,
+    justifyContent: 'space-around'
   },
   flexLeft1: {
+    flex: 1,
     backgroundColor: colors.darkBlue,
     width: 190,
     height: 250,
-    padding: 10,
-    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 15
+    borderRadius: 15,
+    marginBottom: 10
   },
   flexLeftInner1: {
     backgroundColor: 'white',
@@ -63,29 +67,32 @@ export default StyleSheet.create({
     backgroundColor: colors.lightBlue,
     width: 190,
     height: 250,
-    padding: 10,
-    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 15
+    borderRadius: 15,
   },
   flexRight2: {
+    flex: 1,
     backgroundColor: colors.palePink,
     width: 190,
     height: 250,
-    padding: 10,
-    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
     borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 15
+    borderRadius: 15,
+    marginBottom: 10
   },
   flexLeft2: {
     flex: 1,
     backgroundColor: colors.orange,
     width: 190,
-    padding: 10,
     height: 250,
-    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 250,
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 15
@@ -95,14 +102,11 @@ export default StyleSheet.create({
     alignContent: 'center',
     width: 110,
     height: 110,
-    marginLeft: 32,
-    marginTop: 35
   },
   text: {
     fontSize: 20,
     color: 'black',
-    flex: 1,
     textAlign: 'center',
-    marginTop: 15
+    marginTop: 15,
   },
 })

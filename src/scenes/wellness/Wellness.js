@@ -26,6 +26,7 @@ export default function Wellness(props) {
     <ScrollView style = {styles.main} >
       <View style = {styles.iconContainer}>
 
+      <View>
       <TouchableWithoutFeedback style={styles.flexLeft1} onPress={pressHandler1}>
           <View style={styles.flexLeft1}>
             <Image style={styles.tinyLogo} source={require('../../../assets/images/fitness.png')} />
@@ -39,7 +40,9 @@ export default function Wellness(props) {
           <Text style={styles.text} >MEDITATION</Text>
         </View>
       </TouchableWithoutFeedback>
+      </View>
 
+      <View>
       <View style = {styles.flexRight2}>
       <Image style = {styles.tinyLogo} source={require('../../../assets/images/brain.png')}  />
       <Text style = {styles.text} >MENTAL HEALTH</Text>
@@ -51,6 +54,7 @@ export default function Wellness(props) {
         <Text style = {styles.text} >YOUR CYCLE</Text>
         </View>
       </TouchableWithoutFeedback>
+      </View>
 
       </View>
     </ScrollView >
