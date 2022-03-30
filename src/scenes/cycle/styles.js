@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
       shadowColor: "#000",
       shadowOffset: {
         width: 0,
-        height: 3,
+        height: 4,
       },
       shadowOpacity: 0.29,
       shadowRadius: 4.65,
@@ -33,18 +33,12 @@ const styles = StyleSheet.create({
       textAlign: "center",
       marginTop: 50,
     },
-    body: {
-      color: "#222",
-      fontSize: 18,
-      paddingLeft: 20,
-      paddingLeft: 20,
-      paddingRight: 20
-    },
     carouselContainer: {
+        flex: 1,
         alignItems: 'center',
-        // justifyContent: 'center',
+        justifyContent: 'center',
         padding: 50,
-        height: screenWidth - 50
+        marginBottom: 50
     },
     sections: {
       marginTop: 20,
