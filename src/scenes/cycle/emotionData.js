@@ -6,15 +6,15 @@ const emotionData = [
         link: 'https://helloclue.com/articles/cycle-a-z/stress-your-period'
       },
     {
-      title: "Irregular Menstrual Cycles",
-      source: 'https://yesmomfertility.com/blog/wp-content/uploads/2019/09/unpredictable-mentrual-cycle-yesmom.-jpg.jpg',
-      link: 'https://images.ctfassets.net/juauvlea4rbf/4Bt99vnD1SewYwaoOE0I80/a1710bb768c87b58095dd04a2e76f2bf/Contenful__12_.svg'
+      title: "Meditation",
+      source: 'https://images.everydayhealth.com/images/emotional-health/meditation/a-complete-guide-to-meditation-722x406.jpg',
+      link: 'https://helloclue.com/articles/cycle-a-z/whats-up-with-meditation-my-experience-as-skeptic'
     },
     {
-      title: "Relieving Period Cramps",
+      title: "Mood Changes Throughout Your Cycle",
       description: "Some Article",
-      source: 'https://images.ctfassets.net/juauvlea4rbf/5Nv1wBufPhaFZQIhhCbdt1/acd71f2de783d845134bf38b31725315/Cramps_101_contenful_2x-100.jpeg?w=1920&h=960&q=50&fm=webp',
-      link: 'https://helloclue.com/articles/cycle-a-z/period-cramps-101-why-menstrual-cramps-and-pain-occur-and-how-to-relieve'
+      source: 'https://www.adityabirlacapital.com/healthinsurance/active-together/wp-content/uploads/2020/12/Mood-Swings-01-1.jpg',
+      link: 'https://www.jennis.com/blog/cyclemapping/how-does-your-mood-change-across-your-menstrual-cycle/'
     },
   ];
   export default emotionData;

@@ -38,11 +38,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 50,
-        marginBottom: 50
-    },
-    sections: {
-      marginTop: 20,
-      marginBottom: 2
+        marginBottom: 50,
     },
     caption: {
       color: "#222",

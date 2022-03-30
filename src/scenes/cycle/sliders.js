@@ -11,14 +11,14 @@ const sliderWidth = Dimensions.get('window').width + 80
 export function CustomSlider({data}) {
     const isCarousel = React.useRef(null)
           return (
-              <View>
+              <View style={{height: width - 50}}>
               <Carousel
                 ref={isCarousel}
                 data={data}
                 renderItem={CarouselItem}
                 sliderWidth={sliderWidth - 100}
                 itemWidth={width}
-                inactiveSlideShift={0}
+                inactiveSlideShift={1}
                 useScrollView={true}
                 />
             </View>
@@ -29,7 +29,7 @@ export function CustomSlider({data}) {
     const isCarousel = React.useRef(null)
     
           return (
-            <View>
+            <View style={{height: width - 50}}>
               <Carousel
                 ref={isCarousel}
                 data={skinData}
@@ -47,7 +47,7 @@ export function CustomSlider({data}) {
     const isCarousel = React.useRef(null)
     
           return (
-            <View>
+            <View style={{height: width - 50}}>
               <Carousel
                 ref={isCarousel}
                 data={emotionData}
