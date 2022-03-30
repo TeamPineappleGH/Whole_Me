@@ -15,6 +15,7 @@ import Fitness from '../../../scenes/fitness/Fitness'
 import Cycle from '../../../scenes/cycle/'
 import Details from '../../../scenes/diary/Details'
 import Meditation from '../../../scenes/meditation/Meditation'
+import MentalHealth from '../../../scenes/mentalHealth'
 
 // ------------------------------------
 // Constants
@@ -108,6 +109,9 @@ export const WellnessNavigator = (props) => {
       </Stack.Screen>
       <Stack.Screen name= "Meditation">
         {props => <Meditation {...props} extraData={user} />}
+      </Stack.Screen>
+      <Stack.Screen name= "Mental Health">
+        {props => <MentalHealth {...props} extraData={user} />}
       </Stack.Screen>
     </Stack.Navigator>
   )
