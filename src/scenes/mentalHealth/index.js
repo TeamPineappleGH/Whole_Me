@@ -1,3 +1,3 @@
-import Mentalhealth from './mentalHealth'
+import Mentalhealth from './MentalHealth'
 
 export default Mentalhealth
