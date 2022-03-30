@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import { Icon } from 'react-native-elements'
 import Constants from 'expo-constants'
 import { Button } from 'react-native-elements'
@@ -73,27 +73,36 @@ const targetEntry = props.route.params;
   if (entryObj) {
     return (
       <View style={styles.container}>
-        <View
+      {/* <ScrollView style={styles.flexLeftInner1}> */}
+       <ScrollView style={{
+              backgroundColor: 'white',
+              borderRadius: 15,
+              width: '90%',
+              margin:15,
+              // padding: 30,
+              flex: 1,
+            }} >
+        {/* <View
           style={{
             alignItems: 'flex-start',
             paddingLeft: 10,
             paddingTop: 10,
           }}
-        >
-          <Button
+        > */}
+          {/* <Button
             onPress={() => props.navigation.goBack()}
             color="#fff"
             icon={<Icon name="arrow-left" size={32} type="feather" />}
             style={{ position: 'absolute', left: 0, flex: 1 }}
             iconLeft
             type="clear"
-          />
-        </View>
+          /> */}
+        {/* </View> */}
         <View
           style={{
             flex: 1,
-            backgroundColor: '#fff',
             alignItems: 'center',
+            marginTop: 50
           }}
         >
           <Icon
@@ -115,7 +124,7 @@ const targetEntry = props.route.params;
             <Text style={[styles.text, { fontWeight: '700' }]}>{targetEntry.writtenDiary}</Text>
           </View>
         
-          <Button
+          {/* <Button
             title="Delete"
             type="clear"
             onPress={() => {
@@ -123,8 +132,23 @@ const targetEntry = props.route.params;
               props.navigation.goBack()
             }}
             buttonStyle={{ paddingTop: 10 }}
-          ></Button>
+          ></Button> */}
+
+<TouchableOpacity
+      style={styles.customButton}
+      onPress={() => {
+             deleteEntry(targetEntry);
+              props.navigation.goBack()
+            }}
+    >
+      <Text style={{ color: 'white', fontSize: 15 }}>
+        Delete
+      </Text>
+    </TouchableOpacity>
+
+
         </View>
+        </ScrollView>
       </View>
     )
   } else {

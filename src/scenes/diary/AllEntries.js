@@ -6,6 +6,8 @@ import FlashMessage from 'react-native-flash-message'
 import { auth, db } from '../../firebase/config.js'
 import styles from './styles'
 import Diary from './Diary'
+import FontIcon from 'react-native-vector-icons/FontAwesome5'
+import { colors } from 'theme'
 
 export default function AllEntries(props) {
   renderEntries = ({ item, navigation }) => (
@@ -39,6 +41,7 @@ export default function AllEntries(props) {
               backgroundColor: 'white',
               borderRadius: 15,
               width: '90%',
+              margin:15,
               // padding: 30,
               flex: 1,
             }}
@@ -68,6 +71,33 @@ export default function AllEntries(props) {
     )
   } else {
     return (
+<View style={styles.container}>
+   
+      <View
+            style={{
+              backgroundColor: 'white',
+              borderRadius: 15,
+              width: '90%',
+              margin:15,
+              flex: 1,
+              alignItems: 'center',
+    justifyContent: 'center'
+            }}
+          >
+
+<FontIcon
+      name="book-open"
+      color={colors.gray}
+      size={50}
+      style= {{margin: 10}}
+      solid
+      
+    />
+
+<Text style = {styles.text}> You have no entries yet. {"\n"} Click below to get started!</Text>    
+
+
+
       <TouchableOpacity
       style={styles.customButton}
       onPress={pressHandler}
@@ -76,6 +106,8 @@ export default function AllEntries(props) {
         Add New Entry
       </Text>
     </TouchableOpacity>
+    </View>
+    </View>
     )
   }
 }

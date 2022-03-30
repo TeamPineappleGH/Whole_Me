@@ -12,7 +12,7 @@ export default StyleSheet.create({
     display: 'flex',
     borderColor: 'black',
     marginBottom: 15,
-    borderRadius: 5,
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
@@ -39,7 +39,8 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 15,
     // width: '90%',
-    padding: 20,
+    // margin: 15,
+    padding: 30,
     flex: 1,
   },
   header: {
@@ -107,7 +108,7 @@ export default StyleSheet.create({
   },
   customButton: {
     display: 'flex',
-    marginTop: 7,
+    marginTop: 20,
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 40,
