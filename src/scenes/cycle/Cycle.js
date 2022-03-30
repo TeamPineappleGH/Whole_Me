@@ -26,6 +26,7 @@ export default function CycleResources () {
         return (
             <SafeAreaView removeClippedSubviews={false} style={styles.carouselContainer}>
             <ScrollView style={{flex: 1}}>
+
                 <Text style={styles.header}>All About Your Cycle</Text>
                 <CustomSlider data={data}/>
 
