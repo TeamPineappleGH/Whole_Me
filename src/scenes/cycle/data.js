@@ -11,10 +11,9 @@ const data = [
       link: 'https://helloclue.com/articles/cycle-a-z/what-is-an-irregular-menstrual-cycle'
     },
     {
-      title: "Relieving Period Cramps",
-      description: "Some Article",
-      source: 'https://images.ctfassets.net/juauvlea4rbf/5Nv1wBufPhaFZQIhhCbdt1/acd71f2de783d845134bf38b31725315/Cramps_101_contenful_2x-100.jpeg?w=1920&h=960&q=50&fm=webp',
-      link: 'https://helloclue.com/articles/cycle-a-z/period-cramps-101-why-menstrual-cramps-and-pain-occur-and-how-to-relieve'
+      title: "Why Do Menstrual Cycles Vary?",
+      source: 'https://images.ctfassets.net/juauvlea4rbf/BPJq4eiv96E2myqsuSQyQ/afdadbd8414a03c945ffec853299ebd5/Why-do-menstrual-cycles-vary_2x.png?w=1920&h=960&q=50&fm=webp',
+      link: 'https://helloclue.com/articles/cycle-a-z/why-do-menstrual-cycles-vary'
     },
   ];
   export default data;

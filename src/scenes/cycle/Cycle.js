@@ -4,9 +4,11 @@ import styles from './styles'
 import data from './data'
 import skinData from './skinData'
 import emotionData from './emotionData'
+import symptomsData from './symptomsData'
 import { CustomSlider } from './sliders'
 import { CustomSkinSlider } from './sliders'
 import { CustomEmotionSlider } from './sliders'
+import { CustomSymptomsSlider } from './sliders'
 
 
 export default function CycleResources () {
@@ -32,6 +34,9 @@ export default function CycleResources () {
 
                 <Text style={styles.header}>Emotions</Text>
                 <CustomEmotionSlider emotionData={emotionData}/>
+
+                <Text style={styles.header}>Relieving Common Symptoms</Text>
+                <CustomSymptomsSlider symptomsData={symptomsData}/>
             </ScrollView>
             </SafeAreaView>
         )

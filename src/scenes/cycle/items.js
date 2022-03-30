@@ -65,3 +65,24 @@ export function CarouselEmotionItems({ item }) {
     </Pressable>
   );
 }
+
+export function CarouselSymptomsItems({ item }) {
+
+    async function handlePress (item) {
+        await WebBrowser.openBrowserAsync(encodeURI(item))
+    }
+    
+    return (
+      <Pressable onPress={() => handlePress(item.link)}>
+        <SafeAreaView style={styles.container}>
+          <Image
+            source={{ uri: item.source }} 
+            style={styles.image} 
+          />
+        <Text style={styles.caption} numberOfLines={2}>
+          {item.title}
+        </Text>
+      </SafeAreaView>
+    </Pressable>
+  );
+}

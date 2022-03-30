@@ -4,6 +4,7 @@ import Carousel from "react-native-snap-carousel";
 import { CarouselItem } from "./items";
 import { CarouselSkinItems } from "./items";
 import { CarouselEmotionItems } from "./items";
+import { CarouselSymptomsItems } from "./items";
 
 const { width } = Dimensions.get("window");
 const sliderWidth = Dimensions.get('window').width + 80
@@ -52,6 +53,24 @@ export function CustomSlider({data}) {
                 ref={isCarousel}
                 data={emotionData}
                 renderItem={CarouselEmotionItems}
+                sliderWidth={sliderWidth - 100}
+                itemWidth={width}
+                inactiveSlideShift={0}
+                useScrollView={true}
+            />
+            </View>
+          )
+  }
+
+  export function CustomSymptomsSlider({symptomsData}) {
+    const isCarousel = React.useRef(null)
+    
+          return (
+            <View style={{height: width - 50}}>
+              <Carousel
+                ref={isCarousel}
+                data={symptomsData}
+                renderItem={CarouselSymptomsItems}
                 sliderWidth={sliderWidth - 100}
                 itemWidth={width}
                 inactiveSlideShift={0}
