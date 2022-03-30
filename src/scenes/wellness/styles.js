@@ -45,14 +45,15 @@ export default StyleSheet.create({
   flexLeft1: {
     flex: 1,
     backgroundColor: colors.darkBlue,
-    width: 190,
+    width: 180,
     height: 250,
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 15,
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 5
   },
   flexLeftInner1: {
     backgroundColor: 'white',
@@ -65,37 +66,40 @@ export default StyleSheet.create({
   flexRight1: {
     flex: 1,
     backgroundColor: colors.lightBlue,
-    width: 190,
+    width: 180,
     height: 250,
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 15,
+    marginLeft: 5
   },
   flexRight2: {
     flex: 1,
     backgroundColor: colors.palePink,
-    width: 190,
+    width: 180,
     height: 250,
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 15,
-    marginBottom: 10
+    marginBottom: 10,
+    marginLeft: 5
   },
   flexLeft2: {
     flex: 1,
     backgroundColor: colors.orange,
-    width: 190,
+    width: 180,
     height: 250,
     justifyContent: 'center',
     alignItems: 'center',
     height: 250,
     borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 15
+    borderRadius: 15,
+    marginLeft: 5
   },
   tinyLogo: {
     alignItems: 'center',
