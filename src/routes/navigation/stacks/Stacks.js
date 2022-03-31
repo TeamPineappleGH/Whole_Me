@@ -2,7 +2,6 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import Login from '../../../scenes/login'
 import Registration from '../../../scenes/registration'
-import Home from '../../../scenes/home'
 import Profile from '../../../scenes/profile'
 import Detail from '../../../scenes/details'
 import Diary from '../../../scenes/diary'
@@ -39,19 +38,6 @@ export const LoginNavigator = (props) => {
         name="Registration"
         component={Registration}
       />
-    </Stack.Navigator>
-  )
-}
-
-
-export const HomeNavigator = (props) => {
-  const user = props.user
-  const navigationProps = props.navigationProps
-  return (
-    <Stack.Navigator headerMode="screen" screenOptions={navigationProps}>
-      <Stack.Screen name="Home">
-        {props => <Home {...props} extraData={user} />}
-      </Stack.Screen>
     </Stack.Navigator>
   )
 }

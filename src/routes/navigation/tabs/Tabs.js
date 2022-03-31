@@ -7,7 +7,7 @@ import { colors } from 'theme'
 
 
 // stack navigators
-import { HomeNavigator, ProfileNavigator, DiaryNavigator, NutritionNavigator, WellnessNavigator, CalendarNavigator} from '../stacks'
+import { ProfileNavigator, DiaryNavigator, NutritionNavigator, WellnessNavigator, CalendarNavigator} from '../stacks'
 
 const Tab = createBottomTabNavigator()
 
@@ -28,7 +28,6 @@ const TabNavigator = (props) => {
                   solid
                 />
               )
-
             case 'Diary':
               return (
                 <FontIcon
