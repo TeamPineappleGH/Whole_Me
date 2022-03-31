@@ -3,6 +3,9 @@ import { Text, View, ScrollView, SafeAreaView } from 'react-native'
 import styles from './styles'
 import mindfulnessData from './mindfulnessData'
 import {CustomMindfulnessSlider} from './sliders'
+import { CustomEmotionalSlider } from './sliders'
+import { CustomInterpersonalSlider } from './sliders'
+import { CustomDistressSlider } from './sliders'
 
 export default function MentalHealth () {
     const [loading, isLoading] = useState(true)
@@ -20,7 +23,7 @@ export default function MentalHealth () {
             <SafeAreaView removeClippedSubviews={false} style={styles.carouselContainer}>
             <ScrollView style={{flex: 1}}>
 
-                <Text style={styles.header}>All About Your Cycle</Text>
+                <Text style={styles.header}>Heal Your Mind</Text>
                 <CustomMindfulnessSlider data={mindfulnessData}/>
 
             </ScrollView>
