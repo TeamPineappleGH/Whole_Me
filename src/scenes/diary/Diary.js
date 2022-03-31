@@ -3,35 +3,27 @@ import {
   Text,
   View,
   ScrollView,
-  StatusBar,
-  useColorScheme,
-  StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity,
   Alert,
-  Platform,
   TextInput,
   KeyboardAvoidingView,
 } from 'react-native'
 import styles from './styles'
-import { firebase } from '../../firebase/config'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import Triangle from 'react-native-triangle'
 import { colors } from 'theme'
 import dateFormat from 'dateformat'
 import { Icon } from 'react-native-elements'
-import Constants from 'expo-constants'
-import { Button } from 'react-native-elements'
-import { connect } from 'react-redux'
 import { auth, db } from '../../firebase/config.js'
-// import firestore from '@react-native-firebase/firestore';
+import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const decodedMoodPhrase = [
-  'Depressed',
-  'Dissatisfied',
-  'Average',
-  'Satisfied',
-  'Delighted',
+  'Sad',
+  'Angry',
+  'Meh',
+  'OK',
+  'Happy',
   '-',
 ]
 
@@ -49,21 +41,23 @@ export default function Diary(props) {
 
   const userId = auth.currentUser.uid
 
-  // const scheme = useColorScheme()
-
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
   const [pickedDate, setPickedDate] = useState(Date())
   const [mood, setMood] = useState(5)
-  // const [mode, setMode] = useState("date");
   const [writtenDiary, setWrittenDiary] = useState('')
-  const [allowPopulating, setAllowPopulate] = useState(false)
 
   const sendAlert = () => {
     Alert.alert(
       "Existing entry has been updated!",
       "",
-      [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      [{ text: "OK" }]
     )
+  }
+
+  const clearState = () => {
+    setPickedDate(pickedDate)
+    setMood(5)
+    setWrittenDiary('')
   }
 
   let diaryEntries
@@ -74,6 +68,32 @@ export default function Diary(props) {
     .then((documentSnapShot) => {
       diaryEntries = documentSnapShot.get('entries')
     })
+
+ const doesExist= async(date) => {
+    let entries;
+
+    await db.collection('users')
+    .doc(userId)
+    .get()
+    .then((documentSnapShot) => {
+      entries = documentSnapShot.get('entries')
+    })
+
+    for (let element of entries) {
+      if(element.date === date) {
+        console.log('this is exists!');
+        setMood(element.mood);
+        setWrittenDiary(element.writtenDiary);
+        return;
+      }
+    }
+    clearState();
+  }
+
+  useEffect(async () => {
+    await doesExist(dateFormat(pickedDate, 'isoDate'));
+  }, [pickedDate])
+
 
   const addEntry = (newEntry) => {
     let targetIndex = -1;
@@ -91,7 +111,6 @@ export default function Diary(props) {
       db.collection('users')
         .doc(userId)
         .update({ entries: diaryEntries })
-        // .then(() => console.log('existing diary updated!'))
         .then(sendAlert())
 
         targetIndex = -1;
@@ -133,7 +152,6 @@ export default function Diary(props) {
     }
     addEntry(entryObj)
     props.navigation.goBack()
-    console.log('this is entry object----->', entryObj)
   }
 
   return (
@@ -175,6 +193,7 @@ export default function Diary(props) {
             <View
               style={{
                 display: 'flex',
+                padding: 20,
                 flexDirection: 'row',
                 justifyContent: 'center',
               }}
@@ -188,8 +207,8 @@ export default function Diary(props) {
                 />
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback onPress={() => setMood(1)}>
-                <Icon
-                  name="sentiment-dissatisfied"
+                <FontIcon
+                  name="emoticon-angry-outline"
                   color={mood === 1 ? decodedMoodColours[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
@@ -212,8 +231,8 @@ export default function Diary(props) {
                 />
               </TouchableWithoutFeedback>
               <TouchableWithoutFeedback onPress={() => setMood(4)}>
-                <Icon
-                  name="sentiment-very-satisfied"
+                <FontIcon
+                  name="emoticon-excited-outline"
                   color={mood === 4 ? decodedMoodColours[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
@@ -225,20 +244,24 @@ export default function Diary(props) {
             </Text>
           </View>
 
+          <View style = {{flex: 1, marginTop: 50, marginBottom:50, marginRight: 25, marginLeft: 25}}>
+
           <TextInput
             multiline
             editable
             onChangeText={(text) => handleTextChange(text)}
             value={writtenDiary}
             style={styles.input}
-            placeholder="Write your journal here"
+            placeholder="Write entry here"
             numberOfLines={4}
             maxLength={400}
           />
+        </View>
 
           <TouchableOpacity style={styles.customButton} onPress={storeEntry}>
             <Text style={{ color: 'white', fontSize: 15 }}>Save</Text>
           </TouchableOpacity>
+    
 
           <View style={styles.linebreak} />
 
@@ -247,6 +270,8 @@ export default function Diary(props) {
               See All Entries
             </Text>
           </TouchableOpacity>
+
+         
         </ScrollView>
       </View>
     </KeyboardAvoidingView>
