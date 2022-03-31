@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Alert,
   Platform,
   TextInput,
   KeyboardAvoidingView,
@@ -57,12 +58,12 @@ export default function Diary(props) {
   const [writtenDiary, setWrittenDiary] = useState('')
   const [allowPopulating, setAllowPopulate] = useState(false)
 
-  const clearState = () => {
-    setPickedDate(Date())
-    setMood(5)
-    setMode('date')
-    setWrittenDiary('')
-    setAllowPopulate(false)
+  const sendAlert = () => {
+    Alert.alert(
+      "Existing entry has been updated!",
+      "",
+      [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+    )
   }
 
   let diaryEntries
@@ -75,7 +76,7 @@ export default function Diary(props) {
     })
 
   const addEntry = (newEntry) => {
-    let targetIndex
+    let targetIndex = -1;
 
     for (let i = 0; i < diaryEntries.length; i++) {
       let currentEntry = diaryEntries[i]
@@ -90,7 +91,10 @@ export default function Diary(props) {
       db.collection('users')
         .doc(userId)
         .update({ entries: diaryEntries })
-        .then(() => console.log('existing diary updated!'))
+        // .then(() => console.log('existing diary updated!'))
+        .then(sendAlert())
+
+        targetIndex = -1;
     } else {
       db.collection('users')
         .doc(userId)
