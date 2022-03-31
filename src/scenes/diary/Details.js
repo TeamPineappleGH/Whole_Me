@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import {
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native'
 import { Icon } from 'react-native-elements'
-import Constants from 'expo-constants'
-import { Button } from 'react-native-elements'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
+import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const decodedMoodEmoticons = [
   'sentiment-very-dissatisfied',
-  'sentiment-dissatisfied',
+  'emoticon-angry-outline',
   'sentiment-neutral',
   'sentiment-satisfied',
   'sentiment-very-satisfied',
   'circle-outline',
 ]
+
 const decodedMoodPhrase = [
-  'Depressed',
-  'Dissatisfied',
-  'Mediocre',
-  'Satisfied',
-  'Delighted',
+  'Sad',
+  'Angry',
+  'Meh',
+  'OK',
+  'Happy',
   '-',
 ]
 const decodedMoodColours = [
@@ -47,12 +52,7 @@ export default function DetailsScreen(props) {
     await diaryEntries()
   }, [])
 
-//   const targetEntry = {
-
-//   }
-// console.log('this is props in details!!', props.route.params);
-
-const targetEntry = props.route.params;
+  const targetEntry = props.route.params
 
   const deleteEntry = (targetEntry) => {
     db.collection('users')
@@ -62,9 +62,7 @@ const targetEntry = props.route.params;
           (entry) => entry.writtenDiary !== targetEntry.writtenDiary,
         ),
       })
-      // .update({ entries: db.FieldValue.arrayRemove(currentEntry) })
       .then(() => console.log('diary entry deleted!'))
-    // return
   }
 
   const entryObj = allEntries.filter(
@@ -73,81 +71,63 @@ const targetEntry = props.route.params;
   if (entryObj) {
     return (
       <View style={styles.container}>
-      {/* <ScrollView style={styles.flexLeftInner1}> */}
-       <ScrollView style={{
-              backgroundColor: 'white',
-              borderRadius: 15,
-              width: '90%',
-              margin:15,
-              // padding: 30,
-              flex: 1,
-            }} >
-        {/* <View
+        <ScrollView
           style={{
-            alignItems: 'flex-start',
-            paddingLeft: 10,
-            paddingTop: 10,
-          }}
-        > */}
-          {/* <Button
-            onPress={() => props.navigation.goBack()}
-            color="#fff"
-            icon={<Icon name="arrow-left" size={32} type="feather" />}
-            style={{ position: 'absolute', left: 0, flex: 1 }}
-            iconLeft
-            type="clear"
-          /> */}
-        {/* </View> */}
-        <View
-          style={{
+            backgroundColor: 'white',
+            borderRadius: 15,
+            width: '90%',
+            margin: 15,
             flex: 1,
-            alignItems: 'center',
-            marginTop: 50
           }}
         >
-          <Icon
-            name={decodedMoodEmoticons[entryObj.mood]}
-            color={decodedMoodColours[entryObj.mood]}
-            size={120}
-            type={entryObj.mood < 5 ? 'ionicons' : 'material-community'}
-          />
-          <View style={{ paddingHorizontal: 15 }}>
-            <Text
-              style={[styles.h1, { color: decodedMoodColours[entryObj.mood] }]}
+          <View
+            style={{
+              flex: 1,
+              alignItems: 'center',
+              marginTop: 50,
+            }}
+          >
+          {entryObj.mood == 1 ? 
+            <FontIcon
+                  name="emoticon-angry-outline"
+                  color={decodedMoodColours[entryObj.mood]}
+                  size={120}
+                /> : <Icon
+              name={decodedMoodEmoticons[entryObj.mood]}
+              color={decodedMoodColours[entryObj.mood]}
+              size={120}
+              type={entryObj.mood < 5? 'ionicons' : 'material-community'}
+            />
+          }
+            
+            <View style={{ paddingHorizontal: 15 }}>
+              <Text
+                style={[
+                  styles.h1,
+                  { color: decodedMoodColours[entryObj.mood] },
+                ]}
+              >
+                {decodedMoodPhrase[entryObj.mood]}
+              </Text>
+              <Text style={[styles.text, { fontWeight: '700' }]}>
+                {entryObj.date}
+              </Text>
+
+              <Text style={[styles.text, { fontWeight: '700' }]}>
+                {targetEntry.writtenDiary}
+              </Text>
+            </View>
+
+            <TouchableOpacity
+              style={styles.customButton}
+              onPress={() => {
+                deleteEntry(targetEntry)
+                props.navigation.goBack()
+              }}
             >
-              {decodedMoodPhrase[entryObj.mood]}
-            </Text>
-            <Text style={[styles.text, { fontWeight: '700' }]}>
-              {entryObj.date}
-            </Text>
-
-            <Text style={[styles.text, { fontWeight: '700' }]}>{targetEntry.writtenDiary}</Text>
+              <Text style={{ color: 'white', fontSize: 15 }}>Delete</Text>
+            </TouchableOpacity>
           </View>
-        
-          {/* <Button
-            title="Delete"
-            type="clear"
-            onPress={() => {
-             deleteEntry(targetEntry);
-              props.navigation.goBack()
-            }}
-            buttonStyle={{ paddingTop: 10 }}
-          ></Button> */}
-
-<TouchableOpacity
-      style={styles.customButton}
-      onPress={() => {
-             deleteEntry(targetEntry);
-              props.navigation.goBack()
-            }}
-    >
-      <Text style={{ color: 'white', fontSize: 15 }}>
-        Delete
-      </Text>
-    </TouchableOpacity>
-
-
-        </View>
         </ScrollView>
       </View>
     )

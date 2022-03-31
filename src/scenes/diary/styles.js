@@ -66,8 +66,8 @@ export default StyleSheet.create({
   },
   emoji: {},
   input: {
-    marginHorizontal: 30,
-    marginVertical: 40,
+    // marginHorizontal: 30,
+    // marginVertical: 40,
     textAlign: 'justify',
     // fontFamily: "sans-serif-light",
     fontSize: 16,

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import Entry from '../components/Entry'
-import { Icon, Button } from 'react-native-elements'
 import FlashMessage from 'react-native-flash-message'
 import { auth, db } from '../../firebase/config.js'
 import styles from './styles'
-import Diary from './Diary'
 import FontIcon from 'react-native-vector-icons/FontAwesome5'
 import { colors } from 'theme'
 
