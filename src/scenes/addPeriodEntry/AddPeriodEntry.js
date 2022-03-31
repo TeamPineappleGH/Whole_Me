@@ -73,17 +73,7 @@ export default function AddPeriodEntry(props) {
 
         <TouchableOpacity
           onPress={periodUpdate}
-          style={{
-            display: 'flex',
-            marginTop: 20,
-            marginLeft: 20,
-            marginRight: 20,
-            width: '80%',
-            alignItems: 'center',
-            backgroundColor: '#1c9ab7',
-            borderRadius: 10,
-            padding: 10,
-          }}
+          style={styles.button}
         >
           <Text style={{color: 'white', fontSize: 15}}>Submit</Text>
         </TouchableOpacity>
