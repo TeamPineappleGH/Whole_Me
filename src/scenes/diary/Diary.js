@@ -65,34 +65,38 @@ export default function Diary(props) {
     setAllowPopulate(false)
   }
 
-  let diaryEntries;
+  let diaryEntries
 
   db.collection('users')
     .doc(userId)
     .get()
     .then((documentSnapShot) => {
       diaryEntries = documentSnapShot.get('entries')
-
     })
 
   const addEntry = (newEntry) => {
+    let targetIndex
+
     for (let i = 0; i < diaryEntries.length; i++) {
       let currentEntry = diaryEntries[i]
       if (currentEntry.date === newEntry.date) {
-        db.collection('users')
-          .doc(userId)
-          .update({ entries: [...diaryEntries, (currentEntry = newEntry)] })
-          // .update({ entries: db.FieldValue.arrayRemove(currentEntry) })
-          .then(() => console.log('existing diary updated!'))
-        // return
+        targetIndex = i;
+        console.log('this is target index!', targetIndex);
       }
     }
-    db.collection('users')
-      .doc(userId)
-      //
-      // .update({ entries: db.FieldValue.arrayUnion(newEntry) })
-      .update({ entries: [...diaryEntries, newEntry] })
-      .then(() => console.log('new entry added!'))
+    if (targetIndex > -1) {
+      diaryEntries[targetIndex] = newEntry
+
+      db.collection('users')
+        .doc(userId)
+        .update({ entries: diaryEntries })
+        .then(() => console.log('existing diary updated!'))
+    } else {
+      db.collection('users')
+        .doc(userId)
+        .update({ entries: [...diaryEntries, newEntry] })
+        .then(() => console.log('new entry added!'))
+    }
   }
 
   const showDatePicker = () => {
@@ -132,7 +136,6 @@ export default function Diary(props) {
     <KeyboardAvoidingView style={styles.container} behavior="position">
       <View style={styles.container}>
         <ScrollView style={styles.flexLeftInner1}>
-        
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="date"
@@ -164,7 +167,6 @@ export default function Diary(props) {
             style={{
               alignItems: 'center',
             }}
-
           >
             <View
               style={{
