@@ -207,16 +207,7 @@ function CalendarView(props) {
         title="Add Period Entry"
         onPress={onAddEntryPress}
         color="#1c9ab7"
-        style={{
-          display: 'flex',
-          marginTop: 35,
-          marginLeft: 20,
-          marginRight: 20,
-          alignItems: 'center',
-          backgroundColor: '#1c9ab7',
-          borderRadius: 10,
-          padding: 10,
-        }}
+        style={styles.button}
       >
         <Text style={{color: 'white', fontSize: 15}}>
           <FontIcon2 

@@ -88,7 +88,7 @@ export default function Registration({navigation}) {
         />
         <TextInput
           style={scheme === 'dark' ? styles.darkinput : styles.input}
-          placeholder='Your Name'
+          placeholder='First Name'
           placeholderTextColor="#aaaaaa"
           onChangeText={(text) => setFullName(text)}
           value={fullName}

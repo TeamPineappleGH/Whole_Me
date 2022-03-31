@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, ScrollView, SafeAreaView } from 'react-native'
+import { Text, ScrollView, SafeAreaView } from 'react-native'
 import styles from './styles'
 import data from './data'
 import skinData from './skinData'
