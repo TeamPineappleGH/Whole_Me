@@ -11,7 +11,8 @@ import {
   Keyboard,
   Button,
   Alert,
-  Dimensions
+  Dimensions,
+  ActivityIndicator,
 } from 'react-native'
 import { connect } from 'react-redux'
 import styles from './styles'
@@ -20,103 +21,101 @@ import * as WebBrowser from 'expo-web-browser'
 import YoutubePlayer from 'react-native-youtube-iframe'
 import colors from '../../theme/colors'
 
-
 const postitiveVideoKeys = [
   {
     id: 'jeGT1VXwfx4',
-    title: 'meditation for postitive energy'
+    title: 'meditation for postitive energy',
   },
   {
     id: '86m4RC_ADEY',
-    title: 'meditation for postitive energy'
+    title: 'meditation for postitive energy',
   },
   {
     id: 'M6dCovaOono',
-    title: 'meditation for postitive energy'
+    title: 'meditation for postitive energy',
   },
   {
     id: 'a1JOT30bP5g',
-    title: 'meditation for postitive energy'
+    title: 'meditation for postitive energy',
   },
   {
     id: '-Tb1lR8Z5oM',
-    title: 'meditation for postitive energy'
-  }
+    title: 'meditation for postitive energy',
+  },
 ]
 
 const depressionVideoKeys = [
   {
     id: 'xRxT9cOKiM8',
-    title: 'meditation for depression'
+    title: 'meditation for depression',
   },
   {
     id: 'xShv7mMmfW4',
-    title: 'meditation for depression'
+    title: 'meditation for depression',
   },
   {
     id: 'O3Ku-cpdSJM',
-    title: 'meditation for depression'
+    title: 'meditation for depression',
   },
   {
     id: 'VDLfVwMSbJ8',
-    title: 'meditation for depression'
+    title: 'meditation for depression',
   },
   {
     id: 'd3xTelxky9A',
-    title: 'meditation for depression'
-  }
+    title: 'meditation for depression',
+  },
 ]
 
 const stressVideoKeys = [
   {
     id: 'MIr3RsUWrdo',
-    title: 'meditation for stress'
+    title: 'meditation for stress',
   },
   {
     id: 'z6X5oEIg6Ak',
-    title: 'meditation for stress'
+    title: 'meditation for stress',
   },
   {
     id: '9yj8mBfHlMk',
-    title: 'meditation for stress'
+    title: 'meditation for stress',
   },
   {
     id: 'zYzFUBMJO9E',
-    title: 'meditation for stress'
+    title: 'meditation for stress',
   },
   {
     id: 'sG7DBA-mgFY',
-    title: 'meditation for stress'
-  }
+    title: 'meditation for stress',
+  },
 ]
 
 const sleepVideoKeys = [
   {
     id: 'U6Ay9v7gK9w',
-    title: 'meditation for sleep'
+    title: 'meditation for sleep',
   },
   {
     id: '2f5mRTjkHJ4',
-    title: 'meditation for sleep'
+    title: 'meditation for sleep',
   },
   {
     id: '69o0P7s8GHE',
-    title: 'meditation for sleep'
+    title: 'meditation for sleep',
   },
   {
     id: 'acLUWBuAvms',
-    title: 'meditation for sleep'
+    title: 'meditation for sleep',
   },
   {
     id: 'lC_kFBsRMw0',
-    title: 'meditation for sleep'
-  }
+    title: 'meditation for sleep',
+  },
 ]
 
 function randomize(array) {
   return Math.floor(Math.random() * array.length)
 }
-
 
 export default class AllMeditations extends React.Component {
   constructor() {
@@ -126,12 +125,18 @@ export default class AllMeditations extends React.Component {
       posUrl: 'a1JOT30bP5g',
       depressUrl: 'xRxT9cOKiM8',
       stressUrl: 'zYzFUBMJO9E',
-      sleepUrl: 'lC_kFBsRMw0'
+      sleepUrl: 'lC_kFBsRMw0',
+      displaySpinner: true
     }
     this.handlePress = this.handlePress.bind(this)
+    this.toggleSpinner = this.toggleSpinner.bind(this)
   }
   handlePress(item) {
     WebBrowser.openBrowserAsync(item)
+  }
+
+  toggleSpinner() {
+    this.setState({displaySpinner: false})
   }
 
   render() {
@@ -140,21 +145,27 @@ export default class AllMeditations extends React.Component {
         <View style={{ width: '100%' }}>
           <Text style={styles.header}>Discover Meditations</Text>
           <View>
-            <Text style={{
-              marginTop: 20,
-              textAlign: 'center',
-              fontSize: 20,
-              fontStyle: 'bold'
-            }}>
+            <Text
+              style={{
+                marginTop: 20,
+                textAlign: 'center',
+                fontSize: 20,
+                fontStyle: 'bold',
+              }}
+            >
               Positive Energy
             </Text>
           </View>
           <View style={styles.video}>
+            <View style={this.state.displaySpinner ? null : {display: 'none'}}>
+              <ActivityIndicator size="large" color={colors.lightBlue} />
+            </View>
             <YoutubePlayer
               height={300}
               width={Dimensions.get('window').width}
               play={this.state.playing}
               videoId={this.state.posUrl}
+              onReady={this.toggleSpinner}
             />
           </View>
           <View>
@@ -167,10 +178,12 @@ export default class AllMeditations extends React.Component {
                 backgroundColor: colors.orange,
                 borderRadius: 10,
                 padding: 15,
-                marginTop: -50
+                marginTop: -50,
               }}
               onPress={() => {
-                this.setState({ posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id })
+                this.setState({
+                  posUrl: postitiveVideoKeys[randomize(postitiveVideoKeys)].id,
+                })
               }}
             >
               <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
@@ -178,12 +191,14 @@ export default class AllMeditations extends React.Component {
           </View>
 
           <View>
-            <Text style={{
-              marginTop: 20,
-              textAlign: 'center',
-              fontSize: 20,
-              fontStyle: 'bold'
-            }}>
+            <Text
+              style={{
+                marginTop: 20,
+                textAlign: 'center',
+                fontSize: 20,
+                fontStyle: 'bold',
+              }}
+            >
               Depression
             </Text>
           </View>
@@ -205,10 +220,13 @@ export default class AllMeditations extends React.Component {
                 backgroundColor: colors.darkBlue,
                 borderRadius: 10,
                 padding: 15,
-                marginTop: -50
+                marginTop: -50,
               }}
               onPress={() => {
-                this.setState({ depressUrl: depressionVideoKeys[randomize(depressionVideoKeys)].id })
+                this.setState({
+                  depressUrl:
+                    depressionVideoKeys[randomize(depressionVideoKeys)].id,
+                })
               }}
             >
               <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
@@ -216,12 +234,14 @@ export default class AllMeditations extends React.Component {
           </View>
 
           <View>
-            <Text style={{
-              marginTop: 20,
-              textAlign: 'center',
-              fontSize: 20,
-              fontStyle: 'bold'
-            }}>
+            <Text
+              style={{
+                marginTop: 20,
+                textAlign: 'center',
+                fontSize: 20,
+                fontStyle: 'bold',
+              }}
+            >
               Stress
             </Text>
           </View>
@@ -243,10 +263,12 @@ export default class AllMeditations extends React.Component {
                 backgroundColor: colors.orange,
                 borderRadius: 10,
                 padding: 15,
-                marginTop: -50
+                marginTop: -50,
               }}
               onPress={() => {
-                this.setState({ stressUrl: stressVideoKeys[randomize(stressVideoKeys)].id })
+                this.setState({
+                  stressUrl: stressVideoKeys[randomize(stressVideoKeys)].id,
+                })
               }}
             >
               <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
@@ -254,12 +276,14 @@ export default class AllMeditations extends React.Component {
           </View>
 
           <View>
-            <Text style={{
-              marginTop: 20,
-              textAlign: 'center',
-              fontSize: 20,
-              fontStyle: 'bold'
-            }}>
+            <Text
+              style={{
+                marginTop: 20,
+                textAlign: 'center',
+                fontSize: 20,
+                fontStyle: 'bold',
+              }}
+            >
               Sleep
             </Text>
           </View>
@@ -281,10 +305,12 @@ export default class AllMeditations extends React.Component {
                 backgroundColor: colors.darkBlue,
                 borderRadius: 10,
                 padding: 15,
-                marginTop: -50
+                marginTop: -50,
               }}
               onPress={() => {
-                this.setState({ sleepUrl: sleepVideoKeys[randomize(sleepVideoKeys)].id })
+                this.setState({
+                  sleepUrl: sleepVideoKeys[randomize(sleepVideoKeys)].id,
+                })
               }}
             >
               <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
@@ -295,7 +321,3 @@ export default class AllMeditations extends React.Component {
     )
   }
 }
-
-
-
-

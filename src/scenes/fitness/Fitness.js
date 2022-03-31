@@ -104,22 +104,31 @@ class AllExercises extends React.Component {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
               >
-                <DropDownPicker
-                  open={open}
-                  value={value}
-                  items={items}
-                  setOpen={this.setOpen}
-                  setValue={this.setValue}
-                  setItems={this.setItems}
-                />
+                <View
+                  style={{
+                    width: '90%',
+                    alignSelf: 'center',
+                    zIndex: 2,
+                    elevation: 2,
+                  }}
+                >
+                  <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={this.setOpen}
+                    setValue={this.setValue}
+                    setItems={this.setItems}
+                  />
+                </View>
                 <View>
                   <TouchableOpacity
                     style={{
                       display: 'flex',
                       marginTop: 20,
-                      marginLeft: 20,
-                      marginRight: 20,
-                      marginBottom: 40,
+                      marginLeft: 50,
+                      marginRight: 50,
+                      marginBottom: 10,
                       alignItems: 'center',
                       backgroundColor: '#1c9ab7',
                       borderRadius: 10,
@@ -132,6 +141,16 @@ class AllExercises extends React.Component {
                   >
                     <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
                   </TouchableOpacity>
+                  <Text
+                    style={{
+                      marginTop: 10,
+                      marginBottom: 15,
+                      textAlign: 'center',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    Please be patient while your results load.
+                  </Text>
                 </View>
 
                 {this.props.allExercises ? (
@@ -291,7 +310,8 @@ class AllExercises extends React.Component {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
               >
-                <DropDownPicker style={styles.picker}
+                <DropDownPicker
+                  style={styles.picker}
                   open={open}
                   value={value}
                   items={items}

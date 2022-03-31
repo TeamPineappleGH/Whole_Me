@@ -73,8 +73,8 @@ class AllRecipes extends React.Component {
                 style={{
                   display: 'flex',
                   marginTop: 7,
-                  marginLeft: 20,
-                  marginRight: 20,
+                  marginLeft: 50,
+                  marginRight: 50,
                   marginBottom: 40,
                   alignItems: 'center',
                   backgroundColor: '#1c9ab7',
@@ -117,11 +117,7 @@ class AllRecipes extends React.Component {
               </ScrollView>
               </SafeAreaView>
             ) : (
-              <View>
-                <Text style={styles.instructions}>
-                 
-                </Text>
-              </View>
+              null
             )} 
           </View>
         </View>
@@ -164,8 +160,8 @@ class AllRecipes extends React.Component {
                 style={{
                   display: 'flex',
                   marginTop: 7,
-                  marginLeft: 20,
-                  marginRight: 20,
+                  marginLeft: 50,
+                  marginRight: 50,
                   marginBottom: 40,
                   alignItems: 'center',
                   backgroundColor: '#1c9ab7',
@@ -256,8 +252,8 @@ class AllRecipes extends React.Component {
                 style={{
                   display: 'flex',
                   marginTop: 7,
-                  marginLeft: 20,
-                  marginRight: 20,
+                  marginLeft: 50,
+                  marginRight: 50,
                   marginBottom: 40,
                   alignItems: 'center',
                   backgroundColor: '#1c9ab7',
@@ -348,8 +344,8 @@ class AllRecipes extends React.Component {
                   style={{
                     display: 'flex',
                     marginTop: 7,
-                    marginLeft: 20,
-                    marginRight: 20,
+                    marginLeft: 50,
+                    marginRight: 50,
                     marginBottom: 40,
                     alignItems: 'center',
                     backgroundColor: '#1c9ab7',
@@ -392,11 +388,7 @@ class AllRecipes extends React.Component {
                 </ScrollView>
                 </SafeAreaView>
               ) : (
-                <View>
-                  <Text style={styles.instructions}>
-                   
-                  </Text>
-                </View>
+                null
               )} 
             </View>
           </View>
