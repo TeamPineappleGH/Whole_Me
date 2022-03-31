@@ -72,7 +72,7 @@ export default function Diary(props) {
     .get()
     .then((documentSnapShot) => {
       diaryEntries = documentSnapShot.get('entries')
-      // console.log('this is diaryEntries', diaryEntries);
+
     })
 
   const addEntry = (newEntry) => {
@@ -81,7 +81,7 @@ export default function Diary(props) {
       if (currentEntry.date === newEntry.date) {
         db.collection('users')
           .doc(userId)
-          .update({ entries: [...diaryEntries, (element = newEntry)] })
+          .update({ entries: [...diaryEntries, (currentEntry = newEntry)] })
           // .update({ entries: db.FieldValue.arrayRemove(currentEntry) })
           .then(() => console.log('existing diary updated!'))
         // return
@@ -130,12 +130,9 @@ export default function Diary(props) {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="position">
-      {/* <View style={{ flex: 1, width: '100%', marginVertical: 30 }}> */}
       <View style={styles.container}>
         <ScrollView style={styles.flexLeftInner1}>
-          {/* <Text style={scheme === 'dark' ? styles.darkfield : styles.field}>
-            This is the diary page!
-          </Text> */}
+        
           <DateTimePickerModal
             isVisible={isDatePickerVisible}
             mode="date"
