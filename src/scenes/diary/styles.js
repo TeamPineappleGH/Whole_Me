@@ -2,11 +2,6 @@ import { StyleSheet } from 'react-native'
 import { colors } from 'theme'
 
 export default StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
   container: {
     flex: 1,
     display: 'flex',
@@ -16,12 +11,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
-    // height: '90%',
     marginLeft: '5%',
     marginRight: '5%',
     marginTop: '5%',
     height: '1300%',
-    // marginBottom: 30,
     backgroundColor: colors.orange,
   },
   flatList: {
@@ -33,13 +26,12 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 12
+    alignItems: 'center',
+    marginTop: 12,
   },
   flexLeftInner1: {
     backgroundColor: 'white',
     borderRadius: 15,
-    // width: '90%',
-    // margin: 15,
     padding: 30,
     flex: 1,
   },
@@ -59,18 +51,23 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   h1: {
-    fontSize: 30,
+    fontSize: 25,
     padding: 20,
     paddingBottom: 10,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   emoji: {},
   input: {
-    // marginHorizontal: 30,
-    // marginVertical: 40,
-    textAlign: 'justify',
-    // fontFamily: "sans-serif-light",
     fontSize: 16,
+  },
+  textBox: {
+    marginTop: 10,
+    marginBottom: 10,
+    height: 300,
+    borderRadius: 15,
+    borderWidth: 10,
+    borderColor: '#F5F5F5',
+    backgroundColor: '#F5F5F5',
   },
   darktitle: {
     fontSize: 24,
@@ -123,6 +120,5 @@ export default StyleSheet.create({
     marginVertical: 30,
     alignSelf: 'center',
     width: '85%',
-    // flex:1
   },
 })

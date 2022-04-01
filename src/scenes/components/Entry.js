@@ -10,7 +10,7 @@ const decodedMoods = [
   'emoticon-angry-outline',
   'sentiment-neutral',
   'sentiment-satisfied',
-  'sentiment-very-satisfied',
+  'emoticon-excited-outline',
   'circle-outline',
 ]
 
@@ -36,9 +36,16 @@ const Entry = (props) => {
         })
       }
     >
-      {props.mood == 1 ? (
+      {props.mood === 1 ? (
         <FontIcon
           name="emoticon-angry-outline"
+          color={decodedMoodColours[props.mood]}
+          size={50}
+          style={{ paddingLeft: 15 }}
+        />
+      ) : props.mood === 4 ?(
+        <FontIcon
+          name= 'emoticon-excited-outline'
           color={decodedMoodColours[props.mood]}
           size={50}
           style={{ paddingLeft: 15 }}
@@ -58,7 +65,7 @@ const Entry = (props) => {
           {props.date}
         </Text>
         <Text style={[{ fontSize: 14 }, styles.text]}>
-          {props.writtenDiary.split(' ').splice(0, 2).join(', ') + '..'}
+        {props.writtenDiary.split('').splice(0, 20).join('') + '...'}
         </Text>
       </View>
     </TouchableOpacity>
