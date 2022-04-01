@@ -2,11 +2,6 @@ import { StyleSheet } from 'react-native'
 import { colors } from 'theme'
 
 export default StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
   container: {
     flex: 1,
     display: 'flex',
@@ -16,12 +11,10 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
-    // height: '90%',
     marginLeft: '5%',
     marginRight: '5%',
     marginTop: '5%',
     height: '1300%',
-    // marginBottom: 30,
     backgroundColor: colors.orange,
   },
   flatList: {
@@ -39,9 +32,6 @@ export default StyleSheet.create({
   flexLeftInner1: {
     backgroundColor: 'white',
     borderRadius: 15,
-
-    // width: '90%',
-    // margin: 15,
     padding: 30,
     flex: 1,
   },
@@ -64,17 +54,11 @@ export default StyleSheet.create({
     fontSize: 25,
     padding: 20,
     paddingBottom: 10,
-    textAlign: 'center',
-    // marginBottom: 10
+    textAlign: 'center'
   },
   emoji: {},
   input: {
-    // marginHorizontal: 30,
-    // marginVertical: 40,
-    // textAlign: 'justify',
-    // fontFamily: "sans-serif-light",
     fontSize: 16,
-    // backgroundColor:
   },
   textBox: {
     marginTop: 10,
@@ -136,6 +120,5 @@ export default StyleSheet.create({
     marginVertical: 30,
     alignSelf: 'center',
     width: '85%',
-    // flex:1
   },
 })

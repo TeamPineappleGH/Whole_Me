@@ -15,7 +15,7 @@ const decodedMoodEmoticons = [
   'emoticon-angry-outline',
   'sentiment-neutral',
   'sentiment-satisfied',
-  'sentiment-very-satisfied',
+  'emoticon-excited-outline',
   'circle-outline',
 ]
 
@@ -87,12 +87,17 @@ export default function DetailsScreen(props) {
               marginTop: 50,
             }}
           >
-          {entryObj.mood == 1 ? 
+          {entryObj.mood === 1 ? 
             <FontIcon
-                  name="emoticon-angry-outline"
+                  name={decodedMoodEmoticons[entryObj.mood]}
                   color={decodedMoodColours[entryObj.mood]}
                   size={120}
-                /> : <Icon
+                /> : entryObj.mood === 4 ? <FontIcon
+                  name= {decodedMoodEmoticons[entryObj.mood]}
+                  color={decodedMoodColours[entryObj.mood]}
+                  size={120}
+                />  :
+                 <Icon
               name={decodedMoodEmoticons[entryObj.mood]}
               color={decodedMoodColours[entryObj.mood]}
               size={120}
