@@ -36,7 +36,7 @@ export const fetchRecipes = (ingredient, history) => {
       res.data.feed.forEach((element) => {
         const title = element.content.details.attribution.text;
         resultArr.push({
-          label: title.slice(0, title.length - 31),
+          label: title.slice(0, title.length - 38),
           imageUrl: element.content.details.images[0].resizableImageUrl,
           website: element.content.details.attribution.url,
         });
