@@ -58,7 +58,7 @@ const Entry = (props) => {
           {props.date}
         </Text>
         <Text style={[{ fontSize: 14 }, styles.text]}>
-          {props.writtenDiary.split(' ').splice(0, 2).join(', ') + '..'}
+        {props.writtenDiary.split('').splice(0, 20).join('') + '...'}
         </Text>
       </View>
     </TouchableOpacity>
