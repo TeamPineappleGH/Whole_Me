@@ -33,11 +33,13 @@ export default StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 12
+    alignItems: 'center',
+    marginTop: 12,
   },
   flexLeftInner1: {
     backgroundColor: 'white',
     borderRadius: 15,
+
     // width: '90%',
     // margin: 15,
     padding: 30,
@@ -68,9 +70,19 @@ export default StyleSheet.create({
   input: {
     // marginHorizontal: 30,
     // marginVertical: 40,
-    textAlign: 'justify',
+    // textAlign: 'justify',
     // fontFamily: "sans-serif-light",
     fontSize: 16,
+    // backgroundColor:
+  },
+  textBox: {
+    marginTop: 10,
+    marginBottom: 10,
+    height: 300,
+    borderRadius: 15,
+    borderWidth: 10,
+    borderColor: '#F5F5F5',
+    backgroundColor: '#F5F5F5',
   },
   darktitle: {
     fontSize: 24,

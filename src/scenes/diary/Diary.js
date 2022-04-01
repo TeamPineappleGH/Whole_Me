@@ -18,6 +18,7 @@ import { Icon } from 'react-native-elements'
 import { auth, db } from '../../firebase/config.js'
 import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
+
 const decodedMoodPhrase = [
   'Sad',
   'Angry',
@@ -183,7 +184,7 @@ export default function Diary(props) {
 
           <View style={styles.linebreak} />
 
-          <Text> Today's Moods: </Text>
+          <Text> Today's Mood: </Text>
 
           <View
             style={{
@@ -196,6 +197,7 @@ export default function Diary(props) {
                 padding: 20,
                 flexDirection: 'row',
                 justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
               <TouchableWithoutFeedback onPress={() => setMood(0)}>
@@ -244,7 +246,8 @@ export default function Diary(props) {
             </Text>
           </View>
 
-          <View style = {{flex: 1, marginTop: 50, marginBottom:50, marginRight: 25, marginLeft: 25}}>
+
+          <View style = {styles.textBox}>
 
           <TextInput
             multiline
@@ -257,6 +260,7 @@ export default function Diary(props) {
             maxLength={400}
           />
         </View>
+        {/* </View> */}
 
           <TouchableOpacity style={styles.customButton} onPress={storeEntry}>
             <Text style={{ color: 'white', fontSize: 15 }}>Save</Text>
