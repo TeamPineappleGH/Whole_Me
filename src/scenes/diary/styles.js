@@ -61,10 +61,11 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   h1: {
-    fontSize: 30,
+    fontSize: 25,
     padding: 20,
     paddingBottom: 10,
     textAlign: 'center',
+    // marginBottom: 10
   },
   emoji: {},
   input: {

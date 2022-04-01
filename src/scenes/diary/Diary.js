@@ -18,15 +18,7 @@ import { Icon } from 'react-native-elements'
 import { auth, db } from '../../firebase/config.js'
 import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-
-const decodedMoodPhrase = [
-  'Sad',
-  'Angry',
-  'Meh',
-  'OK',
-  'Happy',
-  '-',
-]
+const decodedMoodPhrase = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
 
 const decodedMoodColours = [
   '#54539D',
@@ -46,19 +38,17 @@ export default function Diary(props) {
   const [pickedDate, setPickedDate] = useState(Date())
   const [mood, setMood] = useState(5)
   const [writtenDiary, setWrittenDiary] = useState('')
+  const [status, setStatus] = useState('Save')
 
   const sendAlert = () => {
-    Alert.alert(
-      "Existing entry has been updated!",
-      "",
-      [{ text: "OK" }]
-    )
+    Alert.alert('Existing entry has been updated!', '', [{ text: 'OK' }])
   }
 
   const clearState = () => {
     setPickedDate(pickedDate)
     setMood(5)
     setWrittenDiary('')
+    setStatus('Save')
   }
 
   let diaryEntries
@@ -70,40 +60,41 @@ export default function Diary(props) {
       diaryEntries = documentSnapShot.get('entries')
     })
 
- const doesExist= async(date) => {
-    let entries;
+  const doesExist = async (date) => {
+    let entries
 
-    await db.collection('users')
-    .doc(userId)
-    .get()
-    .then((documentSnapShot) => {
-      entries = documentSnapShot.get('entries')
-    })
+    await db
+      .collection('users')
+      .doc(userId)
+      .get()
+      .then((documentSnapShot) => {
+        entries = documentSnapShot.get('entries')
+      })
 
     for (let element of entries) {
-      if(element.date === date) {
-        console.log('this is exists!');
-        setMood(element.mood);
-        setWrittenDiary(element.writtenDiary);
-        return;
+      if (element.date === date) {
+        console.log('this is exists!')
+        setMood(element.mood)
+        setWrittenDiary(element.writtenDiary)
+        setStatus('Update')
+        return
       }
     }
-    clearState();
+    clearState()
   }
 
   useEffect(async () => {
-    await doesExist(dateFormat(pickedDate, 'isoDate'));
+    await doesExist(dateFormat(pickedDate, 'isoDate'))
   }, [pickedDate])
 
-
   const addEntry = (newEntry) => {
-    let targetIndex = -1;
+    let targetIndex = -1
 
     for (let i = 0; i < diaryEntries.length; i++) {
       let currentEntry = diaryEntries[i]
       if (currentEntry.date === newEntry.date) {
-        targetIndex = i;
-        console.log('this is target index!', targetIndex);
+        targetIndex = i
+        console.log('this is target index!', targetIndex)
       }
     }
     if (targetIndex > -1) {
@@ -114,7 +105,7 @@ export default function Diary(props) {
         .update({ entries: diaryEntries })
         .then(sendAlert())
 
-        targetIndex = -1;
+      targetIndex = -1
     } else {
       db.collection('users')
         .doc(userId)
@@ -246,26 +237,27 @@ export default function Diary(props) {
             </Text>
           </View>
 
+          <View style={styles.linebreak} />
 
-          <View style = {styles.textBox}>
+          <Text> Notes: </Text>
 
-          <TextInput
-            multiline
-            editable
-            onChangeText={(text) => handleTextChange(text)}
-            value={writtenDiary}
-            style={styles.input}
-            placeholder="Write entry here"
-            numberOfLines={4}
-            maxLength={400}
-          />
-        </View>
-        {/* </View> */}
+          <View style={styles.textBox}>
+            <TextInput
+              multiline
+              editable
+              onChangeText={(text) => handleTextChange(text)}
+              value={writtenDiary}
+              style={styles.input}
+              placeholder="Write entry here"
+              numberOfLines={4}
+              maxLength={400}
+            />
+          </View>
+          {/* </View> */}
 
           <TouchableOpacity style={styles.customButton} onPress={storeEntry}>
-            <Text style={{ color: 'white', fontSize: 15 }}>Save</Text>
+            <Text style={{ color: 'white', fontSize: 15 }}>{status}</Text>
           </TouchableOpacity>
-    
 
           <View style={styles.linebreak} />
 
@@ -274,8 +266,6 @@ export default function Diary(props) {
               See All Entries
             </Text>
           </TouchableOpacity>
-
-         
         </ScrollView>
       </View>
     </KeyboardAvoidingView>
