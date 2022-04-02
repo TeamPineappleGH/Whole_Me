@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native'
 import { Icon } from 'react-native-elements'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
@@ -40,6 +40,11 @@ export default function DetailsScreen(props) {
     await diaryEntries()
   }, [])
 
+  const sendAlert = () => {
+    Alert.alert('Entry has been deleted!', '', [{ text: 'OK' }])
+  }
+
+
   const targetEntry = props.route.params;
   const targetDate = props.route.params.date;
 
@@ -48,10 +53,10 @@ export default function DetailsScreen(props) {
       .doc(userId)
       .update({
         entries: allEntries.filter(
-          (entry) => entry.writtenDiary !== targetEntry.writtenDiary,
+          (entry) => entry.date !== targetEntry.date,
         ),
       })
-      .then(() => console.log('diary entry deleted!'))
+      .then(sendAlert())
   }
 
   const edit = () => {

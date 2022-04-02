@@ -38,7 +38,6 @@ export default function Diary(props) {
     const isoStr = props.route.params.targetDate
     date = new Date(isoStr)
     date.setDate(date.getDate() + 1)
-    console.log('this is new date', date)
   }
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
@@ -86,7 +85,6 @@ export default function Diary(props) {
 
     for (let element of entries) {
       if (element.date === date) {
-        console.log('this is exists!')
         setMood(element.mood)
         setWrittenDiary(element.writtenDiary)
         setStatus('Update')
