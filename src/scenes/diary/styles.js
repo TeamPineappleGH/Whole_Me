@@ -104,7 +104,8 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#656565',
     fontWeight: '500',
-    marginTop: 15 
+    marginTop: 15,
+    textAlign: 'left'
   },
   journalText: {
     textAlign: 'center',

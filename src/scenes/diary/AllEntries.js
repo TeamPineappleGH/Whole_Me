@@ -26,6 +26,7 @@ export default function AllEntries(props) {
   useEffect(async () => {
     await diaryEntries()
   }, [allEntries])
+
   const pressHandler = () => {
     props.navigation.navigate('Diary')
   }
@@ -39,12 +40,10 @@ export default function AllEntries(props) {
               backgroundColor: 'white',
               borderRadius: 15,
               width: '90%',
-              margin:15,
-              // padding: 30,
+              margin: 15,
               flex: 1,
             }}
           >
-            {/* <Text style={styles.header}>Entries</Text> */}
             <FlatList
               renderItem={renderEntries}
               data={allEntries.sort(
@@ -69,43 +68,38 @@ export default function AllEntries(props) {
     )
   } else {
     return (
-<View style={styles.container}>
-   
-      <View
-            style={{
-              backgroundColor: 'white',
-              borderRadius: 15,
-              width: '90%',
-              margin:15,
-              flex: 1,
-              alignItems: 'center',
-    justifyContent: 'center'
-            }}
-          >
+      <View style={styles.container}>
+        <View
+          style={{
+            backgroundColor: 'white',
+            borderRadius: 15,
+            width: '90%',
+            margin: 15,
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <FontIcon
+            name="book-open"
+            color={colors.gray}
+            size={50}
+            style={{ margin: 10 }}
+            solid
+          />
 
-<FontIcon
-      name="book-open"
-      color={colors.gray}
-      size={50}
-      style= {{margin: 10}}
-      solid
-      
-    />
+          <Text style={styles.text}>
+            {' '}
+            You have no entries yet. {'\n'} Click below to get started!
+          </Text>
 
-<Text style = {styles.text}> You have no entries yet. {"\n"} Click below to get started!</Text>    
+          <TouchableOpacity style={styles.customButton} onPress={pressHandler}>
+            <Text style={{ color: 'white', fontSize: 15 }}>Add New Entry</Text>
+          </TouchableOpacity>
 
-
-
-      <TouchableOpacity
-      style={styles.customButton}
-      onPress={pressHandler}
-    >
-      <Text style={{ color: 'white', fontSize: 15 }}>
-        Add New Entry
-      </Text>
-    </TouchableOpacity>
-    </View>
-    </View>
+          
+        </View>
+      </View>
     )
   }
 }

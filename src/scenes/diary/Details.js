@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import { Icon } from 'react-native-elements'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
@@ -19,14 +14,7 @@ const decodedMoodEmoticons = [
   'circle-outline',
 ]
 
-const decodedMoodPhrase = [
-  'Sad',
-  'Angry',
-  'Meh',
-  'OK',
-  'Happy',
-  '-',
-]
+const decodedMoodPhrase = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
 const decodedMoodColours = [
   '#54539D',
   '#7187D6',
@@ -52,7 +40,8 @@ export default function DetailsScreen(props) {
     await diaryEntries()
   }, [])
 
-  const targetEntry = props.route.params
+  const targetEntry = props.route.params;
+  const targetDate = props.route.params.date;
 
   const deleteEntry = (targetEntry) => {
     db.collection('users')
@@ -63,6 +52,12 @@ export default function DetailsScreen(props) {
         ),
       })
       .then(() => console.log('diary entry deleted!'))
+  }
+
+  const edit = () => {
+    props.navigation.navigate('Diary', {
+      targetDate: targetDate
+    })
   }
 
   const entryObj = allEntries.filter(
@@ -83,60 +78,79 @@ export default function DetailsScreen(props) {
           <View
             style={{
               flex: 1,
-              alignItems: 'center',
-              marginTop: 50,
+              alignItems: 'left',
             }}
           >
-          {entryObj.mood === 1 ? 
-            <FontIcon
-                  name={decodedMoodEmoticons[entryObj.mood]}
-                  color={decodedMoodColours[entryObj.mood]}
-                  size={80}
-                /> : entryObj.mood === 4 ? <FontIcon
-                  name= {decodedMoodEmoticons[entryObj.mood]}
-                  color={decodedMoodColours[entryObj.mood]}
-                  size={80}
-                />  :
-                 <Icon
-              name={decodedMoodEmoticons[entryObj.mood]}
-              color={decodedMoodColours[entryObj.mood]}
-              type={entryObj.mood < 5? 'ionicons' : 'material-community'}
-              size={80}
-            />
-          }
-            
-            <View style = {[styles.flexLeftInner1,  { width:'100%'}]}>
-              <Text
-                style={[
-                  styles.h1,
-                  { color: decodedMoodColours[entryObj.mood] },
-                ]}
+            <View style={[styles.flexLeftInner1, { width: '100%' }]}>
+              <View
+                style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}
               >
-                {decodedMoodPhrase[entryObj.mood]}
-              </Text>
-              <Text style={styles.detailsText}>
-                 {entryObj.date}
-              </Text>
+                <Text style={{ fontSize: 16, marginTop: 15 }}>Mood:</Text>
+                <Text
+                  style={[
+                    styles.detailsText,
+                    {
+                      color: decodedMoodColours[entryObj.mood],
+                      marginLeft: 10,
+                    },
+                  ]}
+                >
+                  {decodedMoodPhrase[entryObj.mood]}
+                </Text>
+                <View style={{ marginTop: 15, marginLeft: 10 }}>
+                  {entryObj.mood === 1 ? (
+                    <FontIcon
+                      name={decodedMoodEmoticons[entryObj.mood]}
+                      color={decodedMoodColours[entryObj.mood]}
+                      size={25}
+                    />
+                  ) : entryObj.mood === 4 ? (
+                    <FontIcon
+                      name={decodedMoodEmoticons[entryObj.mood]}
+                      color={decodedMoodColours[entryObj.mood]}
+                      size={25}
+                    />
+                  ) : (
+                    <Icon
+                      name={decodedMoodEmoticons[entryObj.mood]}
+                      color={decodedMoodColours[entryObj.mood]}
+                      type={
+                        entryObj.mood < 5 ? 'ionicons' : 'material-community'
+                      }
+                      size={25}
+                    />
+                  )}
+                </View>
+              </View>
+              <Text style={styles.detailsText}>Date: {entryObj.date}</Text>
 
-              <Text style={[styles.detailsText, {textAlign: 'left'}]}>
-              Saved Entry:
-              </Text>
-              <View style= {[styles.textBox, {marginTop: 15}]}>
+              <Text style={styles.detailsText}>Pill Taken? : {entryObj.pillStatus === true? "Yes" : "No" }</Text>
 
-              <Text style={{fontSize:16,}}>
-                {targetEntry.writtenDiary}
-              </Text>
+              <Text style={styles.detailsText}>Notes:</Text>
+
+
+              <View style={[styles.textBox, { marginTop: 15 }]}>
+                <Text style={{ fontSize: 16 }}>{targetEntry.writtenDiary}</Text>
               </View>
             </View>
 
             <TouchableOpacity
-              style={styles.customButton}
+              style={[styles.customButton, { marginTop: 0, marginLeft: 40, width: '80%' }]}
               onPress={() => {
                 deleteEntry(targetEntry)
                 props.navigation.goBack()
               }}
             >
               <Text style={{ color: 'white', fontSize: 15 }}>Delete</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.customButton, { marginTop: 0, marginLeft: 40, width: '80%' }]}
+              onPress={() => {
+                edit()
+              }}
+            >
+              <Text style={{ color: 'white', fontSize: 15}}>Edit</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

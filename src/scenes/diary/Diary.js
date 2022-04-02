@@ -30,12 +30,19 @@ const decodedMoodColours = [
 ]
 
 export default function Diary(props) {
-  const userData = props.extraData
-
   const userId = auth.currentUser.uid
 
+  let date = Date()
+
+  if (props.route.params !== undefined) {
+    const isoStr = props.route.params.targetDate
+    date = new Date(isoStr)
+    date.setDate(date.getDate() + 1)
+    console.log('this is new date', date)
+  }
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
-  const [pickedDate, setPickedDate] = useState(Date())
+  const [pickedDate, setPickedDate] = useState(date)
   const [mood, setMood] = useState(5)
   const [pillStatus, setPillStatus] = useState(false)
   const [writtenDiary, setWrittenDiary] = useState('')
@@ -43,6 +50,10 @@ export default function Diary(props) {
 
   const sendAlert = () => {
     Alert.alert('Existing entry has been updated!', '', [{ text: 'OK' }])
+  }
+
+  const sendNewAlert = () => {
+    Alert.alert('New entry has been added!', '', [{ text: 'OK' }])
   }
 
   const clearState = () => {
@@ -112,7 +123,7 @@ export default function Diary(props) {
       db.collection('users')
         .doc(userId)
         .update({ entries: [...diaryEntries, newEntry] })
-        .then(() => console.log('new entry added!'))
+        .then(sendNewAlert())
     }
   }
 
@@ -143,9 +154,10 @@ export default function Diary(props) {
       mood: mood,
       status: writtenDiary ? 'Diary Added' : 'No Diary Added',
       writtenDiary: writtenDiary,
+      pillStatus: pillStatus,
     }
     addEntry(entryObj)
-    props.navigation.goBack()
+    props.navigation.navigate('All Entries')
   }
 
   return (
@@ -241,33 +253,37 @@ export default function Diary(props) {
 
           <View style={styles.linebreak} />
 
-          <Text> Birth Control Taken: </Text>
+          <Text> Pill Taken: </Text>
 
           <View
-              style={{
-                display: 'flex',
-                padding: 20,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
+            style={{
+              display: 'flex',
+              padding: 20,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <TouchableWithoutFeedback
+              onPress={() => setPillStatus(!pillStatus)}
             >
-    
-              <TouchableWithoutFeedback onPress={() => setPillStatus(!pillStatus)}>
-                <FontIcon
-                  name="pill"
-                  color={pillStatus === true ? colors.orange : '#0000008A'}
-                  size={50}
-                  style={styles.emoji}
-                />
-                </TouchableWithoutFeedback>
+              <FontIcon
+                name="pill"
+                color={pillStatus === true ? colors.orange : '#0000008A'}
+                size={50}
+                style={styles.emoji}
+              />
+            </TouchableWithoutFeedback>
+          </View>
 
-                </View>
-
-                <Text style={[styles.h1, { color: pillStatus === true ? colors.orange : '#0000008A' }]}>
-              {pillStatus? "Yes" : "No"}
-            </Text>
-
+          <Text
+            style={[
+              styles.h1,
+              { color: pillStatus === true ? colors.orange : '#0000008A' },
+            ]}
+          >
+            {pillStatus ? 'Yes' : 'No'}
+          </Text>
 
           <View style={styles.linebreak} />
 
@@ -285,7 +301,6 @@ export default function Diary(props) {
               maxLength={500}
             />
           </View>
-          {/* </View> */}
 
           <TouchableOpacity style={styles.customButton} onPress={storeEntry}>
             <Text style={{ color: 'white', fontSize: 15 }}>{status}</Text>
