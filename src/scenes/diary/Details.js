@@ -91,21 +91,21 @@ export default function DetailsScreen(props) {
             <FontIcon
                   name={decodedMoodEmoticons[entryObj.mood]}
                   color={decodedMoodColours[entryObj.mood]}
-                  size={120}
+                  size={80}
                 /> : entryObj.mood === 4 ? <FontIcon
                   name= {decodedMoodEmoticons[entryObj.mood]}
                   color={decodedMoodColours[entryObj.mood]}
-                  size={120}
+                  size={80}
                 />  :
                  <Icon
               name={decodedMoodEmoticons[entryObj.mood]}
               color={decodedMoodColours[entryObj.mood]}
-              size={120}
               type={entryObj.mood < 5? 'ionicons' : 'material-community'}
+              size={80}
             />
           }
             
-            <View style={{ paddingHorizontal: 15 }}>
+            <View style = {[styles.flexLeftInner1,  { width:'100%'}]}>
               <Text
                 style={[
                   styles.h1,
@@ -114,13 +114,19 @@ export default function DetailsScreen(props) {
               >
                 {decodedMoodPhrase[entryObj.mood]}
               </Text>
-              <Text style={[styles.text, { fontWeight: '700' }]}>
-                {entryObj.date}
+              <Text style={styles.detailsText}>
+                 {entryObj.date}
               </Text>
 
-              <Text style={[styles.text, { fontWeight: '700' }]}>
+              <Text style={[styles.detailsText, {textAlign: 'left'}]}>
+              Saved Entry:
+              </Text>
+              <View style= {[styles.textBox, {marginTop: 15}]}>
+
+              <Text style={{fontSize:16,}}>
                 {targetEntry.writtenDiary}
               </Text>
+              </View>
             </View>
 
             <TouchableOpacity

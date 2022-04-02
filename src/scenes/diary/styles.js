@@ -99,13 +99,20 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: '#656565',
   },
+  detailsText: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#656565',
+    fontWeight: '500',
+    marginTop: 15 
+  },
   journalText: {
     textAlign: 'center',
     margin: 40,
   },
   customButton: {
     display: 'flex',
-    marginTop: 20,
+    marginTop: 30,
     marginLeft: 20,
     marginRight: 20,
     marginBottom: 40,

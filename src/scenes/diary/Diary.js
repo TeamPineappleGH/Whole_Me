@@ -37,6 +37,7 @@ export default function Diary(props) {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
   const [pickedDate, setPickedDate] = useState(Date())
   const [mood, setMood] = useState(5)
+  const [pillStatus, setPillStatus] = useState(false)
   const [writtenDiary, setWrittenDiary] = useState('')
   const [status, setStatus] = useState('Save')
 
@@ -49,6 +50,7 @@ export default function Diary(props) {
     setMood(5)
     setWrittenDiary('')
     setStatus('Save')
+    setPillStatus(false)
   }
 
   let diaryEntries
@@ -239,6 +241,36 @@ export default function Diary(props) {
 
           <View style={styles.linebreak} />
 
+          <Text> Birth Control Taken: </Text>
+
+          <View
+              style={{
+                display: 'flex',
+                padding: 20,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+    
+              <TouchableWithoutFeedback onPress={() => setPillStatus(!pillStatus)}>
+                <FontIcon
+                  name="pill"
+                  color={pillStatus === true ? colors.orange : '#0000008A'}
+                  size={50}
+                  style={styles.emoji}
+                />
+                </TouchableWithoutFeedback>
+
+                </View>
+
+                <Text style={[styles.h1, { color: pillStatus === true ? colors.orange : '#0000008A' }]}>
+              {pillStatus? "Yes" : "No"}
+            </Text>
+
+
+          <View style={styles.linebreak} />
+
           <Text> Notes: </Text>
 
           <View style={styles.textBox}>
@@ -250,7 +282,7 @@ export default function Diary(props) {
               style={styles.input}
               placeholder="Write entry here"
               numberOfLines={4}
-              maxLength={400}
+              maxLength={500}
             />
           </View>
           {/* </View> */}
