@@ -4,8 +4,9 @@ import { Icon } from 'react-native-elements'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
 import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { colors } from 'theme'
 
-const decodedMoodEmoticons = [
+const moodEmoticons = [
   'sentiment-very-dissatisfied',
   'emoticon-angry-outline',
   'sentiment-neutral',
@@ -14,13 +15,13 @@ const decodedMoodEmoticons = [
   'circle-outline',
 ]
 
-const decodedMoodPhrase = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
-const decodedMoodColours = [
-  '#54539D',
-  '#7187D6',
-  '#a6808c',
-  '#ee964b',
-  '#F67251',
+const moodPhrases = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
+const moodColors = [
+  '#ddb8ba',
+  '#ef7583',
+  colors.lightPurple,
+  colors.darkBlue,
+  colors.orange,
   '#0000008A',
 ]
 
@@ -44,24 +45,21 @@ export default function DetailsScreen(props) {
     Alert.alert('Entry has been deleted!', '', [{ text: 'OK' }])
   }
 
-
-  const targetEntry = props.route.params;
-  const targetDate = props.route.params.date;
+  const targetEntry = props.route.params
+  const targetDate = props.route.params.date
 
   const deleteEntry = (targetEntry) => {
     db.collection('users')
       .doc(userId)
       .update({
-        entries: allEntries.filter(
-          (entry) => entry.date !== targetEntry.date,
-        ),
+        entries: allEntries.filter((entry) => entry.date !== targetEntry.date),
       })
       .then(sendAlert())
   }
 
   const edit = () => {
     props.navigation.navigate('Diary', {
-      targetDate: targetDate
+      targetDate: targetDate,
     })
   }
 
@@ -95,30 +93,30 @@ export default function DetailsScreen(props) {
                   style={[
                     styles.detailsText,
                     {
-                      color: decodedMoodColours[entryObj.mood],
+                      color: moodColors[entryObj.mood],
                       marginLeft: 10,
                     },
                   ]}
                 >
-                  {decodedMoodPhrase[entryObj.mood]}
+                  {moodPhrases[entryObj.mood]}
                 </Text>
                 <View style={{ marginTop: 15, marginLeft: 10 }}>
                   {entryObj.mood === 1 ? (
                     <FontIcon
-                      name={decodedMoodEmoticons[entryObj.mood]}
-                      color={decodedMoodColours[entryObj.mood]}
+                      name={moodEmoticons[entryObj.mood]}
+                      color={moodColors[entryObj.mood]}
                       size={25}
                     />
                   ) : entryObj.mood === 4 ? (
                     <FontIcon
-                      name={decodedMoodEmoticons[entryObj.mood]}
-                      color={decodedMoodColours[entryObj.mood]}
+                      name={moodEmoticons[entryObj.mood]}
+                      color={moodColors[entryObj.mood]}
                       size={25}
                     />
                   ) : (
                     <Icon
-                      name={decodedMoodEmoticons[entryObj.mood]}
-                      color={decodedMoodColours[entryObj.mood]}
+                      name={moodEmoticons[entryObj.mood]}
+                      color={moodColors[entryObj.mood]}
                       type={
                         entryObj.mood < 5 ? 'ionicons' : 'material-community'
                       }
@@ -129,10 +127,11 @@ export default function DetailsScreen(props) {
               </View>
               <Text style={styles.detailsText}>Date: {entryObj.date}</Text>
 
-              <Text style={styles.detailsText}>Pill Taken? : {entryObj.pillStatus === true? "Yes" : "No" }</Text>
+              <Text style={styles.detailsText}>
+                Pill Taken? : {entryObj.pillStatus === true ? 'Yes' : 'No'}
+              </Text>
 
               <Text style={styles.detailsText}>Notes:</Text>
-
 
               <View style={[styles.textBox, { marginTop: 15 }]}>
                 <Text style={{ fontSize: 16 }}>{targetEntry.writtenDiary}</Text>
@@ -140,7 +139,10 @@ export default function DetailsScreen(props) {
             </View>
 
             <TouchableOpacity
-              style={[styles.customButton, { marginTop: 0, marginLeft: 40, width: '80%' }]}
+              style={[
+                styles.customButton,
+                { marginTop: 0, marginLeft: 40, width: '80%' },
+              ]}
               onPress={() => {
                 deleteEntry(targetEntry)
                 props.navigation.goBack()
@@ -150,12 +152,15 @@ export default function DetailsScreen(props) {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={[styles.customButton, { marginTop: 0, marginLeft: 40, width: '80%' }]}
+              style={[
+                styles.customButton,
+                { marginTop: 0, marginLeft: 40, width: '80%' },
+              ]}
               onPress={() => {
                 edit()
               }}
             >
-              <Text style={{ color: 'white', fontSize: 15}}>Edit</Text>
+              <Text style={{ color: 'white', fontSize: 15 }}>Edit</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
