@@ -105,7 +105,6 @@ export default function Diary(props) {
       let currentEntry = diaryEntries[i]
       if (currentEntry.date === newEntry.date) {
         targetIndex = i
-        console.log('this is target index!', targetIndex)
       }
     }
     if (targetIndex > -1) {

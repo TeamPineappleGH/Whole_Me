@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native'
-import Entry from '../components/Entry'
+import Entry from './Entry'
 import FlashMessage from 'react-native-flash-message'
 import { auth, db } from '../../firebase/config.js'
 import styles from './styles'
