@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  ActivityIndicator
 } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchExercises } from '../../store/fitness'
@@ -17,6 +18,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import * as WebBrowser from 'expo-web-browser'
 import DropDownPicker from 'react-native-dropdown-picker'
+import colors from '../../theme/colors'
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -51,6 +53,7 @@ class AllExercises extends React.Component {
         { label: 'triceps', value: 'triceps' },
         { label: 'upper back', value: 'upper back' },
       ],
+      loading: false,
     }
     this.handlePress = this.handlePress.bind(this)
     this.setOpen = this.setOpen.bind(this)
@@ -134,26 +137,18 @@ class AllExercises extends React.Component {
                       borderRadius: 10,
                       padding: 10,
                     }}
-                    onPress={() => {
-                      this.props.fetchExercises(this.state.value)
+                    onPress={async () => {
+                      this.setState({loading: true})
+                      await this.props.fetchExercises(this.state.value)
                       Keyboard.dismiss()
+                      this.setState({loading: false})
                     }}
                   >
                     <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
                   </TouchableOpacity>
-                  <Text
-                    style={{
-                      marginTop: 10,
-                      marginBottom: 15,
-                      textAlign: 'center',
-                      fontStyle: 'italic',
-                    }}
-                  >
-                    Please be patient while your results load.
-                  </Text>
                 </View>
 
-                {this.props.allExercises ? (
+                {this.state.loading ? (<ActivityIndicator size="large" color={colors.lightBlue} />) : this.props.allExercises ? (
                   <SafeAreaView>
                     <ScrollView>
                       {this.props.allExercises.map((exercise) => {
@@ -237,16 +232,18 @@ class AllExercises extends React.Component {
                       borderRadius: 10,
                       padding: 10,
                     }}
-                    onPress={() => {
-                      this.props.fetchExercises(this.state.value)
+                    onPress={async () => {
+                      this.setState({loading: true})
+                      await this.props.fetchExercises(this.state.value)
                       Keyboard.dismiss()
+                      this.setState({loading: false})
                     }}
                   >
                     <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
                   </TouchableOpacity>
                 </View>
 
-                {this.props.allExercises ? (
+                {this.state.loading ? (<ActivityIndicator size="large" color={colors.lightBlue} />) : this.props.allExercises ? (
                   <SafeAreaView>
                     <ScrollView>
                       {this.props.allExercises.map((exercise) => {
@@ -332,16 +329,18 @@ class AllExercises extends React.Component {
                       borderRadius: 10,
                       padding: 10,
                     }}
-                    onPress={() => {
-                      this.props.fetchExercises(this.state.exercise)
+                    onPress={async () => {
+                      this.setState({loading: true})
+                      await this.props.fetchExercises(this.state.value)
                       Keyboard.dismiss()
+                      this.setState({loading: false})
                     }}
                   >
                     <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
                   </TouchableOpacity>
                 </View>
 
-                {this.props.allExercises ? (
+                {this.state.loading ? (<ActivityIndicator size="large" color={colors.lightBlue} />) : this.props.allExercises ? (
                   <SafeAreaView>
                     <ScrollView>
                       {this.props.allExercises.map((exercise) => {
@@ -429,16 +428,18 @@ class AllExercises extends React.Component {
                       borderRadius: 10,
                       padding: 10,
                     }}
-                    onPress={() => {
-                      this.props.fetchExercises(this.state.value)
+                    onPress={async () => {
+                      this.setState({loading: true})
+                      await this.props.fetchExercises(this.state.value)
                       Keyboard.dismiss()
+                      this.setState({loading: false})
                     }}
                   >
                     <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
                   </TouchableOpacity>
                 </View>
 
-                {this.props.allExercises ? (
+                {this.state.loading ? (<ActivityIndicator size="large" color={colors.lightBlue} />) : this.props.allExercises ? (
                   <SafeAreaView>
                     <View>
                       {this.props.allExercises.map((exercise) => {
