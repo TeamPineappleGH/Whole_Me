@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native'
 import { Icon } from 'react-native-elements'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
 import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { colors } from 'theme'
 
-const decodedMoodEmoticons = [
+const moodEmoticons = [
   'sentiment-very-dissatisfied',
   'emoticon-angry-outline',
   'sentiment-neutral',
@@ -19,20 +15,13 @@ const decodedMoodEmoticons = [
   'circle-outline',
 ]
 
-const decodedMoodPhrase = [
-  'Sad',
-  'Angry',
-  'Meh',
-  'OK',
-  'Happy',
-  '-',
-]
-const decodedMoodColours = [
-  '#54539D',
-  '#7187D6',
-  '#a6808c',
-  '#ee964b',
-  '#F67251',
+const moodPhrases = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
+const moodColors = [
+  '#ddb8ba',
+  '#ef7583',
+  colors.lightPurple,
+  colors.darkBlue,
+  colors.orange,
   '#0000008A',
 ]
 
@@ -52,17 +41,26 @@ export default function DetailsScreen(props) {
     await diaryEntries()
   }, [])
 
+  const sendAlert = () => {
+    Alert.alert('Entry has been deleted!', '', [{ text: 'OK' }])
+  }
+
   const targetEntry = props.route.params
+  const targetDate = props.route.params.date
 
   const deleteEntry = (targetEntry) => {
     db.collection('users')
       .doc(userId)
       .update({
-        entries: allEntries.filter(
-          (entry) => entry.writtenDiary !== targetEntry.writtenDiary,
-        ),
+        entries: allEntries.filter((entry) => entry.date !== targetEntry.date),
       })
-      .then(() => console.log('diary entry deleted!'))
+      .then(sendAlert())
+  }
+
+  const edit = () => {
+    props.navigation.navigate('Diary', {
+      targetDate: targetDate,
+    })
   }
 
   const entryObj = allEntries.filter(
@@ -83,54 +81,86 @@ export default function DetailsScreen(props) {
           <View
             style={{
               flex: 1,
-              alignItems: 'center',
-              marginTop: 50,
+              alignItems: 'left',
             }}
           >
-          {entryObj.mood === 1 ? 
-            <FontIcon
-                  name={decodedMoodEmoticons[entryObj.mood]}
-                  color={decodedMoodColours[entryObj.mood]}
-                  size={120}
-                /> : entryObj.mood === 4 ? <FontIcon
-                  name= {decodedMoodEmoticons[entryObj.mood]}
-                  color={decodedMoodColours[entryObj.mood]}
-                  size={120}
-                />  :
-                 <Icon
-              name={decodedMoodEmoticons[entryObj.mood]}
-              color={decodedMoodColours[entryObj.mood]}
-              size={120}
-              type={entryObj.mood < 5? 'ionicons' : 'material-community'}
-            />
-          }
-            
-            <View style={{ paddingHorizontal: 15 }}>
-              <Text
-                style={[
-                  styles.h1,
-                  { color: decodedMoodColours[entryObj.mood] },
-                ]}
+            <View style={[styles.flexLeftInner1, { width: '100%' }]}>
+              <View
+                style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}
               >
-                {decodedMoodPhrase[entryObj.mood]}
-              </Text>
-              <Text style={[styles.text, { fontWeight: '700' }]}>
-                {entryObj.date}
+                <Text style={{ fontSize: 16, marginTop: 15 }}>Mood:</Text>
+                <Text
+                  style={[
+                    styles.detailsText,
+                    {
+                      color: moodColors[entryObj.mood],
+                      marginLeft: 10,
+                    },
+                  ]}
+                >
+                  {moodPhrases[entryObj.mood]}
+                </Text>
+                <View style={{ marginTop: 15, marginLeft: 10 }}>
+                  {entryObj.mood === 1 ? (
+                    <FontIcon
+                      name={moodEmoticons[entryObj.mood]}
+                      color={moodColors[entryObj.mood]}
+                      size={25}
+                    />
+                  ) : entryObj.mood === 4 ? (
+                    <FontIcon
+                      name={moodEmoticons[entryObj.mood]}
+                      color={moodColors[entryObj.mood]}
+                      size={25}
+                    />
+                  ) : (
+                    <Icon
+                      name={moodEmoticons[entryObj.mood]}
+                      color={moodColors[entryObj.mood]}
+                      type={
+                        entryObj.mood < 5 ? 'ionicons' : 'material-community'
+                      }
+                      size={25}
+                    />
+                  )}
+                </View>
+              </View>
+              <Text style={styles.detailsText}>Date: {entryObj.date}</Text>
+
+              <Text style={styles.detailsText}>
+                Pill Taken? : {entryObj.pillStatus === true ? 'Yes' : 'No'}
               </Text>
 
-              <Text style={[styles.text, { fontWeight: '700' }]}>
-                {targetEntry.writtenDiary}
-              </Text>
+              <Text style={styles.detailsText}>Notes:</Text>
+
+              <View style={[styles.textBox, { marginTop: 15 }]}>
+                <Text style={{ fontSize: 16 }}>{targetEntry.writtenDiary}</Text>
+              </View>
             </View>
 
             <TouchableOpacity
-              style={styles.customButton}
+              style={[
+                styles.customButton,
+                { marginTop: 0, marginLeft: 40, width: '80%' },
+              ]}
               onPress={() => {
                 deleteEntry(targetEntry)
                 props.navigation.goBack()
               }}
             >
               <Text style={{ color: 'white', fontSize: 15 }}>Delete</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[
+                styles.customButton,
+                { marginTop: 0, marginLeft: 40, width: '80%' },
+              ]}
+              onPress={() => {
+                edit()
+              }}
+            >
+              <Text style={{ color: 'white', fontSize: 15 }}>Edit</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>

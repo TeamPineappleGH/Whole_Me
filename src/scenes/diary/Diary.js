@@ -18,25 +18,32 @@ import { Icon } from 'react-native-elements'
 import { auth, db } from '../../firebase/config.js'
 import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const decodedMoodPhrase = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
+const moodPhrases = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
 
-const decodedMoodColours = [
-  '#54539D',
-  '#7187D6',
-  '#a6808c',
-  '#ee964b',
-  '#F67251',
+const moodColors = [
+  '#ddb8ba',
+  '#ef7583',
+  colors.lightPurple,
+  colors.darkBlue,
+  colors.orange,
   '#0000008A',
 ]
 
 export default function Diary(props) {
-  const userData = props.extraData
-
   const userId = auth.currentUser.uid
 
+  let date = Date()
+
+  if (props.route.params !== undefined) {
+    const isoStr = props.route.params.targetDate
+    date = new Date(isoStr)
+    date.setDate(date.getDate() + 1)
+  }
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
-  const [pickedDate, setPickedDate] = useState(Date())
+  const [pickedDate, setPickedDate] = useState(date)
   const [mood, setMood] = useState(5)
+  const [pillStatus, setPillStatus] = useState(false)
   const [writtenDiary, setWrittenDiary] = useState('')
   const [status, setStatus] = useState('Save')
 
@@ -44,11 +51,16 @@ export default function Diary(props) {
     Alert.alert('Existing entry has been updated!', '', [{ text: 'OK' }])
   }
 
+  const sendNewAlert = () => {
+    Alert.alert('New entry has been added!', '', [{ text: 'OK' }])
+  }
+
   const clearState = () => {
     setPickedDate(pickedDate)
     setMood(5)
     setWrittenDiary('')
     setStatus('Save')
+    setPillStatus(false)
   }
 
   let diaryEntries
@@ -73,9 +85,9 @@ export default function Diary(props) {
 
     for (let element of entries) {
       if (element.date === date) {
-        console.log('this is exists!')
         setMood(element.mood)
         setWrittenDiary(element.writtenDiary)
+        setPillStatus(element.pillStatus)
         setStatus('Update')
         return
       }
@@ -94,7 +106,6 @@ export default function Diary(props) {
       let currentEntry = diaryEntries[i]
       if (currentEntry.date === newEntry.date) {
         targetIndex = i
-        console.log('this is target index!', targetIndex)
       }
     }
     if (targetIndex > -1) {
@@ -110,7 +121,7 @@ export default function Diary(props) {
       db.collection('users')
         .doc(userId)
         .update({ entries: [...diaryEntries, newEntry] })
-        .then(() => console.log('new entry added!'))
+        .then(sendNewAlert())
     }
   }
 
@@ -141,9 +152,10 @@ export default function Diary(props) {
       mood: mood,
       status: writtenDiary ? 'Diary Added' : 'No Diary Added',
       writtenDiary: writtenDiary,
+      pillStatus: pillStatus,
     }
     addEntry(entryObj)
-    props.navigation.goBack()
+    props.navigation.navigate('All Entries')
   }
 
   return (
@@ -194,7 +206,7 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(0)}>
                 <Icon
                   name="sentiment-very-dissatisfied"
-                  color={mood === 0 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 0 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
@@ -202,7 +214,7 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(1)}>
                 <FontIcon
                   name="emoticon-angry-outline"
-                  color={mood === 1 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 1 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
@@ -210,7 +222,7 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(2)}>
                 <Icon
                   name="sentiment-neutral"
-                  color={mood === 2 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 2 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
@@ -218,7 +230,7 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(3)}>
                 <Icon
                   name="sentiment-satisfied"
-                  color={mood === 3 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 3 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
@@ -226,16 +238,50 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(4)}>
                 <FontIcon
                   name="emoticon-excited-outline"
-                  color={mood === 4 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 4 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
               </TouchableWithoutFeedback>
             </View>
-            <Text style={[styles.h1, { color: decodedMoodColours[mood] }]}>
-              {decodedMoodPhrase[mood]}
+            <Text style={[styles.h1, { color: moodColors[mood] }]}>
+              {moodPhrases[mood]}
             </Text>
           </View>
+
+          <View style={styles.linebreak} />
+
+          <Text> Pill Taken: </Text>
+
+          <View
+            style={{
+              display: 'flex',
+              padding: 20,
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <TouchableWithoutFeedback
+              onPress={() => setPillStatus(!pillStatus)}
+            >
+              <FontIcon
+                name="pill"
+                color={pillStatus === true ? colors.orange : '#0000008A'}
+                size={50}
+                style={styles.emoji}
+              />
+            </TouchableWithoutFeedback>
+          </View>
+
+          <Text
+            style={[
+              styles.h1,
+              { color: pillStatus === true ? colors.orange : '#0000008A' },
+            ]}
+          >
+            {pillStatus ? 'Yes' : 'No'}
+          </Text>
 
           <View style={styles.linebreak} />
 
@@ -250,10 +296,9 @@ export default function Diary(props) {
               style={styles.input}
               placeholder="Write entry here"
               numberOfLines={4}
-              maxLength={400}
+              maxLength={500}
             />
           </View>
-          {/* </View> */}
 
           <TouchableOpacity style={styles.customButton} onPress={storeEntry}>
             <Text style={{ color: 'white', fontSize: 15 }}>{status}</Text>
