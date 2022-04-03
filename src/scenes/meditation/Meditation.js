@@ -2,15 +2,8 @@ import React, { useState, useCallback, useRef } from 'react'
 import {
   Text,
   View,
-  Image,
   ScrollView,
-  SafeAreaView,
-  TextInput,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Button,
-  Alert,
   Dimensions,
   ActivityIndicator,
 } from 'react-native'
@@ -150,7 +143,6 @@ export default class AllMeditations extends React.Component {
                 marginTop: 20,
                 textAlign: 'center',
                 fontSize: 20,
-                fontStyle: 'bold',
               }}
             >
               Positive Energy
@@ -196,7 +188,6 @@ export default class AllMeditations extends React.Component {
                 marginTop: 20,
                 textAlign: 'center',
                 fontSize: 20,
-                fontStyle: 'bold',
               }}
             >
               Depression
@@ -239,7 +230,6 @@ export default class AllMeditations extends React.Component {
                 marginTop: 20,
                 textAlign: 'center',
                 fontSize: 20,
-                fontStyle: 'bold',
               }}
             >
               Stress
@@ -281,7 +271,6 @@ export default class AllMeditations extends React.Component {
                 marginTop: 20,
                 textAlign: 'center',
                 fontSize: 20,
-                fontStyle: 'bold',
               }}
             >
               Sleep

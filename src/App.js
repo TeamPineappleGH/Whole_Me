@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { View } from 'react-native'
+import { View, LogBox } from 'react-native'
 import { Provider } from 'react-redux'
 import store from './store/store'
 import 'utils/ignore'
+LogBox.ignoreAllLogs(true);
 
 // assets
 import { imageAssets } from 'theme/images'
