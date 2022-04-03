@@ -18,14 +18,14 @@ import { Icon } from 'react-native-elements'
 import { auth, db } from '../../firebase/config.js'
 import FontIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-const decodedMoodPhrase = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
+const moodPhrases = ['Sad', 'Angry', 'Meh', 'OK', 'Happy', '-']
 
-const decodedMoodColours = [
-  '#54539D',
-  '#7187D6',
-  '#a6808c',
-  '#ee964b',
-  '#F67251',
+const moodColors = [
+  '#ddb8ba',
+  '#ef7583',
+  colors.lightPurple,
+  colors.darkBlue,
+  colors.orange,
   '#0000008A',
 ]
 
@@ -87,6 +87,7 @@ export default function Diary(props) {
       if (element.date === date) {
         setMood(element.mood)
         setWrittenDiary(element.writtenDiary)
+        setPillStatus(element.pillStatus)
         setStatus('Update')
         return
       }
@@ -205,7 +206,7 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(0)}>
                 <Icon
                   name="sentiment-very-dissatisfied"
-                  color={mood === 0 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 0 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
@@ -213,7 +214,7 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(1)}>
                 <FontIcon
                   name="emoticon-angry-outline"
-                  color={mood === 1 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 1 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
@@ -221,7 +222,7 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(2)}>
                 <Icon
                   name="sentiment-neutral"
-                  color={mood === 2 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 2 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
@@ -229,7 +230,7 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(3)}>
                 <Icon
                   name="sentiment-satisfied"
-                  color={mood === 3 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 3 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
@@ -237,14 +238,14 @@ export default function Diary(props) {
               <TouchableWithoutFeedback onPress={() => setMood(4)}>
                 <FontIcon
                   name="emoticon-excited-outline"
-                  color={mood === 4 ? decodedMoodColours[mood] : '#0000008A'}
+                  color={mood === 4 ? moodColors[mood] : '#0000008A'}
                   size={50}
                   style={styles.emoji}
                 />
               </TouchableWithoutFeedback>
             </View>
-            <Text style={[styles.h1, { color: decodedMoodColours[mood] }]}>
-              {decodedMoodPhrase[mood]}
+            <Text style={[styles.h1, { color: moodColors[mood] }]}>
+              {moodPhrases[mood]}
             </Text>
           </View>
 
