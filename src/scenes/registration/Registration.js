@@ -41,7 +41,7 @@ export default function Registration({navigation}) {
       alert("Passwords don't match.")
       return
     }
-    const toDate = new Date(periodStartDate)
+    const toDate = new Date(periodStartDate.replace(/-/g, '\/').replace(/T.+/, ''))
     const myTimeStamp = firebase.firestore.Timestamp.fromDate(toDate)
 
     setSpinner(true)
