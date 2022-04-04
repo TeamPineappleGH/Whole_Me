@@ -159,7 +159,7 @@ export default function Diary(props) {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="position">
+    <View style={styles.container} behavior="position">
       <View style={styles.container}>
         <ScrollView style={styles.flexLeftInner1}>
           <DateTimePickerModal
@@ -287,7 +287,7 @@ export default function Diary(props) {
 
           <Text> Notes: </Text>
 
-          <View style={styles.textBox}>
+          <View style={styles.textBox} keyboardShouldPersistTaps="always">
             <TextInput
               multiline
               editable
@@ -300,7 +300,13 @@ export default function Diary(props) {
             />
           </View>
 
-          <TouchableOpacity style={styles.customButton} onPress={storeEntry}>
+          <TouchableOpacity
+            style={styles.customButton}
+            onPress={() => {
+              storeEntry()
+              Keyboard.dismiss()
+            }}
+          >
             <Text style={{ color: 'white', fontSize: 15 }}>{status}</Text>
           </TouchableOpacity>
 
@@ -313,6 +319,6 @@ export default function Diary(props) {
           </TouchableOpacity>
         </ScrollView>
       </View>
-    </KeyboardAvoidingView>
+    </View>
   )
 }
