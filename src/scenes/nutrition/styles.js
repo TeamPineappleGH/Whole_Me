@@ -169,8 +169,6 @@ export default StyleSheet.create({
     fontSize: 15,
     textAlign: 'center',
     padding: 2,
-    marginTop: 6,
-    marginBottom: 6,
     flexDirection: 'column',
   }
 })

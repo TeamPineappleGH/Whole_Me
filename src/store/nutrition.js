@@ -13,8 +13,7 @@ const getRecipes = (recipes) => {
 }
 
 // THUNK CREATORS
-export const fetchRecipes = (ingredient, history) => {
-  console.log('hello world')
+export const fetchRecipes = (ingredient) => {
   return async (dispatch) => {
     try {
       console.log("we are fetching recipes")
@@ -43,7 +42,7 @@ export const fetchRecipes = (ingredient, history) => {
       });
       // if (type === 'search') {
         dispatch(getRecipes(resultArr));
-      // }
+
     } catch (error) {
       console.log(error);
     }

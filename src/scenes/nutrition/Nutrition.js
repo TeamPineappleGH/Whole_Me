@@ -46,6 +46,7 @@ class AllRecipes extends React.Component {
     this.setOpen = this.setOpen.bind(this)
     this.setValue = this.setValue.bind(this)
     this.setItems = this.setItems.bind(this)
+    this.onChangeValue = this.onChangeValue.bind(this)
   }
   handlePress(item) {
     WebBrowser.openBrowserAsync(item)
@@ -69,6 +70,10 @@ class AllRecipes extends React.Component {
     }))
   }
 
+  onChangeValue(value) {
+    this.props.fetchRecipes(value);
+  }
+
   render() {
     const { open, value, items } = this.state
 
@@ -78,10 +83,10 @@ class AllRecipes extends React.Component {
           <View style={styles.phaseContainer}>
             <View style={styles.flexLeft1}>
               <View style={styles.flexLeftInner1}>
-                <Text style={styles.phaseHeader}>MENSTRUAL PHASE</Text>
+                <Text style={styles.phaseHeader}>RECOMMENDED FOODS FOR MENSTRUAL PHASE</Text>
                 <Text style={{ fontSize: '15px', textAlign: 'center', marginBottom: 10 }}>
                   As your hormones fluctuate throughout your cycle, so do your
-                  nutritional requirements. Select the recommended foods in the dropdown below to
+                  nutritional requirements. Select from the dropdown below to select a recommended food
                   include in your diet during your menstrual phase.
                 </Text>
                 <Text style={styles.phaseDetails}>Chocolate</Text>
@@ -94,7 +99,6 @@ class AllRecipes extends React.Component {
           </View>
           <View>
             <View style={{ width: '100%' }}>
-              <Text style={styles.header}>Recommended Foods</Text>
               <View
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
@@ -114,18 +118,9 @@ class AllRecipes extends React.Component {
                     setOpen={this.setOpen}
                     setValue={this.setValue}
                     setItems={this.setItems}
+                    onChangeValue={this.onChangeValue}
                   />
                   <TouchableOpacity
-                    style={{
-                      display: 'flex',
-                      marginTop: 20,
-                      marginLeft: 50,
-                      marginRight: 50,
-                      alignItems: 'center',
-                      backgroundColor: '#1c9ab7',
-                      borderRadius: 10,
-                      padding: 10,
-                    }}
                     onPress={async () => {
                       this.setState({ loading: true })
                       await this.props.fetchRecipes(this.state.value)
@@ -133,12 +128,8 @@ class AllRecipes extends React.Component {
                       this.setState({ loading: false })
                     }}
                   >
-                    <Text style={{ color: 'white', fontSize: 15 }}>
-                      Search Recommended
-                    </Text>
                   </TouchableOpacity>
                 </View>
-                <Text style={styles.header}>Find More Recipes</Text>
                 <View
                   style={{ flex: 1, width: '100%' }}
                   keyboardShouldPersistTaps="always"
@@ -146,7 +137,7 @@ class AllRecipes extends React.Component {
                 <View>
                   <TextInput
                     style={styles.input}
-                    placeholder="search by ingredient"
+                    placeholder="Find More Recipes by Ingredient"
                     placeholderTextColor="#aaaaaa"
                     onChangeText={(text) => this.setState({ ingredient: text })}
                     value={this.state.ingredient}
