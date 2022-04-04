@@ -84,7 +84,7 @@ class AllExercises extends React.Component {
   }
 
   onChangeValue(value) {
-    this.props.fetchExercises(value);
+    this.props.fetchExercises(value)
   }
 
   render() {
@@ -96,7 +96,9 @@ class AllExercises extends React.Component {
           <View style={styles.phaseContainer}>
             <View style={styles.flexLeft1}>
               <View style={styles.flexLeftInner1}>
-                <Text style={styles.phaseHeader}>RECOMMENDED EXERCISES FOR MENSTRUAL PHASE</Text>
+                <Text style={styles.phaseHeader}>
+                  RECOMMENDED EXERCISES FOR MENSTRUAL PHASE
+                </Text>
                 <Text style={styles.phaseDetails}>
                   Walking or any form of mild exercise is recommended during
                   your menstrual phase, even if you're not feeling major
@@ -118,7 +120,7 @@ class AllExercises extends React.Component {
                     alignSelf: 'center',
                     zIndex: 2,
                     elevation: 2,
-                    marginBottom: 15
+                    marginBottom: 15,
                   }}
                 >
                   <DropDownPicker
@@ -139,8 +141,7 @@ class AllExercises extends React.Component {
                       Keyboard.dismiss()
                       this.setState({ loading: false })
                     }}
-                  >
-                  </TouchableOpacity>
+                  ></TouchableOpacity>
                 </View>
 
                 {this.state.loading ? (
@@ -203,36 +204,34 @@ class AllExercises extends React.Component {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
               >
-                <DropDownPicker
-                  open={open}
-                  value={value}
-                  items={items}
-                  setOpen={this.setOpen}
-                  setValue={this.setValue}
-                  setItems={this.setItems}
-                />
+                <View
+                  style={{
+                    width: '90%',
+                    alignSelf: 'center',
+                    zIndex: 2,
+                    elevation: 2,
+                    marginBottom: 15,
+                  }}
+                >
+                  <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={this.setOpen}
+                    setValue={this.setValue}
+                    setItems={this.setItems}
+                    onChangeValue={this.onChangeValue}
+                  />
+                </View>
                 <View>
                   <TouchableOpacity
-                    style={{
-                      display: 'flex',
-                      marginTop: 20,
-                      marginLeft: 20,
-                      marginRight: 20,
-                      marginBottom: 40,
-                      alignItems: 'center',
-                      backgroundColor: '#1c9ab7',
-                      borderRadius: 10,
-                      padding: 10,
-                    }}
                     onPress={async () => {
                       this.setState({ loading: true })
                       await this.props.fetchExercises(this.state.value)
                       Keyboard.dismiss()
                       this.setState({ loading: false })
                     }}
-                  >
-                    <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
-                  </TouchableOpacity>
+                  ></TouchableOpacity>
                 </View>
 
                 {this.state.loading ? (
@@ -243,35 +242,30 @@ class AllExercises extends React.Component {
                       {this.props.allExercises.map((exercise) => {
                         return (
                           <View key={exercise.id}>
-                            <View style={styles.container}>
-                              <Image
-                                style={styles.tinyLogo}
-                                source={{
-                                  uri: exercise.gif,
-                                }}
-                              />
-                              <Text style={styles.text}>{exercise.name}</Text>
-                              <TouchableOpacity
-                                onPress={() => this.handlePress(exercise.gif)}
-                                style={styles.detailButton}
-                              >
+                            <TouchableOpacity
+                              onPress={() => this.handlePress(exercise.gif)}
+                              style={styles.detailButton}
+                            >
+                              <View style={styles.container}>
+                                <Image
+                                  style={styles.tinyLogo}
+                                  source={{
+                                    uri: exercise.gif,
+                                  }}
+                                />
+                                <Text style={styles.text}>{exercise.name}</Text>
+
                                 <Text style={styles.detailText}>
                                   View Exercise
                                 </Text>
-                              </TouchableOpacity>
-                            </View>
+                              </View>
+                            </TouchableOpacity>
                           </View>
                         )
                       })}
                     </ScrollView>
                   </SafeAreaView>
-                ) : (
-                  <View>
-                    <Text style={styles.instructions}>
-                      Search for exercises by category!
-                    </Text>
-                  </View>
-                )}
+                ) : null}
               </View>
             </View>
           </View>
@@ -301,37 +295,34 @@ class AllExercises extends React.Component {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
               >
-                <DropDownPicker
-                  style={styles.picker}
-                  open={open}
-                  value={value}
-                  items={items}
-                  setOpen={this.setOpen}
-                  setValue={this.setValue}
-                  setItems={this.setItems}
-                />
+                <View
+                  style={{
+                    width: '90%',
+                    alignSelf: 'center',
+                    zIndex: 2,
+                    elevation: 2,
+                    marginBottom: 15,
+                  }}
+                >
+                  <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={this.setOpen}
+                    setValue={this.setValue}
+                    setItems={this.setItems}
+                    onChangeValue={this.onChangeValue}
+                  />
+                </View>
                 <View>
                   <TouchableOpacity
-                    style={{
-                      display: 'flex',
-                      marginTop: 20,
-                      marginLeft: 20,
-                      marginRight: 20,
-                      marginBottom: 40,
-                      alignItems: 'center',
-                      backgroundColor: '#1c9ab7',
-                      borderRadius: 10,
-                      padding: 10,
-                    }}
                     onPress={async () => {
                       this.setState({ loading: true })
                       await this.props.fetchExercises(this.state.value)
                       Keyboard.dismiss()
                       this.setState({ loading: false })
                     }}
-                  >
-                    <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
-                  </TouchableOpacity>
+                  ></TouchableOpacity>
                 </View>
 
                 {this.state.loading ? (
@@ -342,33 +333,30 @@ class AllExercises extends React.Component {
                       {this.props.allExercises.map((exercise) => {
                         return (
                           <View key={exercise.id}>
-                            <View style={styles.container}>
-                              <Image
-                                style={styles.tinyLogo}
-                                source={{
-                                  uri: exercise.gif,
-                                }}
-                              />
-                              <Text style={styles.text}>{exercise.name}</Text>
-                              <TouchableOpacity
-                                onPress={() => this.handlePress(exercise.gif)}
-                                style={styles.detailButton}
-                              >
+                            <TouchableOpacity
+                              onPress={() => this.handlePress(exercise.gif)}
+                              style={styles.detailButton}
+                            >
+                              <View style={styles.container}>
+                                <Image
+                                  style={styles.tinyLogo}
+                                  source={{
+                                    uri: exercise.gif,
+                                  }}
+                                />
+                                <Text style={styles.text}>{exercise.name}</Text>
+
                                 <Text style={styles.detailText}>
                                   View Exercise
                                 </Text>
-                              </TouchableOpacity>
-                            </View>
+                              </View>
+                            </TouchableOpacity>
                           </View>
                         )
                       })}
                     </ScrollView>
                   </SafeAreaView>
-                ) : (
-                  <View>
-                    <Text style={styles.instructions}>Select a body part</Text>
-                  </View>
-                )}
+                ) : null}
               </View>
             </View>
           </View>
@@ -400,39 +388,34 @@ class AllExercises extends React.Component {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
               >
-                <DropDownPicker
-                  min={0}
-                  max={10}
-                  open={open}
-                  value={value}
-                  items={items}
-                  setOpen={this.setOpen}
-                  setValue={this.setValue}
-                  setItems={this.setItems}
-                  loading={this.setLoading}
-                />
+                <View
+                  style={{
+                    width: '90%',
+                    alignSelf: 'center',
+                    zIndex: 2,
+                    elevation: 2,
+                    marginBottom: 15,
+                  }}
+                >
+                  <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={items}
+                    setOpen={this.setOpen}
+                    setValue={this.setValue}
+                    setItems={this.setItems}
+                    onChangeValue={this.onChangeValue}
+                  />
+                </View>
                 <View>
                   <TouchableOpacity
-                    style={{
-                      display: 'flex',
-                      marginTop: 20,
-                      marginLeft: 20,
-                      marginRight: 20,
-                      marginBottom: 40,
-                      alignItems: 'center',
-                      backgroundColor: '#1c9ab7',
-                      borderRadius: 10,
-                      padding: 10,
-                    }}
                     onPress={async () => {
                       this.setState({ loading: true })
                       await this.props.fetchExercises(this.state.value)
                       Keyboard.dismiss()
                       this.setState({ loading: false })
                     }}
-                  >
-                    <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
-                  </TouchableOpacity>
+                  ></TouchableOpacity>
                 </View>
 
                 {this.state.loading ? (
@@ -443,33 +426,30 @@ class AllExercises extends React.Component {
                       {this.props.allExercises.map((exercise) => {
                         return (
                           <View key={exercise.id}>
-                            <View style={styles.container}>
-                              <Image
-                                style={styles.tinyLogo}
-                                source={{
-                                  uri: exercise.gif,
-                                }}
-                              />
-                              <Text style={styles.text}>{exercise.name}</Text>
-                              <TouchableOpacity
-                                onPress={() => this.handlePress(exercise.gif)}
-                                style={styles.detailButton}
-                              >
+                            <TouchableOpacity
+                              onPress={() => this.handlePress(exercise.gif)}
+                              style={styles.detailButton}
+                            >
+                              <View style={styles.container}>
+                                <Image
+                                  style={styles.tinyLogo}
+                                  source={{
+                                    uri: exercise.gif,
+                                  }}
+                                />
+                                <Text style={styles.text}>{exercise.name}</Text>
+
                                 <Text style={styles.detailText}>
                                   View Exercise
                                 </Text>
-                              </TouchableOpacity>
-                            </View>
+                              </View>
+                            </TouchableOpacity>
                           </View>
                         )
                       })}
                     </View>
                   </SafeAreaView>
-                ) : (
-                  <View>
-                    <Text style={styles.instructions}>Select a body part</Text>
-                  </View>
-                )}
+                ) : null}
               </View>
             </View>
           </View>
