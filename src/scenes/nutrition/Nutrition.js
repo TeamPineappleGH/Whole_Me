@@ -33,12 +33,33 @@ class AllRecipes extends React.Component {
       ingredient: '',
       open: false,
       value: null,
-      items: [
+      menstrualItems: [
         { label: 'chocolate', value: 'chocolate' },
         { label: 'sweet potato', value: 'sweet potato' },
         { label: 'zucchini', value: 'zucchini' },
         { label: 'cauliflower', value: 'cauliflower' },
         { label: 'carrots', value: 'carrots' },
+      ],
+      follicularItems: [
+        { label: 'beef', value: 'beef' },
+        { label: 'kale', value: 'kale' },
+        { label: 'lentils', value: 'lentils' },
+        { label: 'chickpeas', value: 'chickpeas' },
+        { label: 'salmon', value: 'salmon' },
+      ],
+      ovulatoryItems: [
+        { label: 'eggs', value: 'eggs' },
+        { label: 'quinoa', value: 'quinoa' },
+        { label: 'brussel sprouts', value: 'brussel sprouts' },
+        { label: 'berries', value: 'berries' },
+        { label: 'asparagus', value: 'asparagus' },
+      ],
+      lutealItems: [
+        { label: 'squash', value: 'squash' },
+        { label: 'avocado', value: 'avocado' },
+        { label: 'pumpkin', value: 'pumpkin' },
+        { label: 'parsnips', value: 'parsnips' },
+        { label: 'tuna', value: 'tuna' },
       ],
       loading: false,
     }
@@ -71,11 +92,18 @@ class AllRecipes extends React.Component {
   }
 
   onChangeValue(value) {
-    this.props.fetchRecipes(value);
+    this.props.fetchRecipes(value)
   }
 
   render() {
-    const { open, value, items } = this.state
+    const {
+      open,
+      value,
+      menstrualItems,
+      follicularItems,
+      ovulatoryItems,
+      lutealItems,
+    } = this.state
 
     if (this.props.currentPhase.color === '#1c9ab7') {
       return (
@@ -83,11 +111,20 @@ class AllRecipes extends React.Component {
           <View style={styles.phaseContainer}>
             <View style={styles.flexLeft1}>
               <View style={styles.flexLeftInner1}>
-                <Text style={styles.phaseHeader}>RECOMMENDED FOODS FOR MENSTRUAL PHASE</Text>
-                <Text style={{ fontSize: '15px', textAlign: 'center', marginBottom: 10 }}>
+                <Text style={styles.phaseHeader}>
+                  RECOMMENDED FOODS FOR MENSTRUAL PHASE
+                </Text>
+                <Text
+                  style={{
+                    fontSize: '15px',
+                    textAlign: 'center',
+                    marginBottom: 10,
+                  }}
+                >
                   As your hormones fluctuate throughout your cycle, so do your
-                  nutritional requirements. Select from the dropdown below to select a recommended food
-                  include in your diet during your menstrual phase.
+                  nutritional requirements. Select from the dropdown below to
+                  select a recommended food to include in your diet during your
+                  menstrual phase.
                 </Text>
                 <Text style={styles.phaseDetails}>Chocolate</Text>
                 <Text style={styles.phaseDetails}>Sweet Potato</Text>
@@ -114,7 +151,7 @@ class AllRecipes extends React.Component {
                   <DropDownPicker
                     open={open}
                     value={value}
-                    items={items}
+                    items={menstrualItems}
                     setOpen={this.setOpen}
                     setValue={this.setValue}
                     setItems={this.setItems}
@@ -127,8 +164,7 @@ class AllRecipes extends React.Component {
                       Keyboard.dismiss()
                       this.setState({ loading: false })
                     }}
-                  >
-                  </TouchableOpacity>
+                  ></TouchableOpacity>
                 </View>
                 <View
                   style={{ flex: 1, width: '100%' }}
@@ -177,22 +213,21 @@ class AllRecipes extends React.Component {
                         return (
                           <View key={recipe.website}>
                             <TouchableOpacity
-                                onPress={() => this.handlePress(recipe.website)}
-                                style={styles.detailButton}
-                              >
-                            <View style={styles.container}>
-                              <Image
-                                style={styles.tinyLogo}
-                                source={{
-                                  uri: recipe.imageUrl,
-                                }}
-                              />
-                              <Text style={styles.text}>{recipe.label}</Text>
-                              
+                              onPress={() => this.handlePress(recipe.website)}
+                              style={styles.detailButton}
+                            >
+                              <View style={styles.container}>
+                                <Image
+                                  style={styles.tinyLogo}
+                                  source={{
+                                    uri: recipe.imageUrl,
+                                  }}
+                                />
+                                <Text style={styles.text}>{recipe.label}</Text>
                                 <Text style={styles.detailText}>
                                   View Recipe
                                 </Text>
-                            </View>
+                              </View>
                             </TouchableOpacity>
                           </View>
                         )
@@ -211,11 +246,14 @@ class AllRecipes extends React.Component {
           <View style={styles.phaseContainer}>
             <View style={styles.flexRight1}>
               <View style={styles.flexLeftInner1}>
-                <Text style={styles.phaseHeader}>FOLLICULAR PHASE</Text>
+                <Text style={styles.phaseHeader}>
+                  RECOMMENDED FOODS FOR FOLLICULAR PHASE
+                </Text>
                 <Text style={{ textAlign: 'center', marginBottom: 10 }}>
                   As your hormones fluctuate throughout your cycle, so do your
-                  nutritional requirements. Here are some top foods to include
-                  in your diet during this phase.
+                  nutritional requirements. Select from the dropdown below to
+                  select a recommended food to include in your diet during your
+                  follicular phase.
                 </Text>
                 <Text style={styles.phaseDetails}>Grassfed Beef</Text>
                 <Text style={styles.phaseDetails}>Kale</Text>
@@ -232,6 +270,24 @@ class AllRecipes extends React.Component {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
               >
+                <View
+                  style={{
+                    width: '90%',
+                    alignSelf: 'center',
+                    zIndex: 2,
+                    elevation: 2,
+                  }}
+                >
+                  <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={follicularItems}
+                    setOpen={this.setOpen}
+                    setValue={this.setValue}
+                    setItems={this.setItems}
+                    onChangeValue={this.onChangeValue}
+                  />
+                </View>
                 <View>
                   <TextInput
                     style={styles.input}
@@ -268,23 +324,23 @@ class AllRecipes extends React.Component {
                       {this.props.allRecipes.map((recipe) => {
                         return (
                           <View key={recipe.website}>
-                            <View style={styles.container}>
-                              <Image
-                                style={styles.tinyLogo}
-                                source={{
-                                  uri: recipe.imageUrl,
-                                }}
-                              />
-                              <Text style={styles.text}>{recipe.label}</Text>
-                              <TouchableOpacity
-                                onPress={() => this.handlePress(recipe.website)}
-                                style={styles.detailButton}
-                              >
+                            <TouchableOpacity
+                              onPress={() => this.handlePress(recipe.website)}
+                              style={styles.detailButton}
+                            >
+                              <View style={styles.container}>
+                                <Image
+                                  style={styles.tinyLogo}
+                                  source={{
+                                    uri: recipe.imageUrl,
+                                  }}
+                                />
+                                <Text style={styles.text}>{recipe.label}</Text>
                                 <Text style={styles.detailText}>
                                   View Recipe
                                 </Text>
-                              </TouchableOpacity>
-                            </View>
+                              </View>
+                            </TouchableOpacity>
                           </View>
                         )
                       })}
@@ -306,17 +362,20 @@ class AllRecipes extends React.Component {
           <View style={styles.phaseContainer}>
             <View style={styles.flexRight2}>
               <View style={styles.flexLeftInner1}>
-                <Text style={styles.phaseHeader}>OVULATORY PHASE</Text>
+                <Text style={styles.phaseHeader}>
+                  RECOMMENDED FOODS FOR OVULATORY PHASE
+                </Text>
                 <Text style={{ textAlign: 'center', marginBottom: 10 }}>
                   As your hormones fluctuate throughout your cycle, so do your
-                  nutritional requirements. Here are some top foods to include
-                  in your diet during this phase.
+                  nutritional requirements. Select from the dropdown below to
+                  select a recommended food to include in your diet during your
+                  ovulatory phase.
                 </Text>
                 <Text style={styles.phaseDetails}>Eggs</Text>
                 <Text style={styles.phaseDetails}>Quinoa</Text>
                 <Text style={styles.phaseDetails}>Brussel Sprouts</Text>
                 <Text style={styles.phaseDetails}>Berries</Text>
-                <Text style={styles.phaseDetails}>Asperagus</Text>
+                <Text style={styles.phaseDetails}>Asparagus</Text>
               </View>
             </View>
           </View>
@@ -328,6 +387,24 @@ class AllRecipes extends React.Component {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
               >
+                <View
+                  style={{
+                    width: '90%',
+                    alignSelf: 'center',
+                    zIndex: 2,
+                    elevation: 2,
+                  }}
+                >
+                  <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={ovulatoryItems}
+                    setOpen={this.setOpen}
+                    setValue={this.setValue}
+                    setItems={this.setItems}
+                    onChangeValue={this.onChangeValue}
+                  />
+                </View>
                 <View>
                   <TextInput
                     style={styles.input}
@@ -364,33 +441,29 @@ class AllRecipes extends React.Component {
                       {this.props.allRecipes.map((recipe) => {
                         return (
                           <View key={recipe.website}>
-                            <View style={styles.container}>
-                              <Image
-                                style={styles.tinyLogo}
-                                source={{
-                                  uri: recipe.imageUrl,
-                                }}
-                              />
-                              <Text style={styles.text}>{recipe.label}</Text>
-                              <TouchableOpacity
-                                onPress={() => this.handlePress(recipe.website)}
-                                style={styles.detailButton}
-                              >
+                            <TouchableOpacity
+                              onPress={() => this.handlePress(recipe.website)}
+                              style={styles.detailButton}
+                            >
+                              <View style={styles.container}>
+                                <Image
+                                  style={styles.tinyLogo}
+                                  source={{
+                                    uri: recipe.imageUrl,
+                                  }}
+                                />
+                                <Text style={styles.text}>{recipe.label}</Text>
                                 <Text style={styles.detailText}>
                                   View Recipe
                                 </Text>
-                              </TouchableOpacity>
-                            </View>
+                              </View>
+                            </TouchableOpacity>
                           </View>
                         )
                       })}
                     </ScrollView>
                   </SafeAreaView>
-                ) : (
-                  <View>
-                    <Text style={styles.instructions}></Text>
-                  </View>
-                )}
+                ) : null}
               </View>
             </View>
           </View>
@@ -402,11 +475,14 @@ class AllRecipes extends React.Component {
           <View style={styles.phaseContainer}>
             <View style={styles.flexLeft2}>
               <View style={styles.flexLeftInner1}>
-                <Text style={styles.phaseHeader}>LUTEAL PHASE</Text>
+                <Text style={styles.phaseHeader}>
+                  RECOMMENDED FOODS FOR LUTEAL PHASE
+                </Text>
                 <Text style={{ textAlign: 'center', marginBottom: 10 }}>
                   As your hormones fluctuate throughout your cycle, so do your
-                  nutritional requirements. Here are some top foods to include
-                  in your diet during this phase.
+                  nutritional requirements. Select from the dropdown below to
+                  select a recommended food to include in your diet during your
+                  luteal phase.
                 </Text>
                 <Text style={styles.phaseDetails}>Butternut Squash</Text>
                 <Text style={styles.phaseDetails}>Avocado</Text>
@@ -424,6 +500,24 @@ class AllRecipes extends React.Component {
                 style={{ flex: 1, width: '100%' }}
                 keyboardShouldPersistTaps="always"
               >
+                <View
+                  style={{
+                    width: '90%',
+                    alignSelf: 'center',
+                    zIndex: 2,
+                    elevation: 2,
+                  }}
+                >
+                  <DropDownPicker
+                    open={open}
+                    value={value}
+                    items={lutealItems}
+                    setOpen={this.setOpen}
+                    setValue={this.setValue}
+                    setItems={this.setItems}
+                    onChangeValue={this.onChangeValue}
+                  />
+                </View>
                 <View>
                   <TextInput
                     style={styles.input}
@@ -460,29 +554,33 @@ class AllRecipes extends React.Component {
                       {this.props.allRecipes.map((recipe) => {
                         return (
                           <View key={recipe.website}>
-                            <View style={styles.container}>
-                              <Image
-                                style={styles.tinyLogo}
-                                source={{
-                                  uri: recipe.imageUrl,
-                                }}
-                              />
-                              <Text style={styles.text}>{recipe.label}</Text>
-                              <TouchableOpacity
-                                onPress={() => this.handlePress(recipe.website)}
-                                style={styles.detailButton}
-                              >
+                            <TouchableOpacity
+                              onPress={() => this.handlePress(recipe.website)}
+                              style={styles.detailButton}
+                            >
+                              <View style={styles.container}>
+                                <Image
+                                  style={styles.tinyLogo}
+                                  source={{
+                                    uri: recipe.imageUrl,
+                                  }}
+                                />
+                                <Text style={styles.text}>{recipe.label}</Text>
                                 <Text style={styles.detailText}>
                                   View Recipe
                                 </Text>
-                              </TouchableOpacity>
-                            </View>
+                              </View>
+                            </TouchableOpacity>
                           </View>
                         )
                       })}
                     </ScrollView>
                   </SafeAreaView>
-                ) : null}
+                ) : (
+                  <View>
+                    <Text>No results found. Try another ingredient.</Text>
+                  </View>
+                )}
               </View>
             </View>
           </View>
@@ -507,26 +605,3 @@ const mapDispatch = (dispatch) => {
 
 export default connect(mapState, mapDispatch)(AllRecipes)
 //open-in-new material icons
-
-{
-  /* <TouchableOpacity
-                    style={{
-                      display: 'flex',
-                      marginTop: 7,
-                      marginLeft: 50,
-                      marginRight: 50,
-                      marginBottom: 40,
-                      alignItems: 'center',
-                      backgroundColor: '#1c9ab7',
-                      borderRadius: 10,
-                      padding: 10,
-                    }}
-                    onPress={() => {
-                      this.props.fetchRecipes(this.state.ingredient)
-                      Keyboard.dismiss()
-                    }}
-                  >
-                    <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
-                  </TouchableOpacity>
- */
-}
