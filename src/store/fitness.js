@@ -31,7 +31,6 @@ export const fetchExercises = (target) => {
         },
       }
       const res = await axios.request(options)
-      // console.log('res-->', res.data)
 
       let resultArr = []
       res.data.map((exercise) => {
@@ -47,7 +46,6 @@ export const fetchExercises = (target) => {
           target: target,
         })
       })
-      console.log('resultArr-->', resultArr)
       dispatch(getExercises(resultArr))
     } catch (error) {
       console.log(error)
