@@ -59,6 +59,7 @@ class AllExercises extends React.Component {
     this.setOpen = this.setOpen.bind(this)
     this.setValue = this.setValue.bind(this)
     this.setItems = this.setItems.bind(this)
+    this.onChangeValue = this.onChangeValue.bind(this)
   }
   handlePress(item) {
     WebBrowser.openBrowserAsync(item)
@@ -82,6 +83,10 @@ class AllExercises extends React.Component {
     }))
   }
 
+  onChangeValue(value) {
+    this.props.fetchExercises(value);
+  }
+
   render() {
     const { open, value, items } = this.state
 
@@ -91,7 +96,7 @@ class AllExercises extends React.Component {
           <View style={styles.phaseContainer}>
             <View style={styles.flexLeft1}>
               <View style={styles.flexLeftInner1}>
-                <Text style={styles.phaseHeader}>MENSTRUAL PHASE</Text>
+                <Text style={styles.phaseHeader}>RECOMMENDED EXERCISES FOR MENSTRUAL PHASE</Text>
                 <Text style={styles.phaseDetails}>
                   Walking or any form of mild exercise is recommended during
                   your menstrual phase, even if you're not feeling major
@@ -113,6 +118,7 @@ class AllExercises extends React.Component {
                     alignSelf: 'center',
                     zIndex: 2,
                     elevation: 2,
+                    marginBottom: 15
                   }}
                 >
                   <DropDownPicker
@@ -122,21 +128,11 @@ class AllExercises extends React.Component {
                     setOpen={this.setOpen}
                     setValue={this.setValue}
                     setItems={this.setItems}
+                    onChangeValue={this.onChangeValue}
                   />
                 </View>
                 <View>
                   <TouchableOpacity
-                    style={{
-                      display: 'flex',
-                      marginTop: 20,
-                      marginLeft: 50,
-                      marginRight: 50,
-                      marginBottom: 30,
-                      alignItems: 'center',
-                      backgroundColor: '#1c9ab7',
-                      borderRadius: 10,
-                      padding: 10,
-                    }}
                     onPress={async () => {
                       this.setState({ loading: true })
                       await this.props.fetchExercises(this.state.value)
@@ -144,7 +140,6 @@ class AllExercises extends React.Component {
                       this.setState({ loading: false })
                     }}
                   >
-                    <Text style={{ color: 'white', fontSize: 15 }}>Search</Text>
                   </TouchableOpacity>
                 </View>
 
