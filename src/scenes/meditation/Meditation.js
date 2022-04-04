@@ -140,9 +140,10 @@ export default class AllMeditations extends React.Component {
           <View>
             <Text
               style={{
-                marginTop: 20,
+                marginTop: 50,
                 textAlign: 'center',
-                fontSize: 20,
+                fontSize: 25,
+                fontWeight: 'bold'
               }}
             >
               Positive Energy
@@ -185,9 +186,10 @@ export default class AllMeditations extends React.Component {
           <View>
             <Text
               style={{
-                marginTop: 20,
+                marginTop: 50,
                 textAlign: 'center',
-                fontSize: 20,
+                fontSize: 25,
+                fontWeight: 'bold'
               }}
             >
               Depression
@@ -227,9 +229,10 @@ export default class AllMeditations extends React.Component {
           <View>
             <Text
               style={{
-                marginTop: 20,
+                marginTop: 50,
                 textAlign: 'center',
-                fontSize: 20,
+                fontSize: 25,
+                fontWeight: 'bold'
               }}
             >
               Stress
@@ -261,16 +264,17 @@ export default class AllMeditations extends React.Component {
                 })
               }}
             >
-              <Text style={{ color: 'white', fontSize: 15 }}>Randomize</Text>
+              <Text style={{ color: 'white', fontSize: 15}}>Randomize</Text>
             </TouchableOpacity>
           </View>
 
           <View>
             <Text
               style={{
-                marginTop: 20,
+                marginTop: 50,
                 textAlign: 'center',
-                fontSize: 20,
+                fontSize: 25,
+                fontWeight: 'bold'
               }}
             >
               Sleep

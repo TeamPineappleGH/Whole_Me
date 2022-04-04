@@ -175,6 +175,6 @@ export default StyleSheet.create({
     flexDirection: 'column',
   },
   video: {
-    marginTop: 20
+    marginTop: 10
   }
 })
