@@ -131,7 +131,7 @@ class AllExercises extends React.Component {
                       marginTop: 20,
                       marginLeft: 50,
                       marginRight: 50,
-                      marginBottom: 10,
+                      marginBottom: 30,
                       alignItems: 'center',
                       backgroundColor: '#1c9ab7',
                       borderRadius: 10,
@@ -156,23 +156,24 @@ class AllExercises extends React.Component {
                       {this.props.allExercises.map((exercise) => {
                         return (
                           <View key={exercise.id}>
-                            <View style={styles.container}>
-                              <Image
-                                style={styles.tinyLogo}
-                                source={{
-                                  uri: exercise.gif,
-                                }}
-                              />
-                              <Text style={styles.text}>{exercise.name}</Text>
-                              <TouchableOpacity
-                                onPress={() => this.handlePress(exercise.gif)}
-                                style={styles.detailButton}
-                              >
+                            <TouchableOpacity
+                              onPress={() => this.handlePress(exercise.gif)}
+                              style={styles.detailButton}
+                            >
+                              <View style={styles.container}>
+                                <Image
+                                  style={styles.tinyLogo}
+                                  source={{
+                                    uri: exercise.gif,
+                                  }}
+                                />
+                                <Text style={styles.text}>{exercise.name}</Text>
+
                                 <Text style={styles.detailText}>
                                   View Exercise
                                 </Text>
-                              </TouchableOpacity>
-                            </View>
+                              </View>
+                            </TouchableOpacity>
                           </View>
                         )
                       })}

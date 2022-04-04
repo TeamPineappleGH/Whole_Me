@@ -79,10 +79,10 @@ class AllRecipes extends React.Component {
             <View style={styles.flexLeft1}>
               <View style={styles.flexLeftInner1}>
                 <Text style={styles.phaseHeader}>MENSTRUAL PHASE</Text>
-                <Text style={{ textAlign: 'center', marginBottom: 10 }}>
+                <Text style={{ fontSize: '15px', textAlign: 'center', marginBottom: 10 }}>
                   As your hormones fluctuate throughout your cycle, so do your
-                  nutritional requirements. Select these recommended foods to
-                  include in your diet during this phase.
+                  nutritional requirements. Select the recommended foods in the dropdown below to
+                  include in your diet during your menstrual phase.
                 </Text>
                 <Text style={styles.phaseDetails}>Chocolate</Text>
                 <Text style={styles.phaseDetails}>Sweet Potato</Text>
@@ -121,7 +121,6 @@ class AllRecipes extends React.Component {
                       marginTop: 20,
                       marginLeft: 50,
                       marginRight: 50,
-                      marginBottom: 30,
                       alignItems: 'center',
                       backgroundColor: '#1c9ab7',
                       borderRadius: 10,
@@ -156,10 +155,10 @@ class AllRecipes extends React.Component {
                   <TouchableOpacity
                     style={{
                       display: 'flex',
-                      marginTop: 20,
+                      marginTop: 10,
                       marginLeft: 50,
                       marginRight: 50,
-                      marginBottom: 30,
+                      marginBottom: 40,
                       alignItems: 'center',
                       backgroundColor: '#1c9ab7',
                       borderRadius: 10,
@@ -173,7 +172,7 @@ class AllRecipes extends React.Component {
                     }}
                   >
                     <Text style={{ color: 'white', fontSize: 15 }}>
-                      Find Recipes by Ingredient
+                      Search Recipes
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -186,6 +185,10 @@ class AllRecipes extends React.Component {
                       {this.props.allRecipes.map((recipe) => {
                         return (
                           <View key={recipe.website}>
+                            <TouchableOpacity
+                                onPress={() => this.handlePress(recipe.website)}
+                                style={styles.detailButton}
+                              >
                             <View style={styles.container}>
                               <Image
                                 style={styles.tinyLogo}
@@ -194,15 +197,12 @@ class AllRecipes extends React.Component {
                                 }}
                               />
                               <Text style={styles.text}>{recipe.label}</Text>
-                              <TouchableOpacity
-                                onPress={() => this.handlePress(recipe.website)}
-                                style={styles.detailButton}
-                              >
+                              
                                 <Text style={styles.detailText}>
                                   View Recipe
                                 </Text>
-                              </TouchableOpacity>
                             </View>
+                            </TouchableOpacity>
                           </View>
                         )
                       })}

@@ -161,10 +161,10 @@ export default StyleSheet.create({
     borderRadius: 15
   },
   phaseHeader: {
-    fontSize: 16,
+    fontSize: 18,
     textAlign: 'center',
     fontWeight: 'bold',
-    padding: 2
+    padding: 10
   },
   phaseDetails: {
     fontSize: 15,

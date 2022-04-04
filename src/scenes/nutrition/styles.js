@@ -110,9 +110,9 @@ export default StyleSheet.create({
     fontSize: 18,
   },
   header: {
-    marginTop: 30,
+    marginTop: 25,
     fontSize: 22,
-    marginBottom: 20,
+    marginBottom: 30,
     textAlign: 'center',
     fontWeight: 'bold',
   },
@@ -160,10 +160,10 @@ export default StyleSheet.create({
     borderRadius: 15
   },
   phaseHeader: {
-    fontSize: 16,
+    fontSize: 18,
     textAlign: 'center',
     fontWeight: 'bold',
-    padding: 2
+    padding: 10
   },
   phaseDetails: {
     fontSize: 15,
