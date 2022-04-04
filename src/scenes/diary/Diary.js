@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   TextInput,
-  KeyboardAvoidingView,
+  Keyboard,
 } from 'react-native'
 import styles from './styles'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
