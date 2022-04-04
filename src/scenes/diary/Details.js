@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity, Alert, Keyboard } from 'react-native'
 import { Icon } from 'react-native-elements'
 import styles from './styles'
 import { auth, db } from '../../firebase/config.js'
