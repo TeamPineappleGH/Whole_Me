@@ -17,7 +17,7 @@ export default function AddPeriodEntry(props) {
   const scheme = useColorScheme()
 
   const periodUpdate = () => {
-    const toDate = new Date(periodStartDate)
+    const toDate = new Date(periodStartDate.replace(/-/g, '\/').replace(/T.+/, ''))
     const myTimeStamp = firebase.firestore.Timestamp.fromDate(toDate)
 
     const data = {
