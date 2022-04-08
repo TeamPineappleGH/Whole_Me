@@ -577,9 +577,7 @@ class AllRecipes extends React.Component {
                     </ScrollView>
                   </SafeAreaView>
                 ) : (
-                  <View>
-                    <Text>No results found. Try another ingredient.</Text>
-                  </View>
+                  null
                 )}
               </View>
             </View>
