@@ -1,12 +1,8 @@
 # Whole Me
 
-*Screenshots of homescreen, calendar, nutrition, and wellness view*
-
-# Description
-
 Whole Me is a women's+ health mobile application that provides nutrition and wellness information based on a users menstrual cycle. Users can add their menstrual phase start date and duration upon sign up and the app estimates the timeperiod in which they will be in each menstrual phase. The signed-in user can then view a personlized calendar displaying their menstrual phase forecast, nutrition, mental health, and fitness information among other resources. Nutrition and fitness recommendations are provided to the user based on their menstrual phase. They can also write and keep track of notes within a diary. 
 
-View our walkthrough video here *Link walk through video attached to 'here'*
+[*View our walkthrough video*](https://www.youtube.com/watch?v=IriAv5-I9ek&ab_channel=KatelynMiller)
 
 # Download 
 
