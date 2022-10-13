@@ -2,17 +2,20 @@ import * as firebase from 'firebase'
 import "firebase/firestore"
 import "firebase/storage"
 
-const firebaseConfig = firebase.initializeApp({
-  apiKey: "AIzaSyAZtdkyKwJnIJn5sMf1DYEeZEnhLjfWw6I",
-  authDomain: "whole-me.firebaseapp.com",
-  projectId: "whole-me",
-  storageBucket: "whole-me.appspot.com",
-  messagingSenderId: "304744982069",
-  appId: "1:304744982069:web:1c436dcaf01f039d33b37c"
-});
+const firebaseConfig = {
+  apiKey: "AIzaSyDdoJmb3sPrTd6nSQwfIohND7y7HeVzV8g",
+  authDomain: "whole-me-685aa.firebaseapp.com",
+  projectId: "whole-me-685aa",
+  storageBucket: "whole-me-685aa.appspot.com",
+  messagingSenderId: "37431814899",
+  appId: "1:37431814899:web:8bd7ef5f1eed9e4df46586",
+  measurementId: "G-41Z60F58BG"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
-const db = firebaseConfig.firestore();
+const db = firebase.firestore();
 
 export {
     auth,
