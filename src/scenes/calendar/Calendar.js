@@ -11,15 +11,20 @@ import { useIsFocused } from '@react-navigation/native';
 
 function CalendarView(props) {
   const scheme = useColorScheme()
+
   const menstrualPhase = {color: '#1c9ab7'};
   const follicularPhase = {color: '#9ad0ec'}
   const ovulationPhase = {color: '#efdad7'}
   const lutealPhase = {color: '#f98c41'}
+
   let menstrualPhaseArray = [];
   let follicularPhaseArray = [];
   let ovulationPhaseArray = [];
   let lutealPhaseArray = [];
+
   const isFocused = useIsFocused();
+  
+  const [markedDates, setMarkedDates] = useState({})
 
   const onAddEntryPress = () => {
     props.navigation.navigate('Add Period Entry')
@@ -30,8 +35,7 @@ function CalendarView(props) {
   const userId = auth.currentUser.uid
   const userRef = db.collection('users').doc(userId)
 
-  const [markedDates, setMarkedDates] = useState({})
-
+  // PHASES FUNC - sets the markedDates object including the dates for each of the 4 phases
   const phases = async () => {
     const user = await userRef.get()
     const periodDuration = user.data().duration
